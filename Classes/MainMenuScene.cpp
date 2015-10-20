@@ -25,6 +25,14 @@ void MainMenuScene::goToGameScene(Ref *pSender) {
 	CocosDenshion::SimpleAudioEngine::getInstance()->playEffect("audio/ButtonClick.wav");
 }
 
+void MainMenuScene::goToGameOptions(Ref *pSender) {
+
+	auto scene = Options::CreateScene();
+	Director::getInstance()->replaceScene(TransitionFade::create(1.0, scene));
+	CocosDenshion::SimpleAudioEngine::getInstance()->playEffect("audio/ButtonClick.wav");
+
+}
+
 // on "init" you need to initialize your instance
 bool MainMenuScene::init()
 {
