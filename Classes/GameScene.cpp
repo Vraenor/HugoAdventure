@@ -35,35 +35,27 @@ void GameScene::goToGameOverScene(Ref *pSender) {
 
 void GameScene::update(float dt) {
 	Size visibleSize = Director::getInstance()->getVisibleSize();
-	// Scrolls background
-	for (int i = 0; i < 2; i++) {
-		if (_backgroundSpriteArray[i]->getPosition().y < (visibleSize.height* -0.5))
-			_backgroundSpriteArray[i]->setPosition(Point(visibleSize.width / 2,visibleSize.height * 1.5f));
-		else
-			_backgroundSpriteArray[i]->setPosition(Point(_backgroundSpriteArray[i]->getPosition().x,
-			_backgroundSpriteArray[i]->getPosition().y -(BACKGROUND_SPEED * visibleSize.height * dt)));
-	}
+	
 
-	if (_isMoving || _isMovingByMouse) {
-		Vec2 newPos = Vec2(_playerSprite->getPosition().x + _podVector.x,
-			_playerSprite->getPosition().y + _podVector.y);
+	if (_isMoving) {
+		Vec2 newPos = Vec2(_playerSprite->getPosition().x + _podVector.x, _playerSprite->getPosition().y + _podVector.y);
 		if (newPos.x >= _playerSprite->getBoundingBox().size.width / 2 && newPos.x <= (visibleSize.width - _playerSprite->getBoundingBox().size.width / 2) &&
 			newPos.y >= _playerSprite->getBoundingBox().size.height / 2 && newPos.y <= (visibleSize.height - _playerSprite->getBoundingBox().size.height / 2))
 		{
 			_playerSprite->setPosition(newPos);
+			_podVector = Vec2::ZERO;
 		}
-		_isMovingByMouse = false;
 	}
 
 }
 
-void GameScene::asteroidDone(Node *pSender) {
+/*void GameScene::asteroidDone(Node *pSender) {
 	pSender->stopAllActions();
 	_asteroids.remove(pSender);
 	removeChild(pSender);
-}
+}*/
 
-void GameScene::spawnAsteroid(float dt) {
+/*void GameScene::spawnAsteroid(float dt) {
 	Size visibleSize = Director::getInstance()->getVisibleSize();
 	int asteroidIndex = (std::rand() % 3 + 1);
 	__String *filename = __String::createWithFormat("images/GameScreen/Asteroid_%i.png",asteroidIndex);
@@ -83,56 +75,105 @@ void GameScene::spawnAsteroid(float dt) {
 	auto *move = (FiniteTimeAction *)MoveBy::create(2 / METEOR_SPEED, Point(0, - visibleSize.height - tempAsteroid->getBoundingBox().size.height));
 	move->retain();
 	
-	auto *seq = Sequence::create(move, CallFuncN::create(CC_CALLBACK_1(GameScene::asteroidDone, this)),NULL);
+	/*auto *seq = Sequence::create(move, CallFuncN::create(CC_CALLBACK_1(GameScene::asteroidDone, this)),NULL);
 	seq->retain();
 	_asteroids.push_back(tempAsteroid);
 	tempAsteroid->runAction(seq);
 	addChild(tempAsteroid, 2);
+}*/
+
+int GameScene::coordToTileX(float x) {
+	// Tile (1,1) 112.5, 862.5
+	// Tile (18,11) 1387.5, 112.5
+	
+	int tileX = 0;
+	tileX = int(x / 75);
+
+	return tileX;
+
+}
+
+int GameScene::coordToTileY(float y) {
+	// Tile (1,1) 112.5, 862.5
+	// Tile (18,11) 1387.5, 112.5
+
+	int tileY = 0;
+	tileY = int((975-y)/75);
+
+	return tileY;
+
+}
+
+
+bool GameScene::comprobarTile(float x, float y) {
+
+	//llamada funcion pasar coordenadas a tile
+	//auto map = TMXTiledMap::create("mapa.tmx");
+	//auto bloques = map->layerNamed("Bloques");
+	//unsigned int gid = bloques->tileGIDAt(Vec2(x, y + 75));
+	int a = coordToTileX(x);
+	int b = coordToTileY(y);
+
+	int tileGID = map->layerNamed("Suelo")->tileGIDAt(Vec2(coordToTileX(x), coordToTileY(y)));
+	if (tileGID != 0){
+
+		ValueMap mapProperties = map->propertiesForGID(tileGID).asValueMap();
+		bool valueProp = mapProperties.at("accesible").asBool(); // Si es null (no es accesible), devuelve true
+
+		if (valueProp == true) 
+			
+			return true; // No se movera
+
+	}
+	return false; // Se movera
 }
 
 void GameScene::onKeyPressed(EventKeyboard::KeyCode keyCode, Event *event){
 	_pressedKey = keyCode;
+	bool accesible;
 	switch (_pressedKey) {
 	case EventKeyboard::KeyCode::KEY_UP_ARROW:
-		_podVector = Vec2(0, POD_STEP_MOVE);
-		_isMoving = true;
+
+		accesible = comprobarTile(_playerSprite->getPosition().x , _playerSprite->getPosition().y + 75);
+		if (accesible == true) {
+			_podVector = Vec2(0, POD_STEP_MOVE);
+			_isMoving = true;
+			break;
+		}
 		break;
 	case EventKeyboard::KeyCode::KEY_DOWN_ARROW:
-		_podVector = Vec2(0, -POD_STEP_MOVE);
-		_isMoving = true;
+		accesible = comprobarTile(_playerSprite->getPosition().x, _playerSprite->getPosition().y - 75);
+		if (accesible == true) {
+			_podVector = Vec2(0, -POD_STEP_MOVE);
+			_isMoving = true;
+			break;
+		}
 		break;
 	case EventKeyboard::KeyCode::KEY_LEFT_ARROW:
-		_podVector = Vec2(-POD_STEP_MOVE, 0);
-		_isMoving = true;
+		accesible = comprobarTile(_playerSprite->getPosition().x - 75, _playerSprite->getPosition().y);
+		if (accesible == true) {
+			_podVector = Vec2(-POD_STEP_MOVE, 0);
+			_isMoving = true;
+			break;
+		}
 		break;
 	case EventKeyboard::KeyCode::KEY_RIGHT_ARROW:
-		_podVector = Vec2(POD_STEP_MOVE, 0);
-		_isMoving = true;
+		accesible = comprobarTile(_playerSprite->getPosition().x + 75, _playerSprite->getPosition().y);
+		if (accesible == true) {
+			_podVector = Vec2(POD_STEP_MOVE, 0);
+			_isMoving = true;
+			break;
+		}
 		break;
 	}
-} void GameScene::onKeyReleased(EventKeyboard::KeyCode keyCode, Event *
+} 
+
+void GameScene::onKeyReleased(EventKeyboard::KeyCode keyCode, Event *
 	event){
 	if (_pressedKey == keyCode) {
 		_pressedKey = EventKeyboard::KeyCode::KEY_NONE;
 		_isMoving = false;
 		_podVector = Vec2::ZERO;
-	}
-}
-
-void GameScene::onMouseMove(Event *event) {
-	static Vec2 *oldPosition;
-	auto *e = dynamic_cast<EventMouse *>(event);
-	if (oldPosition == NULL) {
-		oldPosition = new Vec2(e->getCursorX(), e->getCursorY());
-	}
-	else {
-		_podVector = Vec2(e->getCursorX() - oldPosition->x,
-			e->getCursorY() - oldPosition->y);
-		if (!_isMovingByMouse) {
-			_isMovingByMouse = true;
-			oldPosition->x = e->getCursorX();
-			oldPosition->y = e->getCursorY();
-		}
 	}
 }
 
@@ -162,11 +203,6 @@ bool GameScene::init()
 		CC_CALLBACK_1(GameScene::goToPauseScene, this));
 	addChild(pauseItem, 1);
 
-	// Setting and binding mouse callbacks
-	auto mouseListener = EventListenerMouse::create();
-	mouseListener->onMouseMove = CC_CALLBACK_1(GameScene::onMouseMove, this);
-	this->getEventDispatcher()->addEventListenerWithSceneGraphPriority(mouseListener, this);
-
 	//Setting and binding keyboard callbacks
 	auto listener = EventListenerKeyboard::create();
 	listener->onKeyPressed = CC_CALLBACK_2(GameScene::onKeyPressed, this);
@@ -177,17 +213,24 @@ bool GameScene::init()
 	_podVector = Vec2::ZERO;
 	_isMoving = false;
 
-	//Loading scrollable background
-	for (int i = 0; i < 2; i++) {
-		_backgroundSpriteArray[i]
-			= Sprite::create("images/GameScreen/Game_Screen_Background.png");
-		_backgroundSpriteArray[i]->setPosition(Point(visibleSize.width / 2, visibleSize.height * (i + 0.5f)));
-		addChild(_backgroundSpriteArray[i], 0);
-	}
+	//Loading map http://www.cocos2d-x.org/wiki/TileMap
+	
+	map = TMXTiledMap::create("mapa.tmx");
+	map->setPosition(Point(0, 0));
+	addChild(map, 0);
+
+	suelo = map->layerNamed("Suelo");
+	auto moviles = map->layerNamed("Moviles");
+	auto objetos = map->layerNamed("Objetos");
+	auto enemigos = map->layerNamed("Enemigos");
+
+	//for (const auto& child : map->getChildren()) static_cast<SpriteBatchNode*>(child)->getTexture()->setAntiAliasTexParameters();
+
+	//_backgroundGameScene->setPosition(Point(visibleSize.width / 2, visibleSize.height /2));
+
 	// Loading player sprite
-	_playerSprite = Sprite::create("images/GameScreen/Space_Pod.png");
-	_playerSprite->setPosition(Point(visibleSize.width / 2,
-		_playerSprite->getContentSize().height * 0.75));
+	_playerSprite = Sprite::create("images/Hugo.png");
+	_playerSprite->setPosition(Point(1387.5, 112.5)); //Tile(18,11)
 	addChild(_playerSprite, 1);
 
 	auto body = PhysicsBody::createCircle(_playerSprite->getBoundingBox().size.width / 2);
@@ -200,6 +243,6 @@ bool GameScene::init()
 	getEventDispatcher()->addEventListenerWithSceneGraphPriority(contactListener, this);
 
 	this->scheduleUpdate();
-	this->schedule(schedule_selector(GameScene::spawnAsteroid), 1.0);
+	//this->schedule(schedule_selector(GameScene::spawnAsteroid), 1.0);
     return true;
 }

@@ -10,6 +10,7 @@ public:
 	void resumeGameScene(Ref *pSender);
 	void goToMainMenu(Ref *pSender);
 	void retryGameScene(Ref *pSender);
+	void goToOptionsScene(Ref *pSender);
 
     // there's no 'id' in cpp, so we recommend returning the class instance pointer
     static cocos2d::Scene* createScene();

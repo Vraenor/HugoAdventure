@@ -1,6 +1,7 @@
 #include "PauseScene.h"
 #include "MainMenuScene.h"
 #include "GameScene.h"
+#include "OptionsScene.h"
 
 USING_NS_CC;
 
@@ -31,6 +32,11 @@ void PauseScene::retryGameScene(Ref *pSender) {
 	auto scene = GameScene::createScene();
 	Director::getInstance()->popScene();
 	Director::getInstance()->replaceScene(TransitionFade::create(1.0, scene));
+}
+void PauseScene::goToOptionsScene(Ref *pSender) {
+	auto scene = OptionsScene::createScene();
+	Director::getInstance()->pushScene(TransitionFade::create(1.0, scene));
+	
 }
 
 // on "init" you need to initialize your instance

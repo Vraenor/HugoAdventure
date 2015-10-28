@@ -1,5 +1,6 @@
 #include "MainMenuScene.h"
 #include "GameScene.h"
+#include "OptionsScene.h"
 #include "SimpleAudioEngine.h"
 
 USING_NS_CC;
@@ -20,17 +21,24 @@ Scene* MainMenuScene::createScene()
 }
 
 void MainMenuScene::goToGameScene(Ref *pSender) {
+	
 	auto scene = GameScene::createScene();
 	Director::getInstance()->replaceScene(TransitionFade::create(1.0,scene));
 	CocosDenshion::SimpleAudioEngine::getInstance()->playEffect("audio/ButtonClick.wav");
 }
 
-void MainMenuScene::goToGameOptions(Ref *pSender) {
+void MainMenuScene::goToOptions(Ref *pSender) {
 
-	auto scene = Options::CreateScene();
+	auto scene = OptionsScene::createScene();
 	Director::getInstance()->replaceScene(TransitionFade::create(1.0, scene));
 	CocosDenshion::SimpleAudioEngine::getInstance()->playEffect("audio/ButtonClick.wav");
 
+}
+
+void MainMenuScene::goToClose(Ref *pSender) {
+
+	Director::getInstance()->popScene();
+	//Close the game
 }
 
 // on "init" you need to initialize your instance
@@ -48,12 +56,14 @@ bool MainMenuScene::init()
 	// Creating menu
 	auto menuTitle = MenuItemImage::create("images/MainMenuScreen/Game_Title.png", "images/MainMenuScreen/Game_Title.png");
 	auto playItem = MenuItemImage::create("images/MainMenuScreen/Play_Button.png", "images/MainMenuScreen/Play_Button(Click).png", CC_CALLBACK_1(MainMenuScene::goToGameScene, this));
+	auto optionsItem = MenuItemImage::create("images/MainMenuScreen/Options_Button.png", "images/MainMenuScreen/Options_Button(Click).png", CC_CALLBACK_1(MainMenuScene::goToOptions, this));
+	auto closeItem = MenuItemImage::create("images/MainMenuScreen/Close_Button.png", "images/MainMenuScreen/Close_Button(Click).png", CC_CALLBACK_1(MainMenuScene::goToClose, this));
 	
-	auto menu = Menu::create(menuTitle, playItem, NULL);
-	menu->alignItemsVerticallyWithPadding(visibleSize.height / 4);
+	auto menu = Menu::create(menuTitle, playItem, optionsItem, closeItem, NULL);
+	menu->alignItemsVerticallyWithPadding(visibleSize.height / 8);
 	addChild(menu, 1);
-
-	auto background = Sprite::create("images/MainMenuScreen/Background.png");
+	
+	auto background = Sprite::create("images/MainMenuScreen/Menu_Background.png");
 	background->setPosition(Point((visibleSize.width / 2), (visibleSize.height / 2)));
 	addChild(background, 0);
 

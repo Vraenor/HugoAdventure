@@ -8,6 +8,8 @@ class MainMenuScene : public cocos2d::Layer
 public:
 
 	void goToGameScene(Ref *pSender);
+	void goToOptions(Ref *pSender);
+	void goToClose(Ref *pSender);
 
     // there's no 'id' in cpp, so we recommend returning the class instance pointer
     static cocos2d::Scene* createScene();

@@ -7,14 +7,13 @@ USING_NS_CC;
 
 const float METEOR_SPEED = 0.5f;
 const float BACKGROUND_SPEED = 0.3f;
-const int POD_STEP_MOVE = 10;
+const int POD_STEP_MOVE = 75;
 
 class GameScene : public cocos2d::Layer
 {
 public:
 
-	Sprite *_backgroundSpriteArray[2];
-	std::list<cocos2d::Node *> _asteroids;
+	Sprite *_backgroundGameScene;
 	Sprite *_playerSprite;
 
 	void goToPauseScene(Ref *pSender);
@@ -25,7 +24,9 @@ public:
 	void backgroundDone(Node *pSender);
 	void onKeyPressed(EventKeyboard::KeyCode keyCode, Event *event);
 	void onKeyReleased(EventKeyboard::KeyCode keyCode, Event *event);
-	void onMouseMove(Event *event);
+	bool comprobarTile(float x, float y);
+	int coordToTileX(float x);
+	int coordToTileY(float y);
 
 	void setPhysicsWorld(PhysicsWorld *world);
 	bool onContactBegin(PhysicsContact &contact);
@@ -44,8 +45,9 @@ private:
 	EventKeyboard::KeyCode _pressedKey;
 	Vec2 _podVector;
 	bool _isMoving;
-	bool _isMovingByMouse;
 	PhysicsWorld *mWorld;
+	CCTMXLayer *suelo;
+	CCTMXTiledMap *map;
 };
 
 #endif // __GAME_SCENE_H__
