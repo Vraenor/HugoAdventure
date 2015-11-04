@@ -46,7 +46,10 @@ private:
 	Vec2 _podVector;
 	bool _isMoving;
 	PhysicsWorld *mWorld;
-	CCTMXLayer *suelo;
+	CCTMXLayer *obs;
+	CCTMXLayer *mov;
+	CCTMXLayer *obj;
+	CCTMXLayer *ene;
 	CCTMXTiledMap *map;
 };
 

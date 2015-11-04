@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="20" height="13" tilewidth="75" tileheight="75" nextobjectid="1">
+ <tileset firstgid="1" name="Bloques" tilewidth="75" tileheight="75" spacing="2" tilecount="32">
+  <image source="Bloques.png" width="614" height="306"/>
+  <tile id="0">
+   <properties>
+    <property name="accesible" value="false"/>
+   </properties>
+  </tile>
+  <tile id="1">
+   <properties>
+    <property name="accesible" value="false"/>
+   </properties>
+  </tile>
+  <tile id="2">
+   <properties>
+    <property name="accesible" value="false"/>
+   </properties>
+  </tile>
+  <tile id="3">
+   <properties>
+    <property name="accesible" value="false"/>
+   </properties>
+  </tile>
+  <tile id="4">
+   <properties>
+    <property name="accesible" value="false"/>
+   </properties>
+  </tile>
+  <tile id="5">
+   <properties>
+    <property name="accesible" value="false"/>
+   </properties>
+  </tile>
+  <tile id="6">
+   <properties>
+    <property name="accesible" value="false"/>
+   </properties>
+  </tile>
+  <tile id="7">
+   <properties>
+    <property name="accesible" value="false"/>
+   </properties>
+  </tile>
+  <tile id="8">
+   <properties>
+    <property name="accesible" value="true"/>
+   </properties>
+  </tile>
+  <tile id="9">
+   <properties>
+    <property name="accesible" value="false"/>
+   </properties>
+  </tile>
+  <tile id="10">
+   <properties>
+    <property name="accesible" value="false"/>
+   </properties>
+  </tile>
+  <tile id="11">
+   <properties>
+    <property name="accesible" value="false"/>
+   </properties>
+  </tile>
+  <tile id="12">
+   <properties>
+    <property name="accesible" value="false"/>
+   </properties>
+  </tile>
+  <tile id="13">
+   <properties>
+    <property name="accesible" value="false"/>
+   </properties>
+  </tile>
+  <tile id="14">
+   <properties>
+    <property name="accesible" value="false"/>
+   </properties>
+  </tile>
+  <tile id="15">
+   <properties>
+    <property name="accesible" value="false"/>
+   </properties>
+  </tile>
+  <tile id="16">
+   <properties>
+    <property name="accesible" value="true"/>
+   </properties>
+  </tile>
+  <tile id="17">
+   <properties>
+    <property name="accesible" value="false"/>
+   </properties>
+  </tile>
+  <tile id="18">
+   <properties>
+    <property name="accesible" value="false"/>
+   </properties>
+  </tile>
+  <tile id="19">
+   <properties>
+    <property name="accesible" value="false"/>
+   </properties>
+  </tile>
+  <tile id="20">
+   <properties>
+    <property name="accesible" value="false"/>
+   </properties>
+  </tile>
+  <tile id="21">
+   <properties>
+    <property name="accesible" value="true"/>
+   </properties>
+  </tile>
+  <tile id="22">
+   <properties>
+    <property name="accesible" value="true"/>
+   </properties>
+  </tile>
+  <tile id="23">
+   <properties>
+    <property name="accesible" value="true"/>
+   </properties>
+  </tile>
+  <tile id="24">
+   <properties>
+    <property name="accesible" value="false"/>
+   </properties>
+  </tile>
+  <tile id="25">
+   <properties>
+    <property name="accesible" value="false"/>
+   </properties>
+  </tile>
+  <tile id="26">
+   <properties>
+    <property name="accesible" value="false"/>
+   </properties>
+  </tile>
+  <tile id="27">
+   <properties>
+    <property name="accesible" value="false"/>
+   </properties>
+  </tile>
+  <tile id="28">
+   <properties>
+    <property name="accesible" value="true"/>
+   </properties>
+  </tile>
+  <tile id="29">
+   <properties>
+    <property name="accesible" value="true"/>
+   </properties>
+  </tile>
+ </tileset>
+ <layer name="Obstaculos" width="20" height="13">
+  <data encoding="base64" compression="zlib">
+   eJytks0OwjAMg8M/hR7o2KWw9v0fk1SKJcsbJ5hkdUvjL2m6k5kd/qSza+fqruSqrpfrGZpjb8Qt1kS58JVY98HLFEvEnMmLB3mDdQsv2OAtEavCXCKvUzxt5OAbvE51LdYmXq5XpHaJXsHT3rY4lXxZ4iNvIp4JY3ju4dOzTjRXnKMLD/Ns5OH7aMTlmX3rr8v+8LzJx/3qPNCH8kxy+JzM78Lf6g8xzFzvIAmf59GoJnia32x9D/q/a785eBfX8Qc96P3q+gBh9A43
+  </data>
+ </layer>
+ <layer name="Movibles" width="20" height="13">
+  <data encoding="base64" compression="zlib">
+   eJxjYBgeQAKKR8HIAITiejQtkAcA3rAAYQ==
+  </data>
+ </layer>
+ <layer name="Objetos" width="20" height="13">
+  <data encoding="base64" compression="zlib">
+   eJxjYBgYIDZA9o5EID7QDhgFQwYAAIUUAC4=
+  </data>
+ </layer>
+ <layer name="Enemigos" width="20" height="13">
+  <data encoding="base64" compression="zlib">
+   eJxjYBgF1ASiA+2AUTAKKAAAPdAAFg==
+  </data>
+ </layer>
+</map>

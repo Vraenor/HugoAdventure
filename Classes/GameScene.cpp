@@ -114,18 +114,36 @@ bool GameScene::comprobarTile(float x, float y) {
 	int a = coordToTileX(x);
 	int b = coordToTileY(y);
 
-	int tileGID = map->layerNamed("Suelo")->tileGIDAt(Vec2(coordToTileX(x), coordToTileY(y)));
+	int tileGID = obs->tileGIDAt(Vec2(coordToTileX(x), coordToTileY(y)));
+	//int tileGID = map->layerNamed("Movibles")->tileGIDAt(Vec2(coordToTileX(x), coordToTileY(y)));
 	if (tileGID != 0){
 
 		ValueMap mapProperties = map->propertiesForGID(tileGID).asValueMap();
-		bool valueProp = mapProperties.at("accesible").asBool(); // Si es null (no es accesible), devuelve true
+		//Value valueName = map->getProperty("Nombre");
+		
+		bool valueProp = mapProperties.at("accesible").asBool(); // Si es false (no es accesible), devuelve false
 
 		if (valueProp == true) 
 			
-			return true; // No se movera
+			return true; // Se movera
 
 	}
-	return false; // Se movera
+	else
+	{
+		tileGID = mov->tileGIDAt(Vec2(coordToTileX(x), coordToTileY(y)))-1;
+		if (tileGID != 0)
+		{
+			ValueMap mapProperties = map->propertiesForGID(tileGID).asValueMap();
+			//Value valueName = map->getProperty("Nombre");
+
+			bool valueProp = mapProperties.at("accesible").asBool(); // Si es false (no es accesible), devuelve false
+
+			if (valueProp == true)
+
+				return true; // Se movera
+		}
+	}
+	return false; // No se movera
 }
 
 void GameScene::onKeyPressed(EventKeyboard::KeyCode keyCode, Event *event){
@@ -215,23 +233,44 @@ bool GameScene::init()
 
 	//Loading map http://www.cocos2d-x.org/wiki/TileMap
 	
-	map = TMXTiledMap::create("mapa.tmx");
+	map = TMXTiledMap::create("images/mapaI.tmx");
 	map->setPosition(Point(0, 0));
 	addChild(map, 0);
 
-	suelo = map->layerNamed("Suelo");
-	auto moviles = map->layerNamed("Moviles");
-	auto objetos = map->layerNamed("Objetos");
-	auto enemigos = map->layerNamed("Enemigos");
+	obs = map->layerNamed("Obstaculos");
+	mov = map->layerNamed("Movibles");
+	obj = map->layerNamed("Objetos");
+	ene = map->layerNamed("Enemigos");
 
 	//for (const auto& child : map->getChildren()) static_cast<SpriteBatchNode*>(child)->getTexture()->setAntiAliasTexParameters();
 
 	//_backgroundGameScene->setPosition(Point(visibleSize.width / 2, visibleSize.height /2));
 
 	// Loading player sprite
-	_playerSprite = Sprite::create("images/Hugo.png");
-	_playerSprite->setPosition(Point(1387.5, 112.5)); //Tile(18,11)
+	_playerSprite = Sprite::create("images/HugoUp_1.png");
+	_playerSprite->setPosition(Point(1237.5, 112.5)); //Tile(18,11)
 	addChild(_playerSprite, 1);
+
+	/*SpriteBatchNode* spritebatch = SpriteBatchNode::create("Hugo.tps");
+	SpriteFrameCache* cache = SpriteFrameCache::getInstance();
+	cache->addSpriteFramesWithFile("Hugo.plist");
+	auto Sprite1 = Sprite::createWithSpriteFrameName("HugoUp_1.png");
+	spritebatch->addChild(Sprite1);
+	addChild(spritebatch);
+
+	Vector<SpriteFrame*> animFrames(2);
+
+	char str[100] = { 0 };
+	for (int i = 0; i < 2; i++)
+	{
+		sprintf(str, "HugoUp_%02d.png", i);
+		SpriteFrame* frame = cache->getSpriteFrameByName(str);
+		animFrames.pushBack(frame);
+	}
+
+	Animation* animation = Animation::createWithSpriteFrames(animFrames, 0.3f);
+	Sprite1->runAction(Animate::create(animation));*/
+
 
 	auto body = PhysicsBody::createCircle(_playerSprite->getBoundingBox().size.width / 2);
 	body->setContactTestBitmask(true);
