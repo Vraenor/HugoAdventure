@@ -119,7 +119,7 @@
   </tile>
   <tile id="23">
    <properties>
-    <property name="accesible" value="true"/>
+    <property name="accesible" value="false"/>
    </properties>
   </tile>
   <tile id="24">
@@ -155,22 +155,7 @@
  </tileset>
  <layer name="Obstaculos" width="20" height="13">
   <data encoding="base64" compression="zlib">
-   eJytks0OwjAMg8M/hR7o2KWw9v0fk1SKJcsbJ5hkdUvjL2m6k5kd/qSza+fqruSqrpfrGZpjb8Qt1kS58JVY98HLFEvEnMmLB3mDdQsv2OAtEavCXCKvUzxt5OAbvE51LdYmXq5XpHaJXsHT3rY4lXxZ4iNvIp4JY3ju4dOzTjRXnKMLD/Ns5OH7aMTlmX3rr8v+8LzJx/3qPNCH8kxy+JzM78Lf6g8xzFzvIAmf59GoJnia32x9D/q/a785eBfX8Qc96P3q+gBh9A43
-  </data>
- </layer>
- <layer name="Movibles" width="20" height="13">
-  <data encoding="base64" compression="zlib">
-   eJxjYBgeQAKKR8HIAITiejQtkAcA3rAAYQ==
-  </data>
- </layer>
- <layer name="Objetos" width="20" height="13">
-  <data encoding="base64" compression="zlib">
-   eJxjYBgYIDZA9o5EID7QDhgFQwYAAIUUAC4=
-  </data>
- </layer>
- <layer name="Enemigos" width="20" height="13">
-  <data encoding="base64" compression="zlib">
-   eJxjYBgF1ASiA+2AUTAKKAAAPdAAFg==
+   eJytkl0PwiAMRfFbdA9uLjp08P9/piXpTU5we9KHG0ZpT8tlhxDC7k86mjamYoqmZHqZ7q7Rz2r84WtE7tO/e1+3zusQi2COqJ1cyqt9Ll6bfC/e7DHFizNn7CM47DtjL15BX60ZeRH9dMa79z6reMwtKxz5xTuybgCvbxi15up1LX+Ar5q1NDz5llHD98jg0rO1+UpzXmveqOO84k/wJy/wdK6c9h3FLw1/aT7FkntJr/m/0UP5kdGT8zE/h+93IHdp3s55J9P+B93wfTZ9AAppD2M=
   </data>
  </layer>
 </map>

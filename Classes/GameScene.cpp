@@ -113,7 +113,9 @@ bool GameScene::comprobarTile(float x, float y) {
 	//unsigned int gid = bloques->tileGIDAt(Vec2(x, y + 75));
 	int a = coordToTileX(x);
 	int b = coordToTileY(y);
-
+	
+	//TODO Vector en els noms de les layer en cadena, bucle for
+	
 	int tileGID = obs->tileGIDAt(Vec2(coordToTileX(x), coordToTileY(y)));
 	//int tileGID = map->layerNamed("Movibles")->tileGIDAt(Vec2(coordToTileX(x), coordToTileY(y)));
 	if (tileGID != 0){
@@ -128,9 +130,9 @@ bool GameScene::comprobarTile(float x, float y) {
 			return true; // Se movera
 
 	}
-	else
+	/*else
 	{
-		tileGID = mov->tileGIDAt(Vec2(coordToTileX(x), coordToTileY(y)))-1;
+		tileGID = obj->tileGIDAt(Vec2(coordToTileX(x), coordToTileY(y)));
 		if (tileGID != 0)
 		{
 			ValueMap mapProperties = map->propertiesForGID(tileGID).asValueMap();
@@ -142,7 +144,7 @@ bool GameScene::comprobarTile(float x, float y) {
 
 				return true; // Se movera
 		}
-	}
+	}*/
 	return false; // No se movera
 }
 
@@ -217,10 +219,6 @@ bool GameScene::init()
     
     Size visibleSize = Director::getInstance()->getVisibleSize();
 
-	auto pauseItem = MenuItemImage::create("images/GameScreen/Pause_Button.png", "images/GameScreen/Pause_Button(Click).png", 
-		CC_CALLBACK_1(GameScene::goToPauseScene, this));
-	addChild(pauseItem, 1);
-
 	//Setting and binding keyboard callbacks
 	auto listener = EventListenerKeyboard::create();
 	listener->onKeyPressed = CC_CALLBACK_2(GameScene::onKeyPressed, this);
@@ -238,9 +236,6 @@ bool GameScene::init()
 	addChild(map, 0);
 
 	obs = map->layerNamed("Obstaculos");
-	mov = map->layerNamed("Movibles");
-	obj = map->layerNamed("Objetos");
-	ene = map->layerNamed("Enemigos");
 
 	//for (const auto& child : map->getChildren()) static_cast<SpriteBatchNode*>(child)->getTexture()->setAntiAliasTexParameters();
 

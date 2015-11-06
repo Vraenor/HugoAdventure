@@ -46,11 +46,12 @@ private:
 	Vec2 _podVector;
 	bool _isMoving;
 	PhysicsWorld *mWorld;
+	CCTMXTiledMap *map;
 	CCTMXLayer *obs;
 	CCTMXLayer *mov;
 	CCTMXLayer *obj;
 	CCTMXLayer *ene;
-	CCTMXTiledMap *map;
+	
 };
 
 #endif // __GAME_SCENE_H__
