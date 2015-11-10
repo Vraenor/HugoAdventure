@@ -5,19 +5,20 @@
 
 USING_NS_CC;
 
-class Hugo : public cocos2d::Sprite
+class Hugo : public cocos2d::Layer
 {
 	
 public:
 
-
+	cocos2d::Sprite * playerSprite;
+	Point * pos;
+	Vector<SpriteFrame*> animFrames(int);
+	Hugo();
+	void animatePlayer(EventKeyboard::KeyCode keyCode);
 
 private:
 
 
 
 };
-
-
-
 #endif

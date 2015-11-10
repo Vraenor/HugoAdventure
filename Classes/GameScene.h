@@ -2,19 +2,16 @@
 #define __GAMESCENE_SCENE_H__
 
 #include "cocos2d.h"
-
+#include "Hugo.h"
 USING_NS_CC;
 
-const float METEOR_SPEED = 0.5f;
-const float BACKGROUND_SPEED = 0.3f;
 const int POD_STEP_MOVE = 75;
 
-class GameScene : public cocos2d::Layer
-{
+class GameScene : public cocos2d::Layer {
 public:
-
-	Sprite *_backgroundGameScene;
-	Sprite *_playerSprite;
+	
+	Hugo * _playerSprite;
+	Sprite* _backgroundGameScene;
 
 	void goToPauseScene(Ref *pSender);
 	void goToGameOverScene(Ref *pSender);

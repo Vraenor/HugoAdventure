@@ -151,11 +151,12 @@ bool GameScene::comprobarTile(float x, float y) {
 void GameScene::onKeyPressed(EventKeyboard::KeyCode keyCode, Event *event){
 	_pressedKey = keyCode;
 	bool accesible;
-	switch (_pressedKey) {
+	switch (_pressedKey) { //Llamar a la función de Hugo para cambiar el sprite de la animación
 	case EventKeyboard::KeyCode::KEY_UP_ARROW:
 
 		accesible = comprobarTile(_playerSprite->getPosition().x , _playerSprite->getPosition().y + 75);
 		if (accesible == true) {
+			_playerSprite->animatePlayer(keyCode);
 			_podVector = Vec2(0, POD_STEP_MOVE);
 			_isMoving = true;
 			break;
@@ -164,6 +165,7 @@ void GameScene::onKeyPressed(EventKeyboard::KeyCode keyCode, Event *event){
 	case EventKeyboard::KeyCode::KEY_DOWN_ARROW:
 		accesible = comprobarTile(_playerSprite->getPosition().x, _playerSprite->getPosition().y - 75);
 		if (accesible == true) {
+			_playerSprite->animatePlayer(keyCode);
 			_podVector = Vec2(0, -POD_STEP_MOVE);
 			_isMoving = true;
 			break;
@@ -172,6 +174,7 @@ void GameScene::onKeyPressed(EventKeyboard::KeyCode keyCode, Event *event){
 	case EventKeyboard::KeyCode::KEY_LEFT_ARROW:
 		accesible = comprobarTile(_playerSprite->getPosition().x - 75, _playerSprite->getPosition().y);
 		if (accesible == true) {
+			_playerSprite->animatePlayer(keyCode);
 			_podVector = Vec2(-POD_STEP_MOVE, 0);
 			_isMoving = true;
 			break;
@@ -180,6 +183,7 @@ void GameScene::onKeyPressed(EventKeyboard::KeyCode keyCode, Event *event){
 	case EventKeyboard::KeyCode::KEY_RIGHT_ARROW:
 		accesible = comprobarTile(_playerSprite->getPosition().x + 75, _playerSprite->getPosition().y);
 		if (accesible == true) {
+			_playerSprite->animatePlayer(keyCode);
 			_podVector = Vec2(POD_STEP_MOVE, 0);
 			_isMoving = true;
 			break;
@@ -241,9 +245,9 @@ bool GameScene::init()
 
 	//_backgroundGameScene->setPosition(Point(visibleSize.width / 2, visibleSize.height /2));
 
-	// Loading player sprite
-	_playerSprite = Sprite::create("images/HugoUp_1.png");
-	_playerSprite->setPosition(Point(1237.5, 112.5)); //Tile(18,11)
+	// Loading player sprite 
+	_playerSprite = new Hugo(); // Poner -> soluciona error nonstatic member
+	_playerSprite->setPosition(1237.5, 112.5); //Tile(18,11)
 	addChild(_playerSprite, 1);
 
 	/*SpriteBatchNode* spritebatch = SpriteBatchNode::create("Hugo.tps");
