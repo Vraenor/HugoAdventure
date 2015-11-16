@@ -104,91 +104,202 @@ int GameScene::coordToTileY(float y) {
 
 }
 
+bool GameScene::comprobarTileAcc(float x, float y) {
 
-bool GameScene::comprobarTile(float x, float y) {
-
-	//llamada funcion pasar coordenadas a tile
-	//auto map = TMXTiledMap::create("mapa.tmx");
-	//auto bloques = map->layerNamed("Bloques");
-	//unsigned int gid = bloques->tileGIDAt(Vec2(x, y + 75));
 	int a = coordToTileX(x);
 	int b = coordToTileY(y);
 	
-	//TODO Vector en els noms de les layer en cadena, bucle for
-	
 	int tileGID = obs->tileGIDAt(Vec2(coordToTileX(x), coordToTileY(y)));
-	//int tileGID = map->layerNamed("Movibles")->tileGIDAt(Vec2(coordToTileX(x), coordToTileY(y)));
 	if (tileGID != 0){
 
 		ValueMap mapProperties = map->propertiesForGID(tileGID).asValueMap();
-		//Value valueName = map->getProperty("Nombre");
 		
-		bool valueProp = mapProperties.at("accesible").asBool(); // Si es false (no es accesible), devuelve false
+		bool value = mapProperties.at("accesible").asBool(); // Si es false (no es accesible), devuelve false
 
-		if (valueProp == true) 
+		if (value == true) 
 			
 			return true; // Se movera
 
 	}
-	/*else
-	{
-		tileGID = obj->tileGIDAt(Vec2(coordToTileX(x), coordToTileY(y)));
-		if (tileGID != 0)
-		{
-			ValueMap mapProperties = map->propertiesForGID(tileGID).asValueMap();
-			//Value valueName = map->getProperty("Nombre");
 
-			bool valueProp = mapProperties.at("accesible").asBool(); // Si es false (no es accesible), devuelve false
+	return false; // No se movera
+}
 
-			if (valueProp == true)
+bool GameScene::comprobarTileMov(float x, float y) {
 
-				return true; // Se movera
-		}
-	}*/
+	int a = coordToTileX(x);
+	int b = coordToTileY(y);
+
+	int tileGID = obs->tileGIDAt(Vec2(coordToTileX(x), coordToTileY(y)));
+	if (tileGID != 0){
+
+		ValueMap mapProperties = map->propertiesForGID(tileGID).asValueMap();
+
+		bool value = mapProperties.at("movible").asBool(); // Si es false (no es movible), devuelve false
+
+		if (value == true)
+
+			return true; // Se movera
+
+	}
+
 	return false; // No se movera
 }
 
 void GameScene::onKeyPressed(EventKeyboard::KeyCode keyCode, Event *event){
 	_pressedKey = keyCode;
-	bool accesible;
+	bool accesible, accesible2, movible, movible2;
 	switch (_pressedKey) { //Llamar a la función de Hugo para cambiar el sprite de la animación
 	case EventKeyboard::KeyCode::KEY_UP_ARROW:
 
-		accesible = comprobarTile(_playerSprite->getPosition().x , _playerSprite->getPosition().y + 75);
-		if (accesible == true) {
+		accesible = comprobarTileAcc(_playerSprite->getPosition().x, _playerSprite->getPosition().y + 75);
+		movible = comprobarTileMov(_playerSprite->getPosition().x, _playerSprite->getPosition().y + 75);
+
+		if (accesible == false && movible == true) { // Es objeto movible
+
+			accesible2 = comprobarTileAcc(_playerSprite->getPosition().x, _playerSprite->getPosition().y + 150); //Es accesible la siguiente tile?
+
+			if (accesible2 == true) {
+
+				int gid1 = obs->tileGIDAt(Vec2(coordToTileX(_playerSprite->getPosition().x), coordToTileY(_playerSprite->getPosition().y + 150)));
+				int gid2 = obs->tileGIDAt(Vec2(coordToTileX(_playerSprite->getPosition().x), coordToTileY(_playerSprite->getPosition().y + 75)));
+				obs->removeTileAt(Vec2(coordToTileX(_playerSprite->getPosition().x), coordToTileY(_playerSprite->getPosition().y + 75)));
+				obs->removeTileAt(Vec2(coordToTileX(_playerSprite->getPosition().x), coordToTileY(_playerSprite->getPosition().y + 150)));
+				obs->setTileGID(gid1, Vec2(coordToTileX(_playerSprite->getPosition().x), coordToTileY(_playerSprite->getPosition().y + 75)));
+				obs->setTileGID(gid2, Vec2(coordToTileX(_playerSprite->getPosition().x), coordToTileY(_playerSprite->getPosition().y + 150)));
+
+				_playerSprite->animatePlayer(keyCode);
+				_podVector = Vec2(0, POD_STEP_MOVE);
+				_isMoving = true;
+				break;
+			}
+		}
+		else if (accesible == true && movible == false) {
+
 			_playerSprite->animatePlayer(keyCode);
 			_podVector = Vec2(0, POD_STEP_MOVE);
 			_isMoving = true;
 			break;
 		}
-		break;
+		else {
+
+			_isMoving = false;
+			break;
+		}
+
 	case EventKeyboard::KeyCode::KEY_DOWN_ARROW:
-		accesible = comprobarTile(_playerSprite->getPosition().x, _playerSprite->getPosition().y - 75);
-		if (accesible == true) {
+
+		accesible = comprobarTileAcc(_playerSprite->getPosition().x, _playerSprite->getPosition().y - 75);
+		movible = comprobarTileMov(_playerSprite->getPosition().x, _playerSprite->getPosition().y - 75);
+
+		if (accesible == false && movible == true) {
+
+			accesible2 = comprobarTileAcc(_playerSprite->getPosition().x, _playerSprite->getPosition().y - 150);
+
+			if (accesible2 == true) {
+
+				int gid1 = obs->tileGIDAt(Vec2(coordToTileX(_playerSprite->getPosition().x), coordToTileY(_playerSprite->getPosition().y - 150)));
+				int gid2 = obs->tileGIDAt(Vec2(coordToTileX(_playerSprite->getPosition().x), coordToTileY(_playerSprite->getPosition().y - 75)));
+				obs->removeTileAt(Vec2(coordToTileX(_playerSprite->getPosition().x), coordToTileY(_playerSprite->getPosition().y - 75)));
+				obs->removeTileAt(Vec2(coordToTileX(_playerSprite->getPosition().x), coordToTileY(_playerSprite->getPosition().y - 150)));
+				obs->setTileGID(gid1, Vec2(coordToTileX(_playerSprite->getPosition().x), coordToTileY(_playerSprite->getPosition().y - 75)));
+				obs->setTileGID(gid2, Vec2(coordToTileX(_playerSprite->getPosition().x), coordToTileY(_playerSprite->getPosition().y - 150)));
+
+				_playerSprite->animatePlayer(keyCode);
+				_podVector = Vec2(0, -POD_STEP_MOVE);
+				_isMoving = true;
+				break;
+			}
+		}
+		else if (accesible == true && movible == false) {
+
 			_playerSprite->animatePlayer(keyCode);
 			_podVector = Vec2(0, -POD_STEP_MOVE);
 			_isMoving = true;
 			break;
 		}
-		break;
+		else {
+
+			_isMoving = false;
+			break;
+		}
+
 	case EventKeyboard::KeyCode::KEY_LEFT_ARROW:
-		accesible = comprobarTile(_playerSprite->getPosition().x - 75, _playerSprite->getPosition().y);
-		if (accesible == true) {
+
+		accesible = comprobarTileAcc(_playerSprite->getPosition().x - 75, _playerSprite->getPosition().y);
+		movible = comprobarTileMov(_playerSprite->getPosition().x - 75, _playerSprite->getPosition().y);
+
+		if (accesible == false && movible == true) {
+
+			accesible2 = comprobarTileAcc(_playerSprite->getPosition().x - 150, _playerSprite->getPosition().y);
+
+			if (accesible2 == true) {
+
+				int gid1 = obs->tileGIDAt(Vec2(coordToTileX(_playerSprite->getPosition().x - 150), coordToTileY(_playerSprite->getPosition().y)));
+				int gid2 = obs->tileGIDAt(Vec2(coordToTileX(_playerSprite->getPosition().x - 75), coordToTileY(_playerSprite->getPosition().y)));
+				obs->removeTileAt(Vec2(coordToTileX(_playerSprite->getPosition().x - 75), coordToTileY(_playerSprite->getPosition().y)));
+				obs->removeTileAt(Vec2(coordToTileX(_playerSprite->getPosition().x - 150), coordToTileY(_playerSprite->getPosition().y)));
+				obs->setTileGID(gid1, Vec2(coordToTileX(_playerSprite->getPosition().x - 75), coordToTileY(_playerSprite->getPosition().y)));
+				obs->setTileGID(gid2, Vec2(coordToTileX(_playerSprite->getPosition().x - 150), coordToTileY(_playerSprite->getPosition().y)));
+				
+
+				_playerSprite->animatePlayer(keyCode);
+				_podVector = Vec2(-POD_STEP_MOVE, 0);
+				_isMoving = true;
+				break;
+			}
+
+		}
+		else if (accesible == true && movible == false) {
+
 			_playerSprite->animatePlayer(keyCode);
 			_podVector = Vec2(-POD_STEP_MOVE, 0);
 			_isMoving = true;
 			break;
 		}
-		break;
+		else {
+
+			_isMoving = false;
+			break;
+		}
+
 	case EventKeyboard::KeyCode::KEY_RIGHT_ARROW:
-		accesible = comprobarTile(_playerSprite->getPosition().x + 75, _playerSprite->getPosition().y);
-		if (accesible == true) {
+		
+		accesible = comprobarTileAcc(_playerSprite->getPosition().x + 75, _playerSprite->getPosition().y);
+		movible = comprobarTileMov(_playerSprite->getPosition().x + 75, _playerSprite->getPosition().y);
+
+		if (accesible == false && movible == true) {
+
+			accesible2 = comprobarTileAcc(_playerSprite->getPosition().x + 150, _playerSprite->getPosition().y);
+
+			if (accesible2 == true) {
+
+				int gid1 = obs->tileGIDAt(Vec2(coordToTileX(_playerSprite->getPosition().x + 150), coordToTileY(_playerSprite->getPosition().y)));
+				int gid2 = obs->tileGIDAt(Vec2(coordToTileX(_playerSprite->getPosition().x + 75), coordToTileY(_playerSprite->getPosition().y)));
+				obs->removeTileAt(Vec2(coordToTileX(_playerSprite->getPosition().x + 75), coordToTileY(_playerSprite->getPosition().y)));
+				obs->removeTileAt(Vec2(coordToTileX(_playerSprite->getPosition().x + 150), coordToTileY(_playerSprite->getPosition().y)));
+				obs->setTileGID(gid1, Vec2(coordToTileX(_playerSprite->getPosition().x + 75), coordToTileY(_playerSprite->getPosition().y)));
+				obs->setTileGID(gid2, Vec2(coordToTileX(_playerSprite->getPosition().x + 150), coordToTileY(_playerSprite->getPosition().y)));
+
+				_playerSprite->animatePlayer(keyCode);
+				_podVector = Vec2(POD_STEP_MOVE, 0);
+				_isMoving = true;
+				break;
+			}
+
+		}
+		else if (accesible == true && movible == false) {
+
 			_playerSprite->animatePlayer(keyCode);
 			_podVector = Vec2(POD_STEP_MOVE, 0);
 			_isMoving = true;
 			break;
 		}
-		break;
+		else {
+
+			_isMoving = false;
+			break;
+		}
 	}
 } 
 

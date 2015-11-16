@@ -13,6 +13,11 @@ public:
 	cocos2d::Sprite * playerSprite;
 	Point * pos;
 	Vector<SpriteFrame*> animFrames(int);
+	SpriteBatchNode* spritebatch=nullptr;
+	SpriteFrameCache* cache;
+	Sprite* Sprite1;
+	SpriteFrame* frame;
+	Animation* animation;
 	Hugo();
 	void animatePlayer(EventKeyboard::KeyCode keyCode);
 
