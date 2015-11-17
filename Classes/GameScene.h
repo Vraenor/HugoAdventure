@@ -23,10 +23,7 @@ public:
 	void onKeyReleased(EventKeyboard::KeyCode keyCode, Event *event);
 	bool comprobarTileAcc(float x, float y);
 	bool comprobarTileMov(float x, float y);
-<<<<<<< HEAD
 	bool pulsadoE; 
-=======
->>>>>>> origin/master
 	int coordToTileX(float x);
 	int coordToTileY(float y);
 
