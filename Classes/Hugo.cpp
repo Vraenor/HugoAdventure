@@ -10,12 +10,6 @@ Hugo::Hugo() {
 
 void Hugo::animatePlayer(EventKeyboard::KeyCode keyCode) {
 
-	/*SpriteBatchNode* spritebatch = SpriteBatchNode::create("Hugo.tps");
-	SpriteFrameCache* cache = SpriteFrameCache::getInstance();
-	cache->addSpriteFramesWithFile("Hugo.plist");
-	auto Sprite1 = Sprite::createWithSpriteFrameName("HugoUp_1.png");
-	spritebatch->addChild(Sprite1);
-	addChild(spritebatch);*/
 	if (spritebatch != nullptr)
 	{
 		spritebatch->removeFromParent();

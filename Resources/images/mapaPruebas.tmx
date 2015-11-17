@@ -1,0 +1,187 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="20" height="13" tilewidth="75" tileheight="75" nextobjectid="1">
+ <tileset firstgid="1" name="Bloques" tilewidth="75" tileheight="75" spacing="2" tilecount="32">
+  <image source="Bloques.png" width="614" height="306"/>
+  <tile id="0">
+   <properties>
+    <property name="accesible" value="false"/>
+    <property name="movible" value="false"/>
+   </properties>
+  </tile>
+  <tile id="1">
+   <properties>
+    <property name="accesible" value="false"/>
+    <property name="movible" value="false"/>
+   </properties>
+  </tile>
+  <tile id="2">
+   <properties>
+    <property name="accesible" value="false"/>
+    <property name="movible" value="false"/>
+   </properties>
+  </tile>
+  <tile id="3">
+   <properties>
+    <property name="accesible" value="false"/>
+    <property name="movible" value="false"/>
+   </properties>
+  </tile>
+  <tile id="4">
+   <properties>
+    <property name="accesible" value="false"/>
+   </properties>
+  </tile>
+  <tile id="5">
+   <properties>
+    <property name="accesible" value="false"/>
+   </properties>
+  </tile>
+  <tile id="6">
+   <properties>
+    <property name="accesible" value="false"/>
+   </properties>
+  </tile>
+  <tile id="7">
+   <properties>
+    <property name="accesible" value="false"/>
+   </properties>
+  </tile>
+  <tile id="8">
+   <properties>
+    <property name="accesible" value="true"/>
+    <property name="movible" value="false"/>
+   </properties>
+  </tile>
+  <tile id="9">
+   <properties>
+    <property name="accesible" value="false"/>
+    <property name="movible" value="false"/>
+   </properties>
+  </tile>
+  <tile id="10">
+   <properties>
+    <property name="accesible" value="false"/>
+    <property name="movible" value="false"/>
+   </properties>
+  </tile>
+  <tile id="11">
+   <properties>
+    <property name="accesible" value="false"/>
+    <property name="movible" value="false"/>
+   </properties>
+  </tile>
+  <tile id="12">
+   <properties>
+    <property name="accesible" value="false"/>
+    <property name="movible" value="false"/>
+   </properties>
+  </tile>
+  <tile id="13">
+   <properties>
+    <property name="accesible" value="false"/>
+    <property name="movible" value="false"/>
+   </properties>
+  </tile>
+  <tile id="14">
+   <properties>
+    <property name="accesible" value="false"/>
+    <property name="movible" value="false"/>
+   </properties>
+  </tile>
+  <tile id="15">
+   <properties>
+    <property name="accesible" value="false"/>
+    <property name="movible" value="false"/>
+   </properties>
+  </tile>
+  <tile id="16">
+   <properties>
+    <property name="accesible" value="true"/>
+    <property name="movible" value="false"/>
+   </properties>
+  </tile>
+  <tile id="17">
+   <properties>
+    <property name="accesible" value="false"/>
+    <property name="movible" value="false"/>
+   </properties>
+  </tile>
+  <tile id="18">
+   <properties>
+    <property name="accesible" value="false"/>
+    <property name="movible" value="false"/>
+   </properties>
+  </tile>
+  <tile id="19">
+   <properties>
+    <property name="accesible" value="false"/>
+    <property name="movible" value="false"/>
+   </properties>
+  </tile>
+  <tile id="20">
+   <properties>
+    <property name="accesible" value="false"/>
+    <property name="movible" value="false"/>
+   </properties>
+  </tile>
+  <tile id="21">
+   <properties>
+    <property name="accesible" value="true"/>
+    <property name="movible" value="false"/>
+   </properties>
+  </tile>
+  <tile id="22">
+   <properties>
+    <property name="accesible" value="true"/>
+    <property name="movible" value="false"/>
+   </properties>
+  </tile>
+  <tile id="23">
+   <properties>
+    <property name="accesible" value="false"/>
+    <property name="movible" value="true"/>
+   </properties>
+  </tile>
+  <tile id="24">
+   <properties>
+    <property name="accesible" value="false"/>
+    <property name="movible" value="false"/>
+   </properties>
+  </tile>
+  <tile id="25">
+   <properties>
+    <property name="accesible" value="false"/>
+    <property name="movible" value="false"/>
+   </properties>
+  </tile>
+  <tile id="26">
+   <properties>
+    <property name="accesible" value="false"/>
+    <property name="movible" value="false"/>
+   </properties>
+  </tile>
+  <tile id="27">
+   <properties>
+    <property name="accesible" value="false"/>
+    <property name="movible" value="false"/>
+   </properties>
+  </tile>
+  <tile id="28">
+   <properties>
+    <property name="accesible" value="true"/>
+    <property name="movible" value="false"/>
+   </properties>
+  </tile>
+  <tile id="29">
+   <properties>
+    <property name="accesible" value="true"/>
+    <property name="movible" value="false"/>
+   </properties>
+  </tile>
+ </tileset>
+ <layer name="Obstaculos" width="20" height="13">
+  <data encoding="base64" compression="zlib">
+   eJxjZWBgYKYSZgNiRiCWoxJmIsM8YSDmhNL4zAPJS2BRJ4HFPGzqsJknh6YOmxg2Pin+xaWXWuE3UOZxUtk8WDwKo/HRxYUZUONcAod5pKZBQu4jJR7x+ZcdiFkowAJIbA4gBgA84hbl
+  </data>
+ </layer>
+</map>
