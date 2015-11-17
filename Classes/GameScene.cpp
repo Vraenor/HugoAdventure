@@ -93,9 +93,15 @@ bool GameScene::comprobarTileAcc(float x, float y) {
 
 	return false; // No se movera
 }
+<<<<<<< HEAD
 
 bool GameScene::comprobarTileMov(float x, float y) {
 
+=======
+
+bool GameScene::comprobarTileMov(float x, float y) {
+
+>>>>>>> origin/master
 	int a = coordToTileX(x);
 	int b = coordToTileY(y);
 
@@ -128,9 +134,14 @@ void GameScene::onKeyPressed(EventKeyboard::KeyCode keyCode, Event *event){
 
 			accesible2 = comprobarTileAcc(_playerSprite->getPosition().x, _playerSprite->getPosition().y + 150); //Es accesible la siguiente tile?
 
+<<<<<<< HEAD
 			if (accesible2 == true && pulsadoE == true) {
 
 				_playerSprite-> empujando=true;
+=======
+			if (accesible2 == true) {
+
+>>>>>>> origin/master
 				int gid1 = obs->tileGIDAt(Vec2(coordToTileX(_playerSprite->getPosition().x), coordToTileY(_playerSprite->getPosition().y + 150)));
 				int gid2 = obs->tileGIDAt(Vec2(coordToTileX(_playerSprite->getPosition().x), coordToTileY(_playerSprite->getPosition().y + 75)));
 				obs->removeTileAt(Vec2(coordToTileX(_playerSprite->getPosition().x), coordToTileY(_playerSprite->getPosition().y + 75)));
@@ -173,9 +184,14 @@ void GameScene::onKeyPressed(EventKeyboard::KeyCode keyCode, Event *event){
 
 			accesible2 = comprobarTileAcc(_playerSprite->getPosition().x, _playerSprite->getPosition().y - 150);
 
+<<<<<<< HEAD
 			if (accesible2 == true && pulsadoE == true) {
 
 				_playerSprite-> empujando=true;
+=======
+			if (accesible2 == true) {
+
+>>>>>>> origin/master
 				int gid1 = obs->tileGIDAt(Vec2(coordToTileX(_playerSprite->getPosition().x), coordToTileY(_playerSprite->getPosition().y - 150)));
 				int gid2 = obs->tileGIDAt(Vec2(coordToTileX(_playerSprite->getPosition().x), coordToTileY(_playerSprite->getPosition().y - 75)));
 				obs->removeTileAt(Vec2(coordToTileX(_playerSprite->getPosition().x), coordToTileY(_playerSprite->getPosition().y - 75)));
@@ -213,9 +229,14 @@ void GameScene::onKeyPressed(EventKeyboard::KeyCode keyCode, Event *event){
 
 			accesible2 = comprobarTileAcc(_playerSprite->getPosition().x - 150, _playerSprite->getPosition().y);
 
+<<<<<<< HEAD
 			if (accesible2 == true && pulsadoE == true) {
 
 				_playerSprite-> empujando=true;
+=======
+			if (accesible2 == true) {
+
+>>>>>>> origin/master
 				int gid1 = obs->tileGIDAt(Vec2(coordToTileX(_playerSprite->getPosition().x - 150), coordToTileY(_playerSprite->getPosition().y)));
 				int gid2 = obs->tileGIDAt(Vec2(coordToTileX(_playerSprite->getPosition().x - 75), coordToTileY(_playerSprite->getPosition().y)));
 				obs->removeTileAt(Vec2(coordToTileX(_playerSprite->getPosition().x - 75), coordToTileY(_playerSprite->getPosition().y)));
@@ -254,9 +275,14 @@ void GameScene::onKeyPressed(EventKeyboard::KeyCode keyCode, Event *event){
 
 			accesible2 = comprobarTileAcc(_playerSprite->getPosition().x + 150, _playerSprite->getPosition().y);
 
+<<<<<<< HEAD
 			if (accesible2 == true && pulsadoE == true) {
 				
 				_playerSprite-> empujando=true;
+=======
+			if (accesible2 == true) {
+
+>>>>>>> origin/master
 				int gid1 = obs->tileGIDAt(Vec2(coordToTileX(_playerSprite->getPosition().x + 150), coordToTileY(_playerSprite->getPosition().y)));
 				int gid2 = obs->tileGIDAt(Vec2(coordToTileX(_playerSprite->getPosition().x + 75), coordToTileY(_playerSprite->getPosition().y)));
 				obs->removeTileAt(Vec2(coordToTileX(_playerSprite->getPosition().x + 75), coordToTileY(_playerSprite->getPosition().y)));
@@ -285,6 +311,7 @@ void GameScene::onKeyPressed(EventKeyboard::KeyCode keyCode, Event *event){
 			_isMoving = false;
 			break;
 		}
+<<<<<<< HEAD
 
 	case EventKeyboard::KeyCode::KEY_E:
 		if(pulsadoE==false)
@@ -292,6 +319,8 @@ void GameScene::onKeyPressed(EventKeyboard::KeyCode keyCode, Event *event){
 		else 
 			pulsadoE=false;
 
+=======
+>>>>>>> origin/master
 	}
 } 
 

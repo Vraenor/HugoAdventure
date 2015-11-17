@@ -37,6 +37,7 @@ void Hugo::animatePlayer(EventKeyboard::KeyCode keyCode) {
 
 		for (int i = 1; i <= 3; i++)
 		{
+<<<<<<< HEAD
 			if(empujando==true) sprintf(str, "HugoUp_%01d.png", i);
 			else sprintf (str, "HugoLe_%01d.png", i);
 			frame = cache->getSpriteFrameByName(str);
@@ -68,18 +69,51 @@ void Hugo::animatePlayer(EventKeyboard::KeyCode keyCode) {
 			animFrames.pushBack(frame);
 		}
 		empujando=false;
+=======
+			sprintf(str, "HugoLe_%01d.png", i);
+			frame = cache->getSpriteFrameByName(str);
+			animFrames.pushBack(frame);
+		}
+		break;
+
+	case cocos2d::EventKeyboard::KeyCode::KEY_RIGHT_ARROW:
+
+		for (int i = 1; i <= 3; i++)
+		{
+			sprintf(str, "HugoRi_%01d.png", i);
+			frame = cache->getSpriteFrameByName(str);
+			animFrames.pushBack(frame);
+		}
+		break;
+
+	case cocos2d::EventKeyboard::KeyCode::KEY_UP_ARROW:
+
+		for (int i = 1; i <= 3; i++)
+		{
+			sprintf(str, "HugoUp_%01d.png", i);
+			frame = cache->getSpriteFrameByName(str);
+			animFrames.pushBack(frame);
+		}
+>>>>>>> origin/master
 		break;
 
 	case cocos2d::EventKeyboard::KeyCode::KEY_DOWN_ARROW:
 
 		for (int i = 1; i <= 3; i++)
 		{
+<<<<<<< HEAD
 			if(empujando==true) sprintf(str, "HugoDo_%01d.png", i);
 			else sprintf (str, "HugoDo_%01d.png", i);
 			frame = cache->getSpriteFrameByName(str);
 			animFrames.pushBack(frame);
 		}
 		empujando=false;
+=======
+			sprintf(str, "HugoDo_%01d.png", i);
+			frame = cache->getSpriteFrameByName(str);
+			animFrames.pushBack(frame);
+		}
+>>>>>>> origin/master
 		break;
 	}
 	animation = Animation::createWithSpriteFrames(animFrames, 0.2f);

@@ -13,7 +13,11 @@ public:
 	cocos2d::Sprite * playerSprite;
 	Point * pos;
 	Vector<SpriteFrame*> animFrames(int);
+<<<<<<< HEAD
 	SpriteBatchNode* spritebatch;
+=======
+	SpriteBatchNode* spritebatch=nullptr;
+>>>>>>> origin/master
 	SpriteFrameCache* cache;
 	Sprite* Sprite1;
 	SpriteFrame* frame;
