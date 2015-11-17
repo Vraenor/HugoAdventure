@@ -6,7 +6,7 @@
         <key>texturePackerVersion</key>
         <string>3.9.4</string>
         <key>fileName</key>
-        <string>C:/Users/Vicent/Documents/UJIVideojocs/4 - Quart/Ingenieria del Software/HugoAdventure/Resources/Hugo.tps</string>
+        <string>C:/Users/Vicent/Documents/UJIVideojocs/4 - Quart/Ingenieria del Software/HugoAdventure/Resources/images/Hugo.tps</string>
         <key>autoSDSettings</key>
         <array>
             <struct type="AutoSDSettings">
@@ -190,18 +190,18 @@
         </struct>
         <key>fileList</key>
         <array>
-            <filename>images/HugoUp_1.png</filename>
-            <filename>images/HugoUp_2.png</filename>
-            <filename>images/HugoUp_3.png</filename>
-            <filename>images/HugoDo_1.png</filename>
-            <filename>images/HugoDo_2.png</filename>
-            <filename>images/HugoDo_3.png</filename>
-            <filename>images/HugoLe_1.png</filename>
-            <filename>images/HugoLe_2.png</filename>
-            <filename>images/HugoLe_3.png</filename>
-            <filename>images/HugoRi_1.png</filename>
-            <filename>images/HugoRi_2.png</filename>
-            <filename>images/HugoRi_3.png</filename>
+            <filename>HugoDo_1.png</filename>
+            <filename>HugoDo_2.png</filename>
+            <filename>HugoDo_3.png</filename>
+            <filename>HugoLe_1.png</filename>
+            <filename>HugoLe_2.png</filename>
+            <filename>HugoLe_3.png</filename>
+            <filename>HugoRi_1.png</filename>
+            <filename>HugoRi_2.png</filename>
+            <filename>HugoRi_3.png</filename>
+            <filename>HugoUp_1.png</filename>
+            <filename>HugoUp_2.png</filename>
+            <filename>HugoUp_3.png</filename>
         </array>
         <key>ignoreFileList</key>
         <array/>

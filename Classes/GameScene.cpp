@@ -1,12 +1,14 @@
 #include "GameScene.h"
 #include "PauseScene.h"
 #include "GameOverScene.h"
+#include "Hugo.h"
+
 
 USING_NS_CC;
 
 Scene* GameScene::createScene()
 {
-
+	
     // 'scene' is an autorelease object
 	auto scene = Scene::createWithPhysics();
     
@@ -34,8 +36,8 @@ void GameScene::goToGameOverScene(Ref *pSender) {
 }
 
 void GameScene::update(float dt) {
+
 	Size visibleSize = Director::getInstance()->getVisibleSize();
-	
 
 	if (_isMoving) {
 		Vec2 newPos = Vec2(_playerSprite->getPosition().x + _podVector.x, _playerSprite->getPosition().y + _podVector.y);
@@ -48,39 +50,6 @@ void GameScene::update(float dt) {
 	}
 
 }
-
-/*void GameScene::asteroidDone(Node *pSender) {
-	pSender->stopAllActions();
-	_asteroids.remove(pSender);
-	removeChild(pSender);
-}*/
-
-/*void GameScene::spawnAsteroid(float dt) {
-	Size visibleSize = Director::getInstance()->getVisibleSize();
-	int asteroidIndex = (std::rand() % 3 + 1);
-	__String *filename = __String::createWithFormat("images/GameScreen/Asteroid_%i.png",asteroidIndex);
-	
-	Sprite *tempAsteroid = Sprite::create(filename->getCString());
-
-	auto body = PhysicsBody::createCircle(tempAsteroid->getBoundingBox().size.width / 2);
-	body->setContactTestBitmask(true);
-	body->setDynamic(true);
-	tempAsteroid->setPhysicsBody(body);
-	
-	int xRandomPosition = (std::rand() % (int)(visibleSize.width - tempAsteroid->getContentSize().width)) 
-		+ tempAsteroid->getContentSize().width / 2;
-	
-	tempAsteroid->setPosition(Point(xRandomPosition, visibleSize.height + tempAsteroid->getContentSize().height));
-	
-	auto *move = (FiniteTimeAction *)MoveBy::create(2 / METEOR_SPEED, Point(0, - visibleSize.height - tempAsteroid->getBoundingBox().size.height));
-	move->retain();
-	
-	/*auto *seq = Sequence::create(move, CallFuncN::create(CC_CALLBACK_1(GameScene::asteroidDone, this)),NULL);
-	seq->retain();
-	_asteroids.push_back(tempAsteroid);
-	tempAsteroid->runAction(seq);
-	addChild(tempAsteroid, 2);
-}*/
 
 int GameScene::coordToTileX(float x) {
 	// Tile (1,1) 112.5, 862.5
@@ -104,91 +73,225 @@ int GameScene::coordToTileY(float y) {
 
 }
 
+bool GameScene::comprobarTileAcc(float x, float y) {
 
-bool GameScene::comprobarTile(float x, float y) {
-
-	//llamada funcion pasar coordenadas a tile
-	//auto map = TMXTiledMap::create("mapa.tmx");
-	//auto bloques = map->layerNamed("Bloques");
-	//unsigned int gid = bloques->tileGIDAt(Vec2(x, y + 75));
 	int a = coordToTileX(x);
 	int b = coordToTileY(y);
 	
-	//TODO Vector en els noms de les layer en cadena, bucle for
-	
 	int tileGID = obs->tileGIDAt(Vec2(coordToTileX(x), coordToTileY(y)));
-	//int tileGID = map->layerNamed("Movibles")->tileGIDAt(Vec2(coordToTileX(x), coordToTileY(y)));
 	if (tileGID != 0){
 
 		ValueMap mapProperties = map->propertiesForGID(tileGID).asValueMap();
-		//Value valueName = map->getProperty("Nombre");
 		
-		bool valueProp = mapProperties.at("accesible").asBool(); // Si es false (no es accesible), devuelve false
+		bool value = mapProperties.at("accesible").asBool(); // Si es false (no es accesible), devuelve false
 
-		if (valueProp == true) 
+		if (value == true) 
 			
 			return true; // Se movera
 
 	}
-	/*else
-	{
-		tileGID = obj->tileGIDAt(Vec2(coordToTileX(x), coordToTileY(y)));
-		if (tileGID != 0)
-		{
-			ValueMap mapProperties = map->propertiesForGID(tileGID).asValueMap();
-			//Value valueName = map->getProperty("Nombre");
 
-			bool valueProp = mapProperties.at("accesible").asBool(); // Si es false (no es accesible), devuelve false
+	return false; // No se movera
+}
 
-			if (valueProp == true)
+bool GameScene::comprobarTileMov(float x, float y) {
 
-				return true; // Se movera
-		}
-	}*/
+	int a = coordToTileX(x);
+	int b = coordToTileY(y);
+
+	int tileGID = obs->tileGIDAt(Vec2(coordToTileX(x), coordToTileY(y)));
+	if (tileGID != 0){
+
+		ValueMap mapProperties = map->propertiesForGID(tileGID).asValueMap();
+
+		bool value = mapProperties.at("movible").asBool(); // Si es false (no es movible), devuelve false
+
+		if (value == true)
+
+			return true; // Se movera
+
+	}
+
 	return false; // No se movera
 }
 
 void GameScene::onKeyPressed(EventKeyboard::KeyCode keyCode, Event *event){
 	_pressedKey = keyCode;
-	bool accesible;
+	bool accesible, accesible2, movible, movible2;
 	switch (_pressedKey) { //Llamar a la función de Hugo para cambiar el sprite de la animación
 	case EventKeyboard::KeyCode::KEY_UP_ARROW:
 
-		accesible = comprobarTile(_playerSprite->getPosition().x , _playerSprite->getPosition().y + 75);
-		if (accesible == true) {
+		accesible = comprobarTileAcc(_playerSprite->getPosition().x, _playerSprite->getPosition().y + 75);
+		movible = comprobarTileMov(_playerSprite->getPosition().x, _playerSprite->getPosition().y + 75);
+
+		if (accesible == false && movible == true) { // Es objeto movible
+
+			accesible2 = comprobarTileAcc(_playerSprite->getPosition().x, _playerSprite->getPosition().y + 150); //Es accesible la siguiente tile?
+
+			if (accesible2 == true && pulsadoE == true) {
+
+				_playerSprite-> empujando=true;
+				int gid1 = obs->tileGIDAt(Vec2(coordToTileX(_playerSprite->getPosition().x), coordToTileY(_playerSprite->getPosition().y + 150)));
+				int gid2 = obs->tileGIDAt(Vec2(coordToTileX(_playerSprite->getPosition().x), coordToTileY(_playerSprite->getPosition().y + 75)));
+				obs->removeTileAt(Vec2(coordToTileX(_playerSprite->getPosition().x), coordToTileY(_playerSprite->getPosition().y + 75)));
+				obs->removeTileAt(Vec2(coordToTileX(_playerSprite->getPosition().x), coordToTileY(_playerSprite->getPosition().y + 150)));
+				obs->setTileGID(gid1, Vec2(coordToTileX(_playerSprite->getPosition().x), coordToTileY(_playerSprite->getPosition().y + 75)));
+				obs->setTileGID(gid2, Vec2(coordToTileX(_playerSprite->getPosition().x), coordToTileY(_playerSprite->getPosition().y + 150)));
+
+				_playerSprite->animatePlayer(keyCode);
+				_podVector = Vec2(0, POD_STEP_MOVE);
+				_isMoving = true;
+				break;
+			}
+			break;
+			
+			/*else
+			{
+				_isMoving = false;
+			}*/
+		}
+		else if (accesible == true && movible == false) {
+
 			_playerSprite->animatePlayer(keyCode);
 			_podVector = Vec2(0, POD_STEP_MOVE);
 			_isMoving = true;
 			break;
 		}
-		break;
+		else {
+
+			_playerSprite->animatePlayer(keyCode);
+			_isMoving = false;
+			break;
+		}
+
 	case EventKeyboard::KeyCode::KEY_DOWN_ARROW:
-		accesible = comprobarTile(_playerSprite->getPosition().x, _playerSprite->getPosition().y - 75);
-		if (accesible == true) {
+
+		accesible = comprobarTileAcc(_playerSprite->getPosition().x, _playerSprite->getPosition().y - 75);
+		movible = comprobarTileMov(_playerSprite->getPosition().x, _playerSprite->getPosition().y - 75);
+
+		if (accesible == false && movible == true) {
+
+			accesible2 = comprobarTileAcc(_playerSprite->getPosition().x, _playerSprite->getPosition().y - 150);
+
+			if (accesible2 == true && pulsadoE == true) {
+
+				_playerSprite-> empujando=true;
+				int gid1 = obs->tileGIDAt(Vec2(coordToTileX(_playerSprite->getPosition().x), coordToTileY(_playerSprite->getPosition().y - 150)));
+				int gid2 = obs->tileGIDAt(Vec2(coordToTileX(_playerSprite->getPosition().x), coordToTileY(_playerSprite->getPosition().y - 75)));
+				obs->removeTileAt(Vec2(coordToTileX(_playerSprite->getPosition().x), coordToTileY(_playerSprite->getPosition().y - 75)));
+				obs->removeTileAt(Vec2(coordToTileX(_playerSprite->getPosition().x), coordToTileY(_playerSprite->getPosition().y - 150)));
+				obs->setTileGID(gid1, Vec2(coordToTileX(_playerSprite->getPosition().x), coordToTileY(_playerSprite->getPosition().y - 75)));
+				obs->setTileGID(gid2, Vec2(coordToTileX(_playerSprite->getPosition().x), coordToTileY(_playerSprite->getPosition().y - 150)));
+
+				_playerSprite->animatePlayer(keyCode);
+				_podVector = Vec2(0, -POD_STEP_MOVE);
+				_isMoving = true;
+				break;
+			}
+			break;
+		}
+		else if (accesible == true && movible == false) {
+
 			_playerSprite->animatePlayer(keyCode);
 			_podVector = Vec2(0, -POD_STEP_MOVE);
 			_isMoving = true;
 			break;
 		}
-		break;
+		else {
+
+			_playerSprite->animatePlayer(keyCode);
+			_isMoving = false;
+			break;
+		}
+
 	case EventKeyboard::KeyCode::KEY_LEFT_ARROW:
-		accesible = comprobarTile(_playerSprite->getPosition().x - 75, _playerSprite->getPosition().y);
-		if (accesible == true) {
+
+		accesible = comprobarTileAcc(_playerSprite->getPosition().x - 75, _playerSprite->getPosition().y);
+		movible = comprobarTileMov(_playerSprite->getPosition().x - 75, _playerSprite->getPosition().y);
+
+		if (accesible == false && movible == true) {
+
+			accesible2 = comprobarTileAcc(_playerSprite->getPosition().x - 150, _playerSprite->getPosition().y);
+
+			if (accesible2 == true && pulsadoE == true) {
+
+				_playerSprite-> empujando=true;
+				int gid1 = obs->tileGIDAt(Vec2(coordToTileX(_playerSprite->getPosition().x - 150), coordToTileY(_playerSprite->getPosition().y)));
+				int gid2 = obs->tileGIDAt(Vec2(coordToTileX(_playerSprite->getPosition().x - 75), coordToTileY(_playerSprite->getPosition().y)));
+				obs->removeTileAt(Vec2(coordToTileX(_playerSprite->getPosition().x - 75), coordToTileY(_playerSprite->getPosition().y)));
+				obs->removeTileAt(Vec2(coordToTileX(_playerSprite->getPosition().x - 150), coordToTileY(_playerSprite->getPosition().y)));
+				obs->setTileGID(gid1, Vec2(coordToTileX(_playerSprite->getPosition().x - 75), coordToTileY(_playerSprite->getPosition().y)));
+				obs->setTileGID(gid2, Vec2(coordToTileX(_playerSprite->getPosition().x - 150), coordToTileY(_playerSprite->getPosition().y)));
+
+				_playerSprite->animatePlayer(keyCode);
+				_podVector = Vec2(-POD_STEP_MOVE, 0);
+				_isMoving = true;
+				break;
+			}
+			break;
+
+		}
+		else if (accesible == true && movible == false) {
+
 			_playerSprite->animatePlayer(keyCode);
 			_podVector = Vec2(-POD_STEP_MOVE, 0);
 			_isMoving = true;
 			break;
 		}
-		break;
+		else {
+
+			_playerSprite->animatePlayer(keyCode);
+			_isMoving = false;
+			break;
+		}
+
 	case EventKeyboard::KeyCode::KEY_RIGHT_ARROW:
-		accesible = comprobarTile(_playerSprite->getPosition().x + 75, _playerSprite->getPosition().y);
-		if (accesible == true) {
+		
+		accesible = comprobarTileAcc(_playerSprite->getPosition().x + 75, _playerSprite->getPosition().y);
+		movible = comprobarTileMov(_playerSprite->getPosition().x + 75, _playerSprite->getPosition().y);
+
+		if (accesible == false && movible == true) {
+
+			accesible2 = comprobarTileAcc(_playerSprite->getPosition().x + 150, _playerSprite->getPosition().y);
+
+			if (accesible2 == true && pulsadoE == true) {
+				
+				_playerSprite-> empujando=true;
+				int gid1 = obs->tileGIDAt(Vec2(coordToTileX(_playerSprite->getPosition().x + 150), coordToTileY(_playerSprite->getPosition().y)));
+				int gid2 = obs->tileGIDAt(Vec2(coordToTileX(_playerSprite->getPosition().x + 75), coordToTileY(_playerSprite->getPosition().y)));
+				obs->removeTileAt(Vec2(coordToTileX(_playerSprite->getPosition().x + 75), coordToTileY(_playerSprite->getPosition().y)));
+				obs->removeTileAt(Vec2(coordToTileX(_playerSprite->getPosition().x + 150), coordToTileY(_playerSprite->getPosition().y)));
+				obs->setTileGID(gid1, Vec2(coordToTileX(_playerSprite->getPosition().x + 75), coordToTileY(_playerSprite->getPosition().y)));
+				obs->setTileGID(gid2, Vec2(coordToTileX(_playerSprite->getPosition().x + 150), coordToTileY(_playerSprite->getPosition().y)));
+
+				_playerSprite->animatePlayer(keyCode);
+				_podVector = Vec2(POD_STEP_MOVE, 0);
+				_isMoving = true;
+				break;
+			}
+			break;
+
+		}
+		else if (accesible == true && movible == false) {
+
 			_playerSprite->animatePlayer(keyCode);
 			_podVector = Vec2(POD_STEP_MOVE, 0);
 			_isMoving = true;
 			break;
 		}
-		break;
+		else {
+
+			_playerSprite->animatePlayer(keyCode);
+			_isMoving = false;
+			break;
+		}
+
+	case EventKeyboard::KeyCode::KEY_E:
+		if(pulsadoE==false)
+			pulsadoE=true;
+		else 
+			pulsadoE=false;
+
 	}
 } 
 
@@ -214,6 +317,7 @@ bool GameScene::onContactBegin(PhysicsContact &contact) {
 // on "init" you need to initialize your instance
 bool GameScene::init()
 {
+	
     //////////////////////////////
     // 1. super init first
     if ( !Layer::init() )
@@ -232,6 +336,7 @@ bool GameScene::init()
 	_pressedKey = EventKeyboard::KeyCode::KEY_NONE;
 	_podVector = Vec2::ZERO;
 	_isMoving = false;
+	pulsadoE=false;
 
 	//Loading map http://www.cocos2d-x.org/wiki/TileMap
 	
@@ -241,35 +346,9 @@ bool GameScene::init()
 
 	obs = map->layerNamed("Obstaculos");
 
-	//for (const auto& child : map->getChildren()) static_cast<SpriteBatchNode*>(child)->getTexture()->setAntiAliasTexParameters();
-
-	//_backgroundGameScene->setPosition(Point(visibleSize.width / 2, visibleSize.height /2));
-
-	// Loading player sprite 
-	_playerSprite = new Hugo(); // Poner -> soluciona error nonstatic member
+	_playerSprite = new Hugo();
 	_playerSprite->setPosition(1237.5, 112.5); //Tile(18,11)
 	addChild(_playerSprite, 1);
-
-	/*SpriteBatchNode* spritebatch = SpriteBatchNode::create("Hugo.tps");
-	SpriteFrameCache* cache = SpriteFrameCache::getInstance();
-	cache->addSpriteFramesWithFile("Hugo.plist");
-	auto Sprite1 = Sprite::createWithSpriteFrameName("HugoUp_1.png");
-	spritebatch->addChild(Sprite1);
-	addChild(spritebatch);
-
-	Vector<SpriteFrame*> animFrames(2);
-
-	char str[100] = { 0 };
-	for (int i = 0; i < 2; i++)
-	{
-		sprintf(str, "HugoUp_%02d.png", i);
-		SpriteFrame* frame = cache->getSpriteFrameByName(str);
-		animFrames.pushBack(frame);
-	}
-
-	Animation* animation = Animation::createWithSpriteFrames(animFrames, 0.3f);
-	Sprite1->runAction(Animate::create(animation));*/
-
 
 	auto body = PhysicsBody::createCircle(_playerSprite->getBoundingBox().size.width / 2);
 	body->setContactTestBitmask(true);

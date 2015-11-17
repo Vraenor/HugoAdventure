@@ -21,7 +21,9 @@ public:
 	void backgroundDone(Node *pSender);
 	void onKeyPressed(EventKeyboard::KeyCode keyCode, Event *event);
 	void onKeyReleased(EventKeyboard::KeyCode keyCode, Event *event);
-	bool comprobarTile(float x, float y);
+	bool comprobarTileAcc(float x, float y);
+	bool comprobarTileMov(float x, float y);
+	bool pulsadoE; 
 	int coordToTileX(float x);
 	int coordToTileY(float y);
 
