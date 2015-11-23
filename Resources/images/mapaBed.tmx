@@ -181,7 +181,7 @@
  </tileset>
  <layer name="Obstaculos" width="20" height="13">
   <data encoding="base64" compression="zlib">
-   eJztjssKgDAMBOvbqiAeKirq/3+mW9hALlLSm+DCMDkNce67a0D1wky3hl4BPAj0Te+8o0tj72JvYSt6U21rT/8lHsAIpsz/dEv+PMCZ0VsVXrWla+l1oE7QG3r/0nsAq9kDSQ==
+   eJzlkLsKgDAMReOzOkmHihnS//9MI9xAdDFdNXC4IaEHUqJ/16QML2zIOeDrFFFWpaBnJWN29RXZB30ZbwocFXkgbR/1sfMI3Z22k0afPBx2N7tZy727wxz+D3PQl5QxyBLwfb1ORkcEhw==
   </data>
  </layer>
 </map>

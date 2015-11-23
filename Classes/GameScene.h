@@ -3,6 +3,7 @@
 
 #include "cocos2d.h"
 #include "Hugo.h"
+
 USING_NS_CC;
 
 const int POD_STEP_MOVE = 75;
@@ -11,7 +12,10 @@ class GameScene : public cocos2d::Layer {
 public:
 	
 	Hugo * _playerSprite;
+	CCTMXTiledMap *map;
 	Sprite* _backgroundGameScene;
+	std::string arch;
+	float cx, cy;
 
 	void goToPauseScene(Ref *pSender);
 	void goToGameOverScene(Ref *pSender);
@@ -31,13 +35,16 @@ public:
 	bool onContactBegin(PhysicsContact &contact);
 
     // there's no 'id' in cpp, so we recommend returning the class instance pointer
-    static cocos2d::Scene* createScene();
+    static cocos2d::Scene* createScene(const std::string& File, float x, float y);
 
     // Here's a difference. Method 'init' in cocos2d-x returns bool, instead of returning 'id' in cocos2d-iphone
     virtual bool init();
     
     // implement the "static create()" method manually
-	CREATE_FUNC(GameScene);
+	//CREATE_FUNC(GameScene);
+
+	static GameScene* create(const std::string& File, float x, float y);
+
 
 private:
 
@@ -45,11 +52,7 @@ private:
 	Vec2 _podVector;
 	bool _isMoving;
 	PhysicsWorld *mWorld;
-	CCTMXTiledMap *map;
 	CCTMXLayer *obs;
-	CCTMXLayer *mov;
-	CCTMXLayer *obj;
-	CCTMXLayer *ene;
 	
 };
 

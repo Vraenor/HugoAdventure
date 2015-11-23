@@ -21,7 +21,7 @@ Scene* PauseScene::createScene()
 }
 
 void PauseScene::resumeGameScene(Ref *pSender) {
-	Director::getInstance()->popScene();
+	Director::getInstance()->popScene()
 }
 void PauseScene::goToMainMenu(Ref *pSender) {
 	auto scene = MainMenuScene::createScene();
@@ -29,7 +29,7 @@ void PauseScene::goToMainMenu(Ref *pSender) {
 	Director::getInstance()->replaceScene(TransitionFade::create(1.0, scene));
 }
 void PauseScene::retryGameScene(Ref *pSender) {
-	auto scene = GameScene::createScene();
+	auto scene = GameScene::createScene("images/mapaBed.tmx", 637.5, 562.5);
 	Director::getInstance()->popScene();
 	Director::getInstance()->replaceScene(TransitionFade::create(1.0, scene));
 }

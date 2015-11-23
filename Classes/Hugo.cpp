@@ -1,7 +1,5 @@
 #include "Hugo.h"
 
-
-
 USING_NS_CC;
 
 Hugo::Hugo() {
@@ -27,17 +25,17 @@ void Hugo::animatePlayer(EventKeyboard::KeyCode keyCode) {
 
 	addChild(spritebatch);
 
-	Vector<SpriteFrame*> animFrames(3);
-	char str[13] = { 0 };
+	Vector<SpriteFrame*> animFrames(4);
+	char str[15] = { 0 };
 
 	switch (keyCode)
 	{
 
 	case cocos2d::EventKeyboard::KeyCode::KEY_LEFT_ARROW:
 
-		for (int i = 1; i <= 3; i++)
+		for (int i = 1; i <= 4; i++)
 		{
-			if(empujando==true) sprintf(str, "HugoUp_%01d.png", i);
+			if(empujando==true) sprintf(str, "HugoEmLe_%01d.png", i);
 			else sprintf (str, "HugoLe_%01d.png", i);
 			frame = cache->getSpriteFrameByName(str);
 			animFrames.pushBack(frame);
@@ -48,9 +46,9 @@ void Hugo::animatePlayer(EventKeyboard::KeyCode keyCode) {
 
 	case cocos2d::EventKeyboard::KeyCode::KEY_RIGHT_ARROW:
 
-		for (int i = 1; i <= 3; i++)
+		for (int i = 1; i <= 4; i++)
 		{
-			if(empujando==true) sprintf(str, "HugoRi_%01d.png", i);
+			if(empujando==true) sprintf(str, "HugoEmRi_%01d.png", i);
 			else sprintf (str, "HugoRi_%01d.png", i);
 			frame = cache->getSpriteFrameByName(str);
 			animFrames.pushBack(frame);
@@ -60,7 +58,7 @@ void Hugo::animatePlayer(EventKeyboard::KeyCode keyCode) {
 
 	case cocos2d::EventKeyboard::KeyCode::KEY_UP_ARROW:
 
-		for (int i = 1; i <= 3; i++)
+		for (int i = 1; i <= 4; i++)
 		{
 			if(empujando==true) sprintf(str, "HugoUp_%01d.png", i);
 			else sprintf (str, "HugoUp_%01d.png", i);
@@ -72,7 +70,7 @@ void Hugo::animatePlayer(EventKeyboard::KeyCode keyCode) {
 
 	case cocos2d::EventKeyboard::KeyCode::KEY_DOWN_ARROW:
 
-		for (int i = 1; i <= 3; i++)
+		for (int i = 1; i <= 4; i++)
 		{
 			if(empujando==true) sprintf(str, "HugoDo_%01d.png", i);
 			else sprintf (str, "HugoDo_%01d.png", i);

@@ -22,7 +22,7 @@ Scene* MainMenuScene::createScene()
 
 void MainMenuScene::goToGameScene(Ref *pSender) {
 	
-	auto scene = GameScene::createScene();
+	auto scene = GameScene::createScene("images/mapaBed.tmx", 637.5, 562.5);
 	Director::getInstance()->replaceScene(TransitionFade::create(1.0,scene));
 	CocosDenshion::SimpleAudioEngine::getInstance()->playEffect("audio/ButtonClick.wav");
 }

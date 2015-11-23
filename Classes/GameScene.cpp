@@ -5,15 +5,16 @@
 
 
 USING_NS_CC;
+using std::string;
 
-Scene* GameScene::createScene()
+Scene* GameScene::createScene(const std::string& File, float x , float y)
 {
 	
     // 'scene' is an autorelease object
 	auto scene = Scene::createWithPhysics();
     
     // 'layer' is an autorelease object
-	auto layer = GameScene::create();
+	auto layer = GameScene::create(File, x, y);
 	layer->setPhysicsWorld(scene->getPhysicsWorld());
 
     // add layer as a child to scene
@@ -21,6 +22,30 @@ Scene* GameScene::createScene()
 
     // return the scene
     return scene;
+}
+
+//#define CREATE_FUNC(GameScene)
+GameScene* GameScene::create(const std::string& File, float x, float y) {
+
+	GameScene *pRet = new GameScene();
+
+	pRet->arch = File;
+	pRet->cx = x;
+	pRet->cy = y;
+
+	if (pRet && pRet->init())
+	{
+
+		pRet->autorelease();
+		return pRet;
+	}
+	else
+	{
+		delete pRet;
+		pRet = NULL;
+		return NULL;
+	}
+
 }
 
 void GameScene::goToPauseScene(Ref *pSender) {
@@ -142,11 +167,6 @@ void GameScene::onKeyPressed(EventKeyboard::KeyCode keyCode, Event *event){
 				break;
 			}
 			break;
-			
-			/*else
-			{
-				_isMoving = false;
-			}*/
 		}
 		else if (accesible == true && movible == false) {
 
@@ -278,8 +298,8 @@ void GameScene::onKeyPressed(EventKeyboard::KeyCode keyCode, Event *event){
 			break;
 		}
 
-	case EventKeyboard::KeyCode::KEY_E:
-		if(pulsadoE==false)
+	case EventKeyboard::KeyCode::KEY_E: //Si se pulsa E con un bloque movible al lado, este se pega al jugador, ocupando su ultima posicion hasta
+		if(pulsadoE==false) // que vuelva a pulsar E, para soltarlo
 			pulsadoE=true;
 		else 
 			pulsadoE=false;
@@ -332,14 +352,14 @@ bool GameScene::init()
 
 	//Loading map http://www.cocos2d-x.org/wiki/TileMap
 	
-	map = TMXTiledMap::create("images/mapaI.tmx");
+	map = TMXTiledMap::create(arch); //"images/mapaI.tmx"
 	map->setPosition(Point(0, 0));
 	addChild(map, 0);
 
 	obs = map->layerNamed("Obstaculos");
 
 	_playerSprite = new Hugo();
-	_playerSprite->setPosition(1237.5, 112.5); //Tile(18,11)
+	_playerSprite->setPosition(cx, cy); //Tile(mapaI 1237.5,112.5) (mapaBed 637.5,562.5) (mapaPas 412.5, 337.5)
 	addChild(_playerSprite, 1);
 
 	auto body = PhysicsBody::createCircle(_playerSprite->getBoundingBox().size.width / 2);

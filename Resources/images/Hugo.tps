@@ -4,7 +4,7 @@
         <key>fileFormatVersion</key>
         <int>3</int>
         <key>texturePackerVersion</key>
-        <string>3.9.4</string>
+        <string>4.0.1</string>
         <key>fileName</key>
         <string>C:/Users/Vicent/Documents/UJIVideojocs/4 - Quart/Ingenieria del Software/HugoAdventure/Resources/images/Hugo.tps</string>
         <key>autoSDSettings</key>
@@ -36,9 +36,9 @@
         <key>dpi</key>
         <uint>72</uint>
         <key>dataFormat</key>
-        <string>cocos2d</string>
+        <string>cocos2d-x</string>
         <key>textureFileName</key>
-        <filename></filename>
+        <filename>Hugo.png</filename>
         <key>flipPVR</key>
         <false/>
         <key>pvrCompressionQuality</key>
@@ -72,7 +72,7 @@
             </struct>
         </struct>
         <key>shapePadding</key>
-        <uint>3</uint>
+        <uint>0</uint>
         <key>jpgQuality</key>
         <uint>80</uint>
         <key>pngOptimizationLevel</key>
@@ -84,13 +84,13 @@
         <key>textureFormat</key>
         <enum type="SettingsBase::TextureFormat">png</enum>
         <key>borderPadding</key>
-        <uint>4</uint>
+        <uint>0</uint>
         <key>maxTextureSize</key>
         <QSize>
             <key>width</key>
             <int>512</int>
             <key>height</key>
-            <int>256</int>
+            <int>512</int>
         </QSize>
         <key>fixedTextureSize</key>
         <QSize>
@@ -108,7 +108,7 @@
             <key>freeSizeMode</key>
             <enum type="AlgorithmSettings::AlgorithmFreeSizeMode">Best</enum>
             <key>sizeConstraints</key>
-            <enum type="AlgorithmSettings::SizeConstraints">POT</enum>
+            <enum type="AlgorithmSettings::SizeConstraints">AnySize</enum>
             <key>forceSquared</key>
             <false/>
             <key>forceWordAligned</key>
@@ -123,7 +123,7 @@
                 <key>sortBy</key>
                 <enum type="AlgorithmBasicSettings::SortBy">Best</enum>
                 <key>order</key>
-                <enum type="AlgorithmBasicSettings::Order">Descending</enum>
+                <enum type="AlgorithmBasicSettings::Order">Ascending</enum>
             </struct>
         </struct>
         <key>andEngine</key>
@@ -147,7 +147,7 @@
             <key>data</key>
             <struct type="DataFile">
                 <key>name</key>
-                <filename>images/Hugo.plist</filename>
+                <filename>Hugo.plist</filename>
             </struct>
         </map>
         <key>multiPack</key>
@@ -162,7 +162,7 @@
             <string></string>
         </struct>
         <key>autoAliasEnabled</key>
-        <true/>
+        <false/>
         <key>trimSpriteNames</key>
         <false/>
         <key>prependSmartFolderName</key>
@@ -175,14 +175,16 @@
             <double>1</double>
             <key>scaleMode</key>
             <enum type="ScaleMode">Smooth</enum>
-            <key>innerPadding</key>
-            <uint>0</uint>
             <key>extrude</key>
             <uint>0</uint>
             <key>trimThreshold</key>
             <uint>1</uint>
+            <key>trimMargin</key>
+            <uint>1</uint>
             <key>trimMode</key>
             <enum type="SpriteSettings::TrimMode">None</enum>
+            <key>tracerTolerance</key>
+            <int>200</int>
             <key>heuristicMask</key>
             <false/>
             <key>pivotPoint</key>
@@ -202,6 +204,26 @@
             <filename>HugoUp_1.png</filename>
             <filename>HugoUp_2.png</filename>
             <filename>HugoUp_3.png</filename>
+            <filename>HugoDo_4.png</filename>
+            <filename>HugoLe_4.png</filename>
+            <filename>HugoRi_4.png</filename>
+            <filename>HugoUp_4.png</filename>
+            <filename>HugoEmLe_1.png</filename>
+            <filename>HugoEmLe_2.png</filename>
+            <filename>HugoEmLe_3.png</filename>
+            <filename>HugoEmLe_4.png</filename>
+            <filename>HugoEmRi_1.png</filename>
+            <filename>HugoEmRi_2.png</filename>
+            <filename>HugoEmRi_3.png</filename>
+            <filename>HugoEmRi_4.png</filename>
+            <filename>HugoTiLe_1.png</filename>
+            <filename>HugoTiLe_2.png</filename>
+            <filename>HugoTiLe_3.png</filename>
+            <filename>HugoTiLe_4.png</filename>
+            <filename>HugoTiRi_1.png</filename>
+            <filename>HugoTiRi_2.png</filename>
+            <filename>HugoTiRi_3.png</filename>
+            <filename>HugoTiRi_4.png</filename>
         </array>
         <key>ignoreFileList</key>
         <array/>

@@ -6,171 +6,495 @@
         <dict>
             <key>HugoDo_1.png</key>
             <dict>
-                <key>frame</key>
-                <string>{{238,160},{75,75}}</string>
-                <key>offset</key>
+                <key>aliases</key>
+                <array/>
+                <key>spriteOffset</key>
                 <string>{0,0}</string>
-                <key>rotated</key>
-                <false/>
-                <key>sourceColorRect</key>
-                <string>{{0,0},{75,75}}</string>
-                <key>sourceSize</key>
+                <key>spriteSize</key>
                 <string>{75,75}</string>
+                <key>spriteSourceSize</key>
+                <string>{75,75}</string>
+                <key>textureRect</key>
+                <string>{{0,0},{75,75}}</string>
+                <key>textureRotated</key>
+                <false/>
             </dict>
             <key>HugoDo_2.png</key>
             <dict>
-                <key>frame</key>
-                <string>{{160,160},{75,75}}</string>
-                <key>offset</key>
+                <key>aliases</key>
+                <array/>
+                <key>spriteOffset</key>
                 <string>{0,0}</string>
-                <key>rotated</key>
-                <false/>
-                <key>sourceColorRect</key>
-                <string>{{0,0},{75,75}}</string>
-                <key>sourceSize</key>
+                <key>spriteSize</key>
                 <string>{75,75}</string>
+                <key>spriteSourceSize</key>
+                <string>{75,75}</string>
+                <key>textureRect</key>
+                <string>{{75,0},{75,75}}</string>
+                <key>textureRotated</key>
+                <false/>
             </dict>
             <key>HugoDo_3.png</key>
             <dict>
-                <key>frame</key>
-                <string>{{82,160},{75,75}}</string>
-                <key>offset</key>
+                <key>aliases</key>
+                <array/>
+                <key>spriteOffset</key>
                 <string>{0,0}</string>
-                <key>rotated</key>
-                <false/>
-                <key>sourceColorRect</key>
-                <string>{{0,0},{75,75}}</string>
-                <key>sourceSize</key>
+                <key>spriteSize</key>
                 <string>{75,75}</string>
+                <key>spriteSourceSize</key>
+                <string>{75,75}</string>
+                <key>textureRect</key>
+                <string>{{150,0},{75,75}}</string>
+                <key>textureRotated</key>
+                <false/>
+            </dict>
+            <key>HugoDo_4.png</key>
+            <dict>
+                <key>aliases</key>
+                <array/>
+                <key>spriteOffset</key>
+                <string>{0,0}</string>
+                <key>spriteSize</key>
+                <string>{75,75}</string>
+                <key>spriteSourceSize</key>
+                <string>{75,75}</string>
+                <key>textureRect</key>
+                <string>{{225,0},{75,75}}</string>
+                <key>textureRotated</key>
+                <false/>
+            </dict>
+            <key>HugoEmLe_1.png</key>
+            <dict>
+                <key>aliases</key>
+                <array/>
+                <key>spriteOffset</key>
+                <string>{0,0}</string>
+                <key>spriteSize</key>
+                <string>{75,75}</string>
+                <key>spriteSourceSize</key>
+                <string>{75,75}</string>
+                <key>textureRect</key>
+                <string>{{300,0},{75,75}}</string>
+                <key>textureRotated</key>
+                <false/>
+            </dict>
+            <key>HugoEmLe_2.png</key>
+            <dict>
+                <key>aliases</key>
+                <array/>
+                <key>spriteOffset</key>
+                <string>{0,0}</string>
+                <key>spriteSize</key>
+                <string>{75,75}</string>
+                <key>spriteSourceSize</key>
+                <string>{75,75}</string>
+                <key>textureRect</key>
+                <string>{{375,0},{75,75}}</string>
+                <key>textureRotated</key>
+                <false/>
+            </dict>
+            <key>HugoEmLe_3.png</key>
+            <dict>
+                <key>aliases</key>
+                <array/>
+                <key>spriteOffset</key>
+                <string>{0,0}</string>
+                <key>spriteSize</key>
+                <string>{75,75}</string>
+                <key>spriteSourceSize</key>
+                <string>{75,75}</string>
+                <key>textureRect</key>
+                <string>{{0,75},{75,75}}</string>
+                <key>textureRotated</key>
+                <false/>
+            </dict>
+            <key>HugoEmLe_4.png</key>
+            <dict>
+                <key>aliases</key>
+                <array/>
+                <key>spriteOffset</key>
+                <string>{0,0}</string>
+                <key>spriteSize</key>
+                <string>{75,75}</string>
+                <key>spriteSourceSize</key>
+                <string>{75,75}</string>
+                <key>textureRect</key>
+                <string>{{75,75},{75,75}}</string>
+                <key>textureRotated</key>
+                <false/>
+            </dict>
+            <key>HugoEmRi_1.png</key>
+            <dict>
+                <key>aliases</key>
+                <array/>
+                <key>spriteOffset</key>
+                <string>{0,0}</string>
+                <key>spriteSize</key>
+                <string>{75,75}</string>
+                <key>spriteSourceSize</key>
+                <string>{75,75}</string>
+                <key>textureRect</key>
+                <string>{{150,75},{75,75}}</string>
+                <key>textureRotated</key>
+                <false/>
+            </dict>
+            <key>HugoEmRi_2.png</key>
+            <dict>
+                <key>aliases</key>
+                <array/>
+                <key>spriteOffset</key>
+                <string>{0,0}</string>
+                <key>spriteSize</key>
+                <string>{75,75}</string>
+                <key>spriteSourceSize</key>
+                <string>{75,75}</string>
+                <key>textureRect</key>
+                <string>{{225,75},{75,75}}</string>
+                <key>textureRotated</key>
+                <false/>
+            </dict>
+            <key>HugoEmRi_3.png</key>
+            <dict>
+                <key>aliases</key>
+                <array/>
+                <key>spriteOffset</key>
+                <string>{0,0}</string>
+                <key>spriteSize</key>
+                <string>{75,75}</string>
+                <key>spriteSourceSize</key>
+                <string>{75,75}</string>
+                <key>textureRect</key>
+                <string>{{300,75},{75,75}}</string>
+                <key>textureRotated</key>
+                <false/>
+            </dict>
+            <key>HugoEmRi_4.png</key>
+            <dict>
+                <key>aliases</key>
+                <array/>
+                <key>spriteOffset</key>
+                <string>{0,0}</string>
+                <key>spriteSize</key>
+                <string>{75,75}</string>
+                <key>spriteSourceSize</key>
+                <string>{75,75}</string>
+                <key>textureRect</key>
+                <string>{{375,75},{75,75}}</string>
+                <key>textureRotated</key>
+                <false/>
             </dict>
             <key>HugoLe_1.png</key>
             <dict>
-                <key>frame</key>
-                <string>{{4,160},{75,75}}</string>
-                <key>offset</key>
+                <key>aliases</key>
+                <array/>
+                <key>spriteOffset</key>
                 <string>{0,0}</string>
-                <key>rotated</key>
-                <false/>
-                <key>sourceColorRect</key>
-                <string>{{0,0},{75,75}}</string>
-                <key>sourceSize</key>
+                <key>spriteSize</key>
                 <string>{75,75}</string>
+                <key>spriteSourceSize</key>
+                <string>{75,75}</string>
+                <key>textureRect</key>
+                <string>{{0,150},{75,75}}</string>
+                <key>textureRotated</key>
+                <false/>
             </dict>
             <key>HugoLe_2.png</key>
             <dict>
-                <key>frame</key>
-                <string>{{238,82},{75,75}}</string>
-                <key>offset</key>
+                <key>aliases</key>
+                <array/>
+                <key>spriteOffset</key>
                 <string>{0,0}</string>
-                <key>rotated</key>
-                <false/>
-                <key>sourceColorRect</key>
-                <string>{{0,0},{75,75}}</string>
-                <key>sourceSize</key>
+                <key>spriteSize</key>
                 <string>{75,75}</string>
+                <key>spriteSourceSize</key>
+                <string>{75,75}</string>
+                <key>textureRect</key>
+                <string>{{75,150},{75,75}}</string>
+                <key>textureRotated</key>
+                <false/>
             </dict>
             <key>HugoLe_3.png</key>
             <dict>
-                <key>frame</key>
-                <string>{{160,82},{75,75}}</string>
-                <key>offset</key>
+                <key>aliases</key>
+                <array/>
+                <key>spriteOffset</key>
                 <string>{0,0}</string>
-                <key>rotated</key>
-                <false/>
-                <key>sourceColorRect</key>
-                <string>{{0,0},{75,75}}</string>
-                <key>sourceSize</key>
+                <key>spriteSize</key>
                 <string>{75,75}</string>
+                <key>spriteSourceSize</key>
+                <string>{75,75}</string>
+                <key>textureRect</key>
+                <string>{{150,150},{75,75}}</string>
+                <key>textureRotated</key>
+                <false/>
+            </dict>
+            <key>HugoLe_4.png</key>
+            <dict>
+                <key>aliases</key>
+                <array/>
+                <key>spriteOffset</key>
+                <string>{0,0}</string>
+                <key>spriteSize</key>
+                <string>{75,75}</string>
+                <key>spriteSourceSize</key>
+                <string>{75,75}</string>
+                <key>textureRect</key>
+                <string>{{225,150},{75,75}}</string>
+                <key>textureRotated</key>
+                <false/>
             </dict>
             <key>HugoRi_1.png</key>
             <dict>
-                <key>frame</key>
-                <string>{{82,82},{75,75}}</string>
-                <key>offset</key>
+                <key>aliases</key>
+                <array/>
+                <key>spriteOffset</key>
                 <string>{0,0}</string>
-                <key>rotated</key>
-                <false/>
-                <key>sourceColorRect</key>
-                <string>{{0,0},{75,75}}</string>
-                <key>sourceSize</key>
+                <key>spriteSize</key>
                 <string>{75,75}</string>
+                <key>spriteSourceSize</key>
+                <string>{75,75}</string>
+                <key>textureRect</key>
+                <string>{{300,150},{75,75}}</string>
+                <key>textureRotated</key>
+                <false/>
             </dict>
             <key>HugoRi_2.png</key>
             <dict>
-                <key>frame</key>
-                <string>{{4,82},{75,75}}</string>
-                <key>offset</key>
+                <key>aliases</key>
+                <array/>
+                <key>spriteOffset</key>
                 <string>{0,0}</string>
-                <key>rotated</key>
-                <false/>
-                <key>sourceColorRect</key>
-                <string>{{0,0},{75,75}}</string>
-                <key>sourceSize</key>
+                <key>spriteSize</key>
                 <string>{75,75}</string>
+                <key>spriteSourceSize</key>
+                <string>{75,75}</string>
+                <key>textureRect</key>
+                <string>{{375,150},{75,75}}</string>
+                <key>textureRotated</key>
+                <false/>
             </dict>
             <key>HugoRi_3.png</key>
             <dict>
-                <key>frame</key>
-                <string>{{238,4},{75,75}}</string>
-                <key>offset</key>
+                <key>aliases</key>
+                <array/>
+                <key>spriteOffset</key>
                 <string>{0,0}</string>
-                <key>rotated</key>
-                <false/>
-                <key>sourceColorRect</key>
-                <string>{{0,0},{75,75}}</string>
-                <key>sourceSize</key>
+                <key>spriteSize</key>
                 <string>{75,75}</string>
+                <key>spriteSourceSize</key>
+                <string>{75,75}</string>
+                <key>textureRect</key>
+                <string>{{0,225},{75,75}}</string>
+                <key>textureRotated</key>
+                <false/>
+            </dict>
+            <key>HugoRi_4.png</key>
+            <dict>
+                <key>aliases</key>
+                <array/>
+                <key>spriteOffset</key>
+                <string>{0,0}</string>
+                <key>spriteSize</key>
+                <string>{75,75}</string>
+                <key>spriteSourceSize</key>
+                <string>{75,75}</string>
+                <key>textureRect</key>
+                <string>{{75,225},{75,75}}</string>
+                <key>textureRotated</key>
+                <false/>
+            </dict>
+            <key>HugoTiLe_1.png</key>
+            <dict>
+                <key>aliases</key>
+                <array/>
+                <key>spriteOffset</key>
+                <string>{0,0}</string>
+                <key>spriteSize</key>
+                <string>{75,75}</string>
+                <key>spriteSourceSize</key>
+                <string>{75,75}</string>
+                <key>textureRect</key>
+                <string>{{150,225},{75,75}}</string>
+                <key>textureRotated</key>
+                <false/>
+            </dict>
+            <key>HugoTiLe_2.png</key>
+            <dict>
+                <key>aliases</key>
+                <array/>
+                <key>spriteOffset</key>
+                <string>{0,0}</string>
+                <key>spriteSize</key>
+                <string>{75,75}</string>
+                <key>spriteSourceSize</key>
+                <string>{75,75}</string>
+                <key>textureRect</key>
+                <string>{{225,225},{75,75}}</string>
+                <key>textureRotated</key>
+                <false/>
+            </dict>
+            <key>HugoTiLe_3.png</key>
+            <dict>
+                <key>aliases</key>
+                <array/>
+                <key>spriteOffset</key>
+                <string>{0,0}</string>
+                <key>spriteSize</key>
+                <string>{75,75}</string>
+                <key>spriteSourceSize</key>
+                <string>{75,75}</string>
+                <key>textureRect</key>
+                <string>{{300,225},{75,75}}</string>
+                <key>textureRotated</key>
+                <false/>
+            </dict>
+            <key>HugoTiLe_4.png</key>
+            <dict>
+                <key>aliases</key>
+                <array/>
+                <key>spriteOffset</key>
+                <string>{0,0}</string>
+                <key>spriteSize</key>
+                <string>{75,75}</string>
+                <key>spriteSourceSize</key>
+                <string>{75,75}</string>
+                <key>textureRect</key>
+                <string>{{375,225},{75,75}}</string>
+                <key>textureRotated</key>
+                <false/>
+            </dict>
+            <key>HugoTiRi_1.png</key>
+            <dict>
+                <key>aliases</key>
+                <array/>
+                <key>spriteOffset</key>
+                <string>{0,0}</string>
+                <key>spriteSize</key>
+                <string>{75,75}</string>
+                <key>spriteSourceSize</key>
+                <string>{75,75}</string>
+                <key>textureRect</key>
+                <string>{{0,300},{75,75}}</string>
+                <key>textureRotated</key>
+                <false/>
+            </dict>
+            <key>HugoTiRi_2.png</key>
+            <dict>
+                <key>aliases</key>
+                <array/>
+                <key>spriteOffset</key>
+                <string>{0,0}</string>
+                <key>spriteSize</key>
+                <string>{75,75}</string>
+                <key>spriteSourceSize</key>
+                <string>{75,75}</string>
+                <key>textureRect</key>
+                <string>{{75,300},{75,75}}</string>
+                <key>textureRotated</key>
+                <false/>
+            </dict>
+            <key>HugoTiRi_3.png</key>
+            <dict>
+                <key>aliases</key>
+                <array/>
+                <key>spriteOffset</key>
+                <string>{0,0}</string>
+                <key>spriteSize</key>
+                <string>{75,75}</string>
+                <key>spriteSourceSize</key>
+                <string>{75,75}</string>
+                <key>textureRect</key>
+                <string>{{150,300},{75,75}}</string>
+                <key>textureRotated</key>
+                <false/>
+            </dict>
+            <key>HugoTiRi_4.png</key>
+            <dict>
+                <key>aliases</key>
+                <array/>
+                <key>spriteOffset</key>
+                <string>{0,0}</string>
+                <key>spriteSize</key>
+                <string>{75,75}</string>
+                <key>spriteSourceSize</key>
+                <string>{75,75}</string>
+                <key>textureRect</key>
+                <string>{{225,300},{75,75}}</string>
+                <key>textureRotated</key>
+                <false/>
             </dict>
             <key>HugoUp_1.png</key>
             <dict>
-                <key>frame</key>
-                <string>{{160,4},{75,75}}</string>
-                <key>offset</key>
+                <key>aliases</key>
+                <array/>
+                <key>spriteOffset</key>
                 <string>{0,0}</string>
-                <key>rotated</key>
-                <false/>
-                <key>sourceColorRect</key>
-                <string>{{0,0},{75,75}}</string>
-                <key>sourceSize</key>
+                <key>spriteSize</key>
                 <string>{75,75}</string>
+                <key>spriteSourceSize</key>
+                <string>{75,75}</string>
+                <key>textureRect</key>
+                <string>{{300,300},{75,75}}</string>
+                <key>textureRotated</key>
+                <false/>
             </dict>
             <key>HugoUp_2.png</key>
             <dict>
-                <key>frame</key>
-                <string>{{82,4},{75,75}}</string>
-                <key>offset</key>
+                <key>aliases</key>
+                <array/>
+                <key>spriteOffset</key>
                 <string>{0,0}</string>
-                <key>rotated</key>
-                <false/>
-                <key>sourceColorRect</key>
-                <string>{{0,0},{75,75}}</string>
-                <key>sourceSize</key>
+                <key>spriteSize</key>
                 <string>{75,75}</string>
+                <key>spriteSourceSize</key>
+                <string>{75,75}</string>
+                <key>textureRect</key>
+                <string>{{375,300},{75,75}}</string>
+                <key>textureRotated</key>
+                <false/>
             </dict>
             <key>HugoUp_3.png</key>
             <dict>
-                <key>frame</key>
-                <string>{{4,4},{75,75}}</string>
-                <key>offset</key>
+                <key>aliases</key>
+                <array/>
+                <key>spriteOffset</key>
                 <string>{0,0}</string>
-                <key>rotated</key>
-                <false/>
-                <key>sourceColorRect</key>
-                <string>{{0,0},{75,75}}</string>
-                <key>sourceSize</key>
+                <key>spriteSize</key>
                 <string>{75,75}</string>
+                <key>spriteSourceSize</key>
+                <string>{75,75}</string>
+                <key>textureRect</key>
+                <string>{{0,375},{75,75}}</string>
+                <key>textureRotated</key>
+                <false/>
+            </dict>
+            <key>HugoUp_4.png</key>
+            <dict>
+                <key>aliases</key>
+                <array/>
+                <key>spriteOffset</key>
+                <string>{0,0}</string>
+                <key>spriteSize</key>
+                <string>{75,75}</string>
+                <key>spriteSourceSize</key>
+                <string>{75,75}</string>
+                <key>textureRect</key>
+                <string>{{75,375},{75,75}}</string>
+                <key>textureRotated</key>
+                <false/>
             </dict>
         </dict>
         <key>metadata</key>
         <dict>
             <key>format</key>
-            <integer>2</integer>
+            <integer>3</integer>
             <key>realTextureFileName</key>
             <string>Hugo.png</string>
             <key>size</key>
-            <string>{317,239}</string>
+            <string>{450,450}</string>
             <key>smartupdate</key>
-            <string>$TexturePacker:SmartUpdate:2b5695d8728d21202abcdcf50784ec35:39de094c2c64be1d1903de68803a5e29:4d3690e6b4378cf13dd3cb39cc934f73$</string>
+            <string>$TexturePacker:SmartUpdate:4b37053e047149f307860d76179b1a44:b6bcd266d36180427f635e39adbfe0c8:4d3690e6b4378cf13dd3cb39cc934f73$</string>
             <key>textureFileName</key>
             <string>Hugo.png</string>
         </dict>
