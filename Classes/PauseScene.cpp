@@ -21,7 +21,7 @@ Scene* PauseScene::createScene()
 }
 
 void PauseScene::resumeGameScene(Ref *pSender) {
-	Director::getInstance()->popScene()
+	Director::getInstance()->popScene();
 }
 void PauseScene::goToMainMenu(Ref *pSender) {
 	auto scene = MainMenuScene::createScene();
