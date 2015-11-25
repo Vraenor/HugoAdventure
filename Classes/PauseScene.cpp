@@ -5,19 +5,42 @@
 
 USING_NS_CC;
 
-Scene* PauseScene::createScene()
+Scene* PauseScene::createScene(const std::string& File, float x, float y)
 {
     // 'scene' is an autorelease object
     auto scene = Scene::create();
     
     // 'layer' is an autorelease object
-	auto layer = PauseScene::create();
+	auto layer = PauseScene::create(File, x, y);
 
     // add layer as a child to scene
     scene->addChild(layer);
 
     // return the scene
     return scene;
+}
+
+PauseScene* PauseScene::create(const std::string& File, float x, float y) {
+
+	PauseScene *pRet = new PauseScene();
+
+	pRet->curMap = File;
+	pRet->curX = x;
+	pRet->curY = y;
+
+	if (pRet && pRet->init())
+	{
+
+		pRet->autorelease();
+		return pRet;
+	}
+	else
+	{
+		delete pRet;
+		pRet = NULL;
+		return NULL;
+	}
+
 }
 
 void PauseScene::resumeGameScene(Ref *pSender) {
@@ -29,7 +52,7 @@ void PauseScene::goToMainMenu(Ref *pSender) {
 	Director::getInstance()->replaceScene(TransitionFade::create(1.0, scene));
 }
 void PauseScene::retryGameScene(Ref *pSender) {
-	auto scene = GameScene::createScene("images/mapaBed.tmx", 637.5, 562.5);
+	auto scene = GameScene::createScene(curMap, curX, curY); //(curMap, curX, curY)
 	Director::getInstance()->popScene();
 	Director::getInstance()->replaceScene(TransitionFade::create(1.0, scene));
 }

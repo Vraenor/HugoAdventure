@@ -4,19 +4,42 @@
 
 USING_NS_CC;
 
-Scene* GameOverScene::createScene()
+Scene* GameOverScene::createScene(const std::string& File, float x, float y)
 {
     // 'scene' is an autorelease object
     auto scene = Scene::create();
     
     // 'layer' is an autorelease object
-	auto layer = GameOverScene::create();
+	auto layer = GameOverScene::create(File, x, y);
 
     // add layer as a child to scene
     scene->addChild(layer);
 
     // return the scene
     return scene;
+}
+
+GameOverScene* GameOverScene::create(const std::string& File, float x, float y) {
+
+	GameOverScene *pRet = new GameOverScene();
+
+	pRet->curMap = File;
+	pRet->curX = x;
+	pRet->curY = y;
+
+	if (pRet && pRet->init())
+	{
+
+		pRet->autorelease();
+		return pRet;
+	}
+	else
+	{
+		delete pRet;
+		pRet = NULL;
+		return NULL;
+	}
+
 }
 
 void GameOverScene::goToMainMenuScene(Ref *pSender) {
@@ -27,7 +50,7 @@ void GameOverScene::goToMainMenuScene(Ref *pSender) {
 
 void GameOverScene::retryGameScene(Ref *pSender) {
 
-	auto scene = GameScene::createScene("images/mapaBed.tmx", 637.5, 562.5);
+	auto scene = GameScene::createScene(curMap, curX, curY); //(curMap, curX, curY)
 	Director::getInstance()->replaceScene(TransitionFade::create(1.0, scene));
 }
 

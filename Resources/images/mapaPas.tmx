@@ -74,24 +74,32 @@
    <properties>
     <property name="accesible" value="false"/>
     <property name="movible" value="false"/>
+    <property name="puerta" value="true"/>
+    <property name="valorPuerta" value="3"/>
    </properties>
   </tile>
   <tile id="13">
    <properties>
     <property name="accesible" value="false"/>
     <property name="movible" value="false"/>
+    <property name="puerta" value="true"/>
+    <property name="valorPuerta" value="4"/>
    </properties>
   </tile>
   <tile id="14">
    <properties>
     <property name="accesible" value="false"/>
     <property name="movible" value="false"/>
+    <property name="puerta" value="true"/>
+    <property name="valorPuerta" value="2"/>
    </properties>
   </tile>
   <tile id="15">
    <properties>
     <property name="accesible" value="false"/>
     <property name="movible" value="false"/>
+    <property name="puerta" value="true"/>
+    <property name="valorPuerta" value="0"/>
    </properties>
   </tile>
   <tile id="16">
@@ -181,7 +189,7 @@
  </tileset>
  <layer name="Obstaculos" width="20" height="13">
   <data encoding="base64" compression="zlib">
-   eJxjYBi5gBWImYGYH0oTw2bDYx4jEMsBMScUCyKx5aB8OTQxJgLmgdTJIumB6ePEIiZIpHm4zEB3M7nmyaK5GSZHjHnI+tD9jc3d+MxjB2IWIBaA0sRgDjzmjQQAAMmIBDw=
+   eJxjYBgF1AKsQMwMxPxQGoR5kdh8WMTZ8JjHCMScQCwLpWFYDo0PExMEYiYizMNlBifUDGQ2OebJorkZJkfIPHYgZgFiAShNDObAY94oIB0AAI/zArg=
   </data>
  </layer>
 </map>

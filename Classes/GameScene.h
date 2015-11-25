@@ -14,22 +14,22 @@ public:
 	Hugo * _playerSprite;
 	CCTMXTiledMap *map;
 	Sprite* _backgroundGameScene;
-	std::string arch;
-	float cx, cy;
+	std::string arch, cStr;
+	float cx, cy, cuX, cuY;
 
 	void goToPauseScene(Ref *pSender);
 	void goToGameOverScene(Ref *pSender);
+	void goToNewScene(Ref *pSender,const std::string& file, float newx, float newy);
 	void update(float dt);
-	void spawnAsteroid(float dt);
-	void asteroidDone(Node *pSender);
-	void backgroundDone(Node *pSender);
 	void onKeyPressed(EventKeyboard::KeyCode keyCode, Event *event);
 	void onKeyReleased(EventKeyboard::KeyCode keyCode, Event *event);
 	bool comprobarTileAcc(float x, float y);
 	bool comprobarTileMov(float x, float y);
-	bool pulsadoE; 
+	bool comprobarTilePuerta(float x, float y);
+	bool pulsadoE, UpOn, LeOn, RiOn, DoOn, tirando;
 	int coordToTileX(float x);
 	int coordToTileY(float y);
+	void cambiarEscena(float x, float y);
 
 	void setPhysicsWorld(PhysicsWorld *world);
 	bool onContactBegin(PhysicsContact &contact);

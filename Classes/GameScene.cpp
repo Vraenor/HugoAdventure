@@ -50,13 +50,31 @@ GameScene* GameScene::create(const std::string& File, float x, float y) {
 
 void GameScene::goToPauseScene(Ref *pSender) {
 
-	auto scene = PauseScene::createScene();
+	cStr = arch;
+	cuX = cx;
+	cuY = cy;
+
+	auto scene = PauseScene::createScene(cStr, cx, cy);
 	Director::getInstance()->pushScene(TransitionFade::create(1.0, scene));
 }
 
 void GameScene::goToGameOverScene(Ref *pSender) {
 
-	auto scene = GameOverScene::createScene();
+	cStr = arch;
+	cuX = cx;
+	cuY = cy;
+
+	auto scene = GameOverScene::createScene(cStr, cx, cy);
+	Director::getInstance()->replaceScene(TransitionFade::create(1.0, scene));
+}
+
+void GameScene::goToNewScene(Ref *pSender, const std::string& File, float newx, float newy) {
+
+	cStr = File;
+	cuX = newx;
+	cuY = newy;
+
+	auto scene = GameScene::createScene(cStr, cuX, cuY);
 	Director::getInstance()->replaceScene(TransitionFade::create(1.0, scene));
 }
 
@@ -140,20 +158,96 @@ bool GameScene::comprobarTileMov(float x, float y) {
 	return false; // No se movera
 }
 
+bool GameScene::comprobarTilePuerta(float x, float y) {
+
+	int a = coordToTileX(x);
+	int b = coordToTileY(y);
+
+	int tileGID = obs->tileGIDAt(Vec2(coordToTileX(x), coordToTileY(y)));
+	if (tileGID != 0){
+
+		ValueMap mapProperties = map->propertiesForGID(tileGID).asValueMap();
+
+		bool value = mapProperties.at("puerta").asBool(); // Si es false (no es movible), devuelve false
+
+		if (value == true)
+
+			return true; // Se movera
+
+	}
+	return false; // No se movera
+}
+
+
+void GameScene::cambiarEscena(float x, float y) {
+
+	int a = coordToTileX(x);
+	int b = coordToTileY(y);
+
+	int tileGID = obs->tileGIDAt(Vec2(coordToTileX(x), coordToTileY(y)));
+	if (tileGID != 0){
+
+		ValueMap mapProperties = map->propertiesForGID(tileGID).asValueMap();
+
+		int value = mapProperties.at("valorPuerta").asInt(); // Si es false (no es movible), devuelve false
+
+		switch (value) {
+
+		case 0:
+
+			goToNewScene(this, "images/mapaBed.tmx", 637.5, 562.5);
+			break;
+
+		case 1:
+
+			goToNewScene(this, "images/mapaPas.tmx", 412.5, 412.5);
+			break;
+
+		case 2:
+
+			goToNewScene(this, "images/mapaI.tmx", 1237.5, 112.5);
+			break;
+
+		case 3:
+
+			goToNewScene(this, "images/mapaII.tmx", 1237.5, 112.5);
+			break;
+
+		case 4:
+
+			goToNewScene(this, "images/mapaIII.tmx", 1237.5, 112.5);
+			break;
+
+		}
+	}
+}
+
 void GameScene::onKeyPressed(EventKeyboard::KeyCode keyCode, Event *event){
 	_pressedKey = keyCode;
-	bool accesible, accesible2, movible, movible2;
+	bool accesible, accesible2, movible, puerta, accesibleant;
 	switch (_pressedKey) { //Llamar a la función de Hugo para cambiar el sprite de la animación
 	case EventKeyboard::KeyCode::KEY_UP_ARROW:
 
 		accesible = comprobarTileAcc(_playerSprite->getPosition().x, _playerSprite->getPosition().y + 75);
 		movible = comprobarTileMov(_playerSprite->getPosition().x, _playerSprite->getPosition().y + 75);
+		puerta = comprobarTilePuerta(_playerSprite->getPosition().x, _playerSprite->getPosition().y + 75);
+		tirando = comprobarTileMov(_playerSprite->getPosition().x, _playerSprite->getPosition().y - 75);
 
-		if (accesible == false && movible == true) { // Es objeto movible
+
+		if (puerta == true) {
+
+			cambiarEscena(_playerSprite->getPosition().x, _playerSprite->getPosition().y + 75);
+		}
+
+		else if ((accesible == false || tirando == true) && (movible == true || tirando == true) && puerta == false) { // Es objeto movible
 
 			accesible2 = comprobarTileAcc(_playerSprite->getPosition().x, _playerSprite->getPosition().y + 150); //Es accesible la siguiente tile?
+			accesibleant = comprobarTileAcc(_playerSprite->getPosition().x, _playerSprite->getPosition().y + 75);
 
-			if (accesible2 == true && pulsadoE == true) {
+			if (accesible2 == true && pulsadoE == true && tirando == false) {
+
+				LeOn = false;
+				RiOn = false;
 
 				_playerSprite-> empujando=true;
 				int gid1 = obs->tileGIDAt(Vec2(coordToTileX(_playerSprite->getPosition().x), coordToTileY(_playerSprite->getPosition().y + 150)));
@@ -166,9 +260,31 @@ void GameScene::onKeyPressed(EventKeyboard::KeyCode keyCode, Event *event){
 				_isMoving = true;
 				break;
 			}
+
+			else if (accesibleant == true && pulsadoE == true) {
+				LeOn = false;
+				RiOn = false;
+				_playerSprite->empujando = true;
+				int gid1 = obs->tileGIDAt(Vec2(coordToTileX(_playerSprite->getPosition().x), coordToTileY(_playerSprite->getPosition().y - 75)));
+				int gid2 = obs->tileGIDAt(Vec2(coordToTileX(_playerSprite->getPosition().x), coordToTileY(_playerSprite->getPosition().y)));
+				obs->setTileGID(gid1, Vec2(coordToTileX(_playerSprite->getPosition().x), coordToTileY(_playerSprite->getPosition().y)));
+				obs->setTileGID(gid2, Vec2(coordToTileX(_playerSprite->getPosition().x), coordToTileY(_playerSprite->getPosition().y - 75)));
+
+				_playerSprite->animatePlayer(keyCode);
+				_podVector = Vec2(0, POD_STEP_MOVE);
+				_isMoving = true;
+				break;
+			}
+			else if (accesible == true && movible == false && UpOn == true) {
+
+				_playerSprite->animatePlayer(keyCode);
+				_podVector = Vec2(0, POD_STEP_MOVE);
+				_isMoving = true;
+				break;
+			}
 			break;
 		}
-		else if (accesible == true && movible == false) {
+		else if (accesible == true && movible == false && UpOn == true) {
 
 			_playerSprite->animatePlayer(keyCode);
 			_podVector = Vec2(0, POD_STEP_MOVE);
@@ -176,9 +292,11 @@ void GameScene::onKeyPressed(EventKeyboard::KeyCode keyCode, Event *event){
 			break;
 		}
 		else {
+			if (UpOn == true){
 
-			_playerSprite->animatePlayer(keyCode);
-			_isMoving = false;
+				_playerSprite->animatePlayer(keyCode);
+				_isMoving = false;
+			}
 			break;
 		}
 
@@ -186,12 +304,23 @@ void GameScene::onKeyPressed(EventKeyboard::KeyCode keyCode, Event *event){
 
 		accesible = comprobarTileAcc(_playerSprite->getPosition().x, _playerSprite->getPosition().y - 75);
 		movible = comprobarTileMov(_playerSprite->getPosition().x, _playerSprite->getPosition().y - 75);
+		puerta = comprobarTilePuerta(_playerSprite->getPosition().x, _playerSprite->getPosition().y - 75);
+		tirando = comprobarTileMov(_playerSprite->getPosition().x, _playerSprite->getPosition().y + 75);
 
-		if (accesible == false && movible == true) {
+		if (accesible == false && movible == false && puerta == true) {
+
+			cambiarEscena(_playerSprite->getPosition().x, _playerSprite->getPosition().y - 75);
+		}
+
+		if ((accesible == false || tirando == true) && (movible == true || tirando == true) && (_playerSprite->getPosition().y - 150>0) && puerta == false) {
 
 			accesible2 = comprobarTileAcc(_playerSprite->getPosition().x, _playerSprite->getPosition().y - 150);
+			accesibleant = comprobarTileAcc(_playerSprite->getPosition().x, _playerSprite->getPosition().y - 75);
 
-			if (accesible2 == true && pulsadoE == true) {
+			if (accesible2 == true && pulsadoE == true && tirando == false) {
+
+				LeOn = false;
+				RiOn = false;
 
 				_playerSprite-> empujando=true;
 				int gid1 = obs->tileGIDAt(Vec2(coordToTileX(_playerSprite->getPosition().x), coordToTileY(_playerSprite->getPosition().y - 150)));
@@ -204,9 +333,31 @@ void GameScene::onKeyPressed(EventKeyboard::KeyCode keyCode, Event *event){
 				_isMoving = true;
 				break;
 			}
+
+			else if (accesibleant == true && pulsadoE == true) {
+				LeOn = false;
+				RiOn = false;
+				_playerSprite->empujando = true;
+				int gid1 = obs->tileGIDAt(Vec2(coordToTileX(_playerSprite->getPosition().x), coordToTileY(_playerSprite->getPosition().y + 75)));
+				int gid2 = obs->tileGIDAt(Vec2(coordToTileX(_playerSprite->getPosition().x), coordToTileY(_playerSprite->getPosition().y)));
+				obs->setTileGID(gid1, Vec2(coordToTileX(_playerSprite->getPosition().x), coordToTileY(_playerSprite->getPosition().y)));
+				obs->setTileGID(gid2, Vec2(coordToTileX(_playerSprite->getPosition().x), coordToTileY(_playerSprite->getPosition().y + 75)));
+
+				_playerSprite->animatePlayer(keyCode);
+				_podVector = Vec2(0, -POD_STEP_MOVE);
+				_isMoving = true;
+				break;
+			}
+			else if (accesible == true && movible == false && DoOn == true) {
+
+				_playerSprite->animatePlayer(keyCode);
+				_podVector = Vec2(0, -POD_STEP_MOVE);
+				_isMoving = true;
+				break;
+			}
 			break;
 		}
-		else if (accesible == true && movible == false) {
+		else if (accesible == true && movible == false && DoOn == true) {
 
 			_playerSprite->animatePlayer(keyCode);
 			_podVector = Vec2(0, -POD_STEP_MOVE);
@@ -215,8 +366,10 @@ void GameScene::onKeyPressed(EventKeyboard::KeyCode keyCode, Event *event){
 		}
 		else {
 
-			_playerSprite->animatePlayer(keyCode);
-			_isMoving = false;
+			if (DoOn == true){
+				_playerSprite->animatePlayer(keyCode);
+				_isMoving = false;
+			}
 			break;
 		}
 
@@ -224,12 +377,22 @@ void GameScene::onKeyPressed(EventKeyboard::KeyCode keyCode, Event *event){
 
 		accesible = comprobarTileAcc(_playerSprite->getPosition().x - 75, _playerSprite->getPosition().y);
 		movible = comprobarTileMov(_playerSprite->getPosition().x - 75, _playerSprite->getPosition().y);
+		puerta = comprobarTilePuerta(_playerSprite->getPosition().x - 75, _playerSprite->getPosition().y);
+		tirando = comprobarTileMov(_playerSprite->getPosition().x + 75, _playerSprite->getPosition().y);
 
-		if (accesible == false && movible == true) {
+		if (accesible == false && movible == false && puerta == true) {
+
+			cambiarEscena(_playerSprite->getPosition().x - 75, _playerSprite->getPosition().y);
+		}
+
+		if ((accesible == false || tirando == true) && (movible == true || tirando == true) && puerta == false) {
 
 			accesible2 = comprobarTileAcc(_playerSprite->getPosition().x - 150, _playerSprite->getPosition().y);
+			accesibleant = comprobarTileAcc(_playerSprite->getPosition().x - 75, _playerSprite->getPosition().y);
 
-			if (accesible2 == true && pulsadoE == true) {
+			if (accesible2 == true && pulsadoE == true && tirando == false) {
+				UpOn = false;
+				DoOn = false;
 
 				_playerSprite-> empujando=true;
 				int gid1 = obs->tileGIDAt(Vec2(coordToTileX(_playerSprite->getPosition().x - 150), coordToTileY(_playerSprite->getPosition().y)));
@@ -242,10 +405,32 @@ void GameScene::onKeyPressed(EventKeyboard::KeyCode keyCode, Event *event){
 				_isMoving = true;
 				break;
 			}
+			else if (accesibleant == true && pulsadoE == true) {
+				UpOn = false;
+				DoOn = false;
+				_playerSprite->empujando = true;
+				int gid1 = obs->tileGIDAt(Vec2(coordToTileX(_playerSprite->getPosition().x), coordToTileY(_playerSprite->getPosition().y)));
+				int gid2 = obs->tileGIDAt(Vec2(coordToTileX(_playerSprite->getPosition().x + 75), coordToTileY(_playerSprite->getPosition().y)));
+				obs->setTileGID(gid1, Vec2(coordToTileX(_playerSprite->getPosition().x + 75), coordToTileY(_playerSprite->getPosition().y)));
+				obs->setTileGID(gid2, Vec2(coordToTileX(_playerSprite->getPosition().x), coordToTileY(_playerSprite->getPosition().y)));
+
+				_playerSprite->animatePlayer(keyCode);
+				_podVector = Vec2(-POD_STEP_MOVE, 0);
+				_isMoving = true;
+				break;
+			}
+			else if (accesible == true && movible == false && LeOn == true) {
+
+				_playerSprite->animatePlayer(keyCode);
+				_podVector = Vec2(-POD_STEP_MOVE, 0);
+				_isMoving = true;
+				break;
+			}
+
 			break;
 
 		}
-		else if (accesible == true && movible == false) {
+		else if (accesible == true && movible == false && LeOn == true) {
 
 			_playerSprite->animatePlayer(keyCode);
 			_podVector = Vec2(-POD_STEP_MOVE, 0);
@@ -253,9 +438,11 @@ void GameScene::onKeyPressed(EventKeyboard::KeyCode keyCode, Event *event){
 			break;
 		}
 		else {
-
-			_playerSprite->animatePlayer(keyCode);
-			_isMoving = false;
+			
+			if (LeOn == true){
+				_playerSprite->animatePlayer(keyCode);
+				_isMoving = false;
+			}
 			break;
 		}
 
@@ -263,13 +450,23 @@ void GameScene::onKeyPressed(EventKeyboard::KeyCode keyCode, Event *event){
 		
 		accesible = comprobarTileAcc(_playerSprite->getPosition().x + 75, _playerSprite->getPosition().y);
 		movible = comprobarTileMov(_playerSprite->getPosition().x + 75, _playerSprite->getPosition().y);
+		puerta = comprobarTilePuerta(_playerSprite->getPosition().x + 75, _playerSprite->getPosition().y);
+		tirando = comprobarTileMov(_playerSprite->getPosition().x - 75, _playerSprite->getPosition().y);
 
-		if (accesible == false && movible == true) {
+		if (accesible == false && movible == false && puerta == true) {
+
+			cambiarEscena(_playerSprite->getPosition().x + 75, _playerSprite->getPosition().y);
+		}
+
+		if ((accesible == false || tirando == true) && (movible == true || tirando == true) && (_playerSprite->getPosition().x + 150<1500) && puerta == false) {
 
 			accesible2 = comprobarTileAcc(_playerSprite->getPosition().x + 150, _playerSprite->getPosition().y);
+			accesibleant = comprobarTileAcc(_playerSprite->getPosition().x + 75, _playerSprite->getPosition().y);
 
-			if (accesible2 == true && pulsadoE == true) {
+			if (accesible2 == true && pulsadoE == true && tirando == false) {
 				
+				UpOn = false;
+				DoOn = false;
 				_playerSprite-> empujando=true;
 				int gid1 = obs->tileGIDAt(Vec2(coordToTileX(_playerSprite->getPosition().x + 150), coordToTileY(_playerSprite->getPosition().y)));
 				int gid2 = obs->tileGIDAt(Vec2(coordToTileX(_playerSprite->getPosition().x + 75), coordToTileY(_playerSprite->getPosition().y)));
@@ -281,10 +478,32 @@ void GameScene::onKeyPressed(EventKeyboard::KeyCode keyCode, Event *event){
 				_isMoving = true;
 				break;
 			}
+			else if (accesibleant == true && pulsadoE == true) {
+				UpOn = false;
+				DoOn = false;
+				_playerSprite->empujando = true;
+				int gid1 = obs->tileGIDAt(Vec2(coordToTileX(_playerSprite->getPosition().x), coordToTileY(_playerSprite->getPosition().y)));
+				int gid2 = obs->tileGIDAt(Vec2(coordToTileX(_playerSprite->getPosition().x - 75), coordToTileY(_playerSprite->getPosition().y)));
+				obs->setTileGID(gid1, Vec2(coordToTileX(_playerSprite->getPosition().x - 75), coordToTileY(_playerSprite->getPosition().y)));
+				obs->setTileGID(gid2, Vec2(coordToTileX(_playerSprite->getPosition().x), coordToTileY(_playerSprite->getPosition().y)));
+
+				_playerSprite->animatePlayer(keyCode);
+				_podVector = Vec2(POD_STEP_MOVE, 0);
+				_isMoving = true;
+				break;
+			}
+			else if (accesible == true && movible == false && RiOn == true) {
+
+				_playerSprite->animatePlayer(keyCode);
+				_podVector = Vec2(POD_STEP_MOVE, 0);
+				_isMoving = true;
+				break;
+			}
+
 			break;
 
 		}
-		else if (accesible == true && movible == false) {
+		else if (accesible == true && movible == false && RiOn == true) {
 
 			_playerSprite->animatePlayer(keyCode);
 			_podVector = Vec2(POD_STEP_MOVE, 0);
@@ -293,18 +512,35 @@ void GameScene::onKeyPressed(EventKeyboard::KeyCode keyCode, Event *event){
 		}
 		else {
 
-			_playerSprite->animatePlayer(keyCode);
-			_isMoving = false;
+			if (RiOn == true){
+				_playerSprite->animatePlayer(keyCode);
+				_isMoving = false;
+			}
 			break;
 		}
 
 	case EventKeyboard::KeyCode::KEY_E: //Si se pulsa E con un bloque movible al lado, este se pega al jugador, ocupando su ultima posicion hasta
+		if (UpOn == false){
+			UpOn = true;
+			DoOn = true;
+		}
+		if (LeOn == false){
+			LeOn = true;
+			RiOn = true;
+		}
 		if(pulsadoE==false) // que vuelva a pulsar E, para soltarlo
 			pulsadoE=true;
 		else 
 			pulsadoE=false;
+		
+		break;
+
+	case EventKeyboard::KeyCode::KEY_P:
+
+		goToPauseScene(this);
 
 	}
+
 } 
 
 void GameScene::onKeyReleased(EventKeyboard::KeyCode keyCode, Event *
@@ -349,6 +585,10 @@ bool GameScene::init()
 	_podVector = Vec2::ZERO;
 	_isMoving = false;
 	pulsadoE=false;
+	UpOn = true;
+	RiOn = true;
+	LeOn = true;
+	DoOn = true;
 
 	//Loading map http://www.cocos2d-x.org/wiki/TileMap
 	
