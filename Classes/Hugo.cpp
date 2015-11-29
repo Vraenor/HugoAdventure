@@ -1,8 +1,10 @@
 #include "Hugo.h"
 
+
 USING_NS_CC;
 
 Hugo::Hugo() {
+	pulsadoE=false;
 	spritebatch=nullptr;
 	playerSprite = Sprite::create("images/Hugo/HugoUp_1.png");
 	this->addChild(playerSprite);
@@ -35,7 +37,8 @@ void Hugo::animatePlayer(EventKeyboard::KeyCode keyCode) {
 
 		for (int i = 0; i <= 3; i++)
 		{
-			if(empujando==true) sprintf(str, "HugoEmLe_%01d.png", i);
+			if(empujando==true&&tirando==false) sprintf(str, "HugoEmLe_%01d.png", i);
+			else if (tirando==true&& pulsadoE==true) sprintf(str, "HugoTiLe_%01d.png",i);
 			else sprintf (str, "HugoLe_%01d.png", i);
 			frame = cache->getSpriteFrameByName(str);
 			animFrames.pushBack(frame);
@@ -48,7 +51,8 @@ void Hugo::animatePlayer(EventKeyboard::KeyCode keyCode) {
 
 		for (int i = 0; i <= 3; i++)
 		{
-			if(empujando==true) sprintf(str, "HugoEmRi_%01d.png", i);
+			if(empujando==true&&tirando==false) sprintf(str, "HugoEmRi_%01d.png", i);
+			else if (tirando==true&& pulsadoE==true) sprintf(str, "HugoTiRi_%01d.png",i);
 			else sprintf (str, "HugoRi_%01d.png", i);
 			frame = cache->getSpriteFrameByName(str);
 			animFrames.pushBack(frame);
@@ -60,7 +64,8 @@ void Hugo::animatePlayer(EventKeyboard::KeyCode keyCode) {
 
 		for (int i = 0; i <= 3; i++)
 		{
-			if(empujando==true) sprintf(str, "HugoEmUp_%01d.png", i);
+			if(empujando==true&&tirando==false) sprintf(str, "HugoEmUp_%01d.png", i);
+			else if (tirando==true&& pulsadoE==true) sprintf(str, "HugoTiUp_%01d.png",i);
 			else sprintf (str, "HugoUp_%01d.png", i);
 			frame = cache->getSpriteFrameByName(str);
 			animFrames.pushBack(frame);
@@ -72,7 +77,8 @@ void Hugo::animatePlayer(EventKeyboard::KeyCode keyCode) {
 
 		for (int i = 0; i <= 3; i++)
 		{
-			if(empujando==true) sprintf(str, "HugoEmDo_%01d.png", i);
+			if(empujando==true&&tirando==false) sprintf(str, "HugoEmDo_%01d.png", i);
+			else if (tirando==true&& pulsadoE==true) sprintf(str, "HugoTiDo_%01d.png",i);
 			else sprintf (str, "HugoDo_%01d.png", i);
 			frame = cache->getSpriteFrameByName(str);
 			animFrames.pushBack(frame);

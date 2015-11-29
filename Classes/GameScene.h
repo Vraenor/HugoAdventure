@@ -26,7 +26,7 @@ public:
 	bool comprobarTileAcc(float x, float y);
 	bool comprobarTileMov(float x, float y);
 	bool comprobarTilePuerta(float x, float y);
-	bool pulsadoE, UpOn, LeOn, RiOn, DoOn, tirando;
+	bool UpOn, LeOn, RiOn, DoOn;
 	int coordToTileX(float x);
 	int coordToTileY(float y);
 	void cambiarEscena(float x, float y);

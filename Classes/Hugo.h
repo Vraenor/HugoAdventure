@@ -20,7 +20,7 @@ public:
 	Animation* animation;
 	Hugo();
 	void animatePlayer(EventKeyboard::KeyCode keyCode);
-	bool empujando;
+	bool empujando,tirando,pulsadoE;
 
 private:
 

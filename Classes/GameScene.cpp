@@ -231,7 +231,7 @@ void GameScene::onKeyPressed(EventKeyboard::KeyCode keyCode, Event *event){
 		accesible = comprobarTileAcc(_playerSprite->getPosition().x, _playerSprite->getPosition().y + 75);
 		movible = comprobarTileMov(_playerSprite->getPosition().x, _playerSprite->getPosition().y + 75);
 		puerta = comprobarTilePuerta(_playerSprite->getPosition().x, _playerSprite->getPosition().y + 75);
-		tirando = comprobarTileMov(_playerSprite->getPosition().x, _playerSprite->getPosition().y - 75);
+		_playerSprite->tirando = comprobarTileMov(_playerSprite->getPosition().x, _playerSprite->getPosition().y - 75);
 
 
 		if (puerta == true) {
@@ -239,12 +239,12 @@ void GameScene::onKeyPressed(EventKeyboard::KeyCode keyCode, Event *event){
 			cambiarEscena(_playerSprite->getPosition().x, _playerSprite->getPosition().y + 75);
 		}
 
-		else if ((accesible == false || tirando == true) && (movible == true || tirando == true) && puerta == false) { // Es objeto movible
+		else if ((accesible == false || _playerSprite-> tirando == true) && (movible == true || _playerSprite->tirando == true) && puerta == false) { // Es objeto movible
 
 			accesible2 = comprobarTileAcc(_playerSprite->getPosition().x, _playerSprite->getPosition().y + 150); //Es accesible la siguiente tile?
 			accesibleant = comprobarTileAcc(_playerSprite->getPosition().x, _playerSprite->getPosition().y + 75);
 
-			if (accesible2 == true && pulsadoE == true && tirando == false) {
+			if (accesible2 == true && _playerSprite->pulsadoE == true && _playerSprite->tirando == false) {
 
 				LeOn = false;
 				RiOn = false;
@@ -261,7 +261,7 @@ void GameScene::onKeyPressed(EventKeyboard::KeyCode keyCode, Event *event){
 				break;
 			}
 
-			else if (accesibleant == true && pulsadoE == true) {
+			else if (accesibleant == true && _playerSprite->pulsadoE == true) {
 				LeOn = false;
 				RiOn = false;
 				_playerSprite->empujando = true;
@@ -305,19 +305,19 @@ void GameScene::onKeyPressed(EventKeyboard::KeyCode keyCode, Event *event){
 		accesible = comprobarTileAcc(_playerSprite->getPosition().x, _playerSprite->getPosition().y - 75);
 		movible = comprobarTileMov(_playerSprite->getPosition().x, _playerSprite->getPosition().y - 75);
 		puerta = comprobarTilePuerta(_playerSprite->getPosition().x, _playerSprite->getPosition().y - 75);
-		tirando = comprobarTileMov(_playerSprite->getPosition().x, _playerSprite->getPosition().y + 75);
+		_playerSprite-> tirando = comprobarTileMov(_playerSprite->getPosition().x, _playerSprite->getPosition().y + 75);
 
 		if (accesible == false && movible == false && puerta == true) {
 
 			cambiarEscena(_playerSprite->getPosition().x, _playerSprite->getPosition().y - 75);
 		}
 
-		if ((accesible == false || tirando == true) && (movible == true || tirando == true) && (_playerSprite->getPosition().y - 150>0) && puerta == false) {
+		if ((accesible == false || _playerSprite-> tirando == true) && (movible == true || _playerSprite-> tirando == true) && (_playerSprite->getPosition().y - 150>0) && puerta == false) {
 
 			accesible2 = comprobarTileAcc(_playerSprite->getPosition().x, _playerSprite->getPosition().y - 150);
 			accesibleant = comprobarTileAcc(_playerSprite->getPosition().x, _playerSprite->getPosition().y - 75);
 
-			if (accesible2 == true && pulsadoE == true && tirando == false) {
+			if (accesible2 == true && _playerSprite->pulsadoE == true && _playerSprite-> tirando == false) {
 
 				LeOn = false;
 				RiOn = false;
@@ -334,7 +334,7 @@ void GameScene::onKeyPressed(EventKeyboard::KeyCode keyCode, Event *event){
 				break;
 			}
 
-			else if (accesibleant == true && pulsadoE == true) {
+			else if (accesibleant == true && _playerSprite->pulsadoE == true) {
 				LeOn = false;
 				RiOn = false;
 				_playerSprite->empujando = true;
@@ -378,19 +378,19 @@ void GameScene::onKeyPressed(EventKeyboard::KeyCode keyCode, Event *event){
 		accesible = comprobarTileAcc(_playerSprite->getPosition().x - 75, _playerSprite->getPosition().y);
 		movible = comprobarTileMov(_playerSprite->getPosition().x - 75, _playerSprite->getPosition().y);
 		puerta = comprobarTilePuerta(_playerSprite->getPosition().x - 75, _playerSprite->getPosition().y);
-		tirando = comprobarTileMov(_playerSprite->getPosition().x + 75, _playerSprite->getPosition().y);
+		_playerSprite-> tirando = comprobarTileMov(_playerSprite->getPosition().x + 75, _playerSprite->getPosition().y);
 
 		if (accesible == false && movible == false && puerta == true) {
 
 			cambiarEscena(_playerSprite->getPosition().x - 75, _playerSprite->getPosition().y);
 		}
 
-		if ((accesible == false || tirando == true) && (movible == true || tirando == true) && puerta == false) {
+		if ((accesible == false || _playerSprite-> tirando == true) && (movible == true || _playerSprite-> tirando == true) && puerta == false) {
 
 			accesible2 = comprobarTileAcc(_playerSprite->getPosition().x - 150, _playerSprite->getPosition().y);
 			accesibleant = comprobarTileAcc(_playerSprite->getPosition().x - 75, _playerSprite->getPosition().y);
 
-			if (accesible2 == true && pulsadoE == true && tirando == false) {
+			if (accesible2 == true && _playerSprite->pulsadoE == true && _playerSprite-> tirando == false) {
 				UpOn = false;
 				DoOn = false;
 
@@ -405,7 +405,7 @@ void GameScene::onKeyPressed(EventKeyboard::KeyCode keyCode, Event *event){
 				_isMoving = true;
 				break;
 			}
-			else if (accesibleant == true && pulsadoE == true) {
+			else if (accesibleant == true && _playerSprite->pulsadoE == true) {
 				UpOn = false;
 				DoOn = false;
 				_playerSprite->empujando = true;
@@ -451,19 +451,19 @@ void GameScene::onKeyPressed(EventKeyboard::KeyCode keyCode, Event *event){
 		accesible = comprobarTileAcc(_playerSprite->getPosition().x + 75, _playerSprite->getPosition().y);
 		movible = comprobarTileMov(_playerSprite->getPosition().x + 75, _playerSprite->getPosition().y);
 		puerta = comprobarTilePuerta(_playerSprite->getPosition().x + 75, _playerSprite->getPosition().y);
-		tirando = comprobarTileMov(_playerSprite->getPosition().x - 75, _playerSprite->getPosition().y);
+		_playerSprite->tirando = comprobarTileMov(_playerSprite->getPosition().x - 75, _playerSprite->getPosition().y);
 
 		if (accesible == false && movible == false && puerta == true) {
 
 			cambiarEscena(_playerSprite->getPosition().x + 75, _playerSprite->getPosition().y);
 		}
 
-		if ((accesible == false || tirando == true) && (movible == true || tirando == true) && (_playerSprite->getPosition().x + 150<1500) && puerta == false) {
+		if ((accesible == false ||_playerSprite-> tirando == true) && (movible == true ||_playerSprite-> tirando == true) && (_playerSprite->getPosition().x + 150<1500) && puerta == false) {
 
 			accesible2 = comprobarTileAcc(_playerSprite->getPosition().x + 150, _playerSprite->getPosition().y);
 			accesibleant = comprobarTileAcc(_playerSprite->getPosition().x + 75, _playerSprite->getPosition().y);
 
-			if (accesible2 == true && pulsadoE == true && tirando == false) {
+			if (accesible2 == true && _playerSprite-> pulsadoE == true && _playerSprite->tirando == false) {
 				
 				UpOn = false;
 				DoOn = false;
@@ -478,7 +478,7 @@ void GameScene::onKeyPressed(EventKeyboard::KeyCode keyCode, Event *event){
 				_isMoving = true;
 				break;
 			}
-			else if (accesibleant == true && pulsadoE == true) {
+			else if (accesibleant == true && _playerSprite->pulsadoE == true) {
 				UpOn = false;
 				DoOn = false;
 				_playerSprite->empujando = true;
@@ -528,10 +528,10 @@ void GameScene::onKeyPressed(EventKeyboard::KeyCode keyCode, Event *event){
 			LeOn = true;
 			RiOn = true;
 		}
-		if(pulsadoE==false) // que vuelva a pulsar E, para soltarlo
-			pulsadoE=true;
+		if(_playerSprite->pulsadoE==false) // que vuelva a pulsar E, para soltarlo
+			_playerSprite->pulsadoE=true;
 		else 
-			pulsadoE=false;
+			_playerSprite->pulsadoE=false;
 		
 		break;
 
@@ -584,7 +584,7 @@ bool GameScene::init()
 	_pressedKey = EventKeyboard::KeyCode::KEY_NONE;
 	_podVector = Vec2::ZERO;
 	_isMoving = false;
-	pulsadoE=false;
+	
 	UpOn = true;
 	RiOn = true;
 	LeOn = true;
