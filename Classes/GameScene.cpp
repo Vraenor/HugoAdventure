@@ -166,7 +166,7 @@ bool GameScene::comprobarTilePuerta(float x, float y) {
 	int tileGID = obs->tileGIDAt(Vec2(coordToTileX(x), coordToTileY(y)));
 	if (tileGID != 0){
 
-		ValueMap mapProperties = map->propertiesForGID(tileGID).asValueMap();
+		ValueMap mapProperties = map->propertiesForGID(tileGID).asValueMap(); 
 
 		bool value = mapProperties.at("puerta").asBool(); // Si es false (no es movible), devuelve false
 

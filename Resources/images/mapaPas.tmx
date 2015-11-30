@@ -6,24 +6,28 @@
    <properties>
     <property name="accesible" value="false"/>
     <property name="movible" value="false"/>
+    <property name="puerta" value="false"/>
    </properties>
   </tile>
   <tile id="1">
    <properties>
     <property name="accesible" value="false"/>
     <property name="movible" value="false"/>
+    <property name="puerta" value="false"/>
    </properties>
   </tile>
   <tile id="2">
    <properties>
     <property name="accesible" value="false"/>
     <property name="movible" value="false"/>
+    <property name="puerta" value="false"/>
    </properties>
   </tile>
   <tile id="3">
    <properties>
     <property name="accesible" value="false"/>
     <property name="movible" value="false"/>
+    <property name="puerta" value="false"/>
    </properties>
   </tile>
   <tile id="4">
@@ -50,6 +54,7 @@
    <properties>
     <property name="accesible" value="true"/>
     <property name="movible" value="false"/>
+    <property name="puerta" value="false"/>
    </properties>
   </tile>
   <tile id="9">
@@ -106,6 +111,7 @@
    <properties>
     <property name="accesible" value="true"/>
     <property name="movible" value="false"/>
+    <property name="puerta" value="false"/>
    </properties>
   </tile>
   <tile id="17">
@@ -178,18 +184,20 @@
    <properties>
     <property name="accesible" value="true"/>
     <property name="movible" value="false"/>
+    <property name="puerta" value="false"/>
    </properties>
   </tile>
   <tile id="29">
    <properties>
     <property name="accesible" value="true"/>
     <property name="movible" value="false"/>
+    <property name="puerta" value="false"/>
    </properties>
   </tile>
  </tileset>
  <layer name="Obstaculos" width="20" height="13">
   <data encoding="base64" compression="zlib">
-   eJxjYBgF1AKsQMwMxPxQGoR5kdh8WMTZ8JjHCMScQCwLpWFYDo0PExMEYiYizMNlBifUDGQ2OebJorkZJkfIPHYgZgFiAShNDObAY94oIB0AAI/zArg=
+   eJxjYBgF1AKsQMwMxPxQGoR5kdh8WMTZ8JjHCMSyUMyJhOXQ+DAxQSBmImAePjM4oWYgs8kxD93NMDlC5rEDMQsQC0BpYjAHHvNGAekAAMCzAsw=
   </data>
  </layer>
 </map>
