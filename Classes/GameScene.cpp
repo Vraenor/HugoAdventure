@@ -210,7 +210,7 @@ void GameScene::cambiarEscena(float x, float y) {
 
 		case 3:
 
-			goToNewScene(this, "images/mapaII.tmx", 1237.5, 112.5);
+			goToNewScene(this, "images/mapaII.tmx", 787.5, 112.5);
 			break;
 
 		case 4:
