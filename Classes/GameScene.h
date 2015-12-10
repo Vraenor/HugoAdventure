@@ -12,6 +12,7 @@ class GameScene : public cocos2d::Layer {
 public:
 	
 	Hugo * _playerSprite;
+	Sprite * _mascara;
 	CCTMXTiledMap *map;
 	Sprite* _backgroundGameScene;
 	std::string arch, cStr;

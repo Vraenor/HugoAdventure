@@ -81,13 +81,24 @@ void GameScene::goToNewScene(Ref *pSender, const std::string& File, float newx, 
 void GameScene::update(float dt) {
 
 	Size visibleSize = Director::getInstance()->getVisibleSize();
-
+	/*switch (_playerSprite->miedo){
+	case 3: {
+		//_mascara->removeFromParent();
+		_mascara=Sprite::create("images/mascara3.png");}
+	case 2:  {
+		//_mascara->removeFromParent();
+		_mascara=Sprite::create("images/mascara2.png");}
+	case 1:	{
+		//_mascara->removeFromParent();
+		_mascara=Sprite::create("images/mascara1.png");}
+	}*/
 	if (_isMoving) {
 		Vec2 newPos = Vec2(_playerSprite->getPosition().x + _podVector.x, _playerSprite->getPosition().y + _podVector.y);
 		if (newPos.x >= _playerSprite->getBoundingBox().size.width / 2 && newPos.x <= (visibleSize.width - _playerSprite->getBoundingBox().size.width / 2) &&
 			newPos.y >= _playerSprite->getBoundingBox().size.height / 2 && newPos.y <= (visibleSize.height - _playerSprite->getBoundingBox().size.height / 2))
 		{
 			_playerSprite->setPosition(newPos);
+			_mascara->setPosition(newPos);
 			_podVector = Vec2::ZERO;
 		}
 	}
@@ -434,6 +445,7 @@ void GameScene::onKeyPressed(EventKeyboard::KeyCode keyCode, Event *event){
 
 			_playerSprite->animatePlayer(keyCode);
 			_podVector = Vec2(-POD_STEP_MOVE, 0);
+			_playerSprite->miedo=3;
 			_isMoving = true;
 			break;
 		}
@@ -507,6 +519,7 @@ void GameScene::onKeyPressed(EventKeyboard::KeyCode keyCode, Event *event){
 
 			_playerSprite->animatePlayer(keyCode);
 			_podVector = Vec2(POD_STEP_MOVE, 0);
+			_playerSprite->miedo=1;
 			_isMoving = true;
 			break;
 		}
@@ -514,6 +527,7 @@ void GameScene::onKeyPressed(EventKeyboard::KeyCode keyCode, Event *event){
 
 			if (RiOn == true){
 				_playerSprite->animatePlayer(keyCode);
+				
 				_isMoving = false;
 			}
 			break;
@@ -591,7 +605,13 @@ bool GameScene::init()
 	DoOn = true;
 
 	//Loading map http://www.cocos2d-x.org/wiki/TileMap
+	_mascara = Sprite::create("images/mascara3.png");
+	_mascara->setOpacity(950);
+	_mascara->setPosition(cx, cy);
+	addChild(_mascara, 2);
+
 	
+
 	map = TMXTiledMap::create(arch); //"images/mapaI.tmx"
 	map->setPosition(Point(0, 0));
 	addChild(map, 0);

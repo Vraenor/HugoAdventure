@@ -21,7 +21,7 @@ public:
 	Hugo();
 	void animatePlayer(EventKeyboard::KeyCode keyCode);
 	bool empujando,tirando,pulsadoE;
-
+	int miedo;
 private:
 
 
