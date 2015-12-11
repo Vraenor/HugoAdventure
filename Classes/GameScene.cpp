@@ -226,7 +226,7 @@ void GameScene::cambiarEscena(float x, float y) {
 
 		case 4:
 
-			goToNewScene(this, "images/mapaIII.tmx", 1237.5, 112.5);
+			goToNewScene(this, "images/mapaIII.tmx", 487.5, 112.5);
 			break;
 
 		}
@@ -606,11 +606,9 @@ bool GameScene::init()
 
 	//Loading map http://www.cocos2d-x.org/wiki/TileMap
 	_mascara = Sprite::create("images/mascara3.png");
-	_mascara->setOpacity(950);
+	_mascara->setOpacity(990);
 	_mascara->setPosition(cx, cy);
 	addChild(_mascara, 2);
-
-	
 
 	map = TMXTiledMap::create(arch); //"images/mapaI.tmx"
 	map->setPosition(Point(0, 0));
