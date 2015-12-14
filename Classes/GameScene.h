@@ -14,7 +14,7 @@ public:
 	
 	Hugo * _playerSprite;
 	//Enemigo * enemy;
-	Sprite * _mascara;
+	Sprite * _mascara,*_mascara1,*_mascara3;
 	CCTMXTiledMap *map;
 	Sprite* _backgroundGameScene;
 	std::string arch, cStr;
@@ -31,7 +31,7 @@ public:
 	bool comprobarTilePuerta(float x, float y);
 	bool comprobarTileEne(float x, float y);
 	void compEnemigo();
-	bool UpOn, LeOn, RiOn, DoOn;
+	bool UpOn, LeOn, RiOn, DoOn,EneOn;
 	int coordToTileX(float x);
 	int coordToTileY(float y);
 	void cambiarEscena(float x, float y);

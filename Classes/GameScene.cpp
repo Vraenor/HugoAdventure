@@ -75,38 +75,47 @@ void GameScene::goToNewScene(Ref *pSender, const std::string& File, float newx, 
 	cuY = newy;
 
 	auto scene = GameScene::createScene(cStr, cuX, cuY);
-	Director::getInstance()->replaceScene(TransitionFade::create(1.0, scene));
+	Director::getInstance()->replaceScene(TransitionFade::create(3.0, scene));
 }
 
 void GameScene::update(float dt) {
 
 	Size visibleSize = Director::getInstance()->getVisibleSize();
-	Vec2 newPos;
 
 	switch (_playerSprite->miedo){
+	case 4: {
+		goToNewScene(this, "images/mapaPas.tmx", 862.5, 562.5);
+		//_playerSprite->miedo=1;
+		break;
+			}
 	case 3: {
-		//_mascara->removeFromParent();
-		_mascara = Sprite::create("images/mascara3.png");
-		//_mascara->setPosition(newPos); }
+	    _mascara1->setOpacity(0);
+		_mascara->setOpacity(0);
+		_mascara3->setOpacity(999);
+		break;
 		}
 	case 2:  {
-		//_mascara->removeFromParent();
-		_mascara = Sprite::create("images/mascara2.png");
-		//_mascara->setPosition(newPos); }
-		}
+		_mascara1->setOpacity(0);
+		_mascara->setOpacity(999);
+		_mascara3->setOpacity(0);
+		break;
+			 }
 	case 1:	{
-		//_mascara->removeFromParent();
-		_mascara = Sprite::create("images/mascara1.png");
-		//_mascara->setPosition(newPos); }
-		}
+		_mascara1->setOpacity(999);
+		_mascara->setOpacity(0);
+		_mascara3->setOpacity(0);
+		break;
+			}
 	}
 	if (_isMoving) {
-		newPos = Vec2(_playerSprite->getPosition().x + _podVector.x, _playerSprite->getPosition().y + _podVector.y);
+		Vec2 newPos = Vec2(_playerSprite->getPosition().x + _podVector.x, _playerSprite->getPosition().y + _podVector.y);
 		if (newPos.x >= _playerSprite->getBoundingBox().size.width / 2 && newPos.x <= (visibleSize.width - _playerSprite->getBoundingBox().size.width / 2) &&
 			newPos.y >= _playerSprite->getBoundingBox().size.height / 2 && newPos.y <= (visibleSize.height - _playerSprite->getBoundingBox().size.height / 2))
 		{
 			_playerSprite->setPosition(newPos);
 			_mascara->setPosition(newPos);
+			_mascara1->setPosition(newPos);
+			_mascara3->setPosition(newPos);
 			_podVector = Vec2::ZERO;
 
 			compEnemigo();
@@ -232,9 +241,10 @@ void GameScene::compEnemigo() {
 	e7 = comprobarTileEne(_playerSprite->getPosition().x - 75, _playerSprite->getPosition().y);
 	//e8 = comprobarTileEne(_playerSprite->getPosition().x - 150, _playerSprite->getPosition().y);
 
-	if (e1 == true || /*e2 == true ||*/ e3 == true || /*e4 == true ||*/ e5 == true || /*e6 == true ||*/ e7 == true /*|| e8 == true*/)
+	if ((e1 == true || /*e2 == true ||*/ e3 == true || /*e4 == true ||*/ e5 == true || /*e6 == true ||*/ e7 == true /*|| e8 == true*/) && EneOn==true)
 	{
-		_playerSprite->miedo--;
+		_playerSprite->miedo++;
+		EneOn=false;
 
 	}
 
@@ -255,27 +265,27 @@ void GameScene::cambiarEscena(float x, float y) {
 		switch (value) {
 
 		case 0:
-
+			
 			goToNewScene(this, "images/mapaBed.tmx", 637.5, 562.5);
 			break;
 
 		case 1:
-
+			
 			goToNewScene(this, "images/mapaPas.tmx", 412.5, 412.5);
 			break;
 
 		case 2:
-
+			
 			goToNewScene(this, "images/mapaI.tmx", 1237.5, 112.5);
 			break;
 
 		case 3:
-
+			
 			goToNewScene(this, "images/mapaII.tmx", 787.5, 112.5);
 			break;
 
 		case 4:
-
+			
 			goToNewScene(this, "images/mapaIII.tmx", 487.5, 112.5);
 			break;
 
@@ -328,6 +338,7 @@ void GameScene::onKeyPressed(EventKeyboard::KeyCode keyCode, Event *event){
 
 				_playerSprite->animatePlayer(keyCode);
 				_podVector = Vec2(0, POD_STEP_MOVE);
+				EneOn=true;
 				_isMoving = true;
 				break;
 			}
@@ -343,6 +354,7 @@ void GameScene::onKeyPressed(EventKeyboard::KeyCode keyCode, Event *event){
 
 				_playerSprite->animatePlayer(keyCode);
 				_podVector = Vec2(0, POD_STEP_MOVE);
+				EneOn=true;
 				_isMoving = true;
 				break;
 			}
@@ -350,6 +362,7 @@ void GameScene::onKeyPressed(EventKeyboard::KeyCode keyCode, Event *event){
 
 				_playerSprite->animatePlayer(keyCode);
 				_podVector = Vec2(0, POD_STEP_MOVE);
+				EneOn=true;
 				_isMoving = true;
 				break;
 			}
@@ -359,6 +372,7 @@ void GameScene::onKeyPressed(EventKeyboard::KeyCode keyCode, Event *event){
 
 			_playerSprite->animatePlayer(keyCode);
 			_podVector = Vec2(0, POD_STEP_MOVE);
+			EneOn=true;
 			_isMoving = true;
 			break;
 		}
@@ -411,6 +425,7 @@ void GameScene::onKeyPressed(EventKeyboard::KeyCode keyCode, Event *event){
 
 				_playerSprite->animatePlayer(keyCode);
 				_podVector = Vec2(0, -POD_STEP_MOVE);
+				EneOn=true;
 				_isMoving = true;
 				break;
 			}
@@ -426,6 +441,7 @@ void GameScene::onKeyPressed(EventKeyboard::KeyCode keyCode, Event *event){
 
 				_playerSprite->animatePlayer(keyCode);
 				_podVector = Vec2(0, -POD_STEP_MOVE);
+				EneOn=true;
 				_isMoving = true;
 				break;
 			}
@@ -433,6 +449,7 @@ void GameScene::onKeyPressed(EventKeyboard::KeyCode keyCode, Event *event){
 
 				_playerSprite->animatePlayer(keyCode);
 				_podVector = Vec2(0, -POD_STEP_MOVE);
+				EneOn=true;
 				_isMoving = true;
 				break;
 			}
@@ -442,6 +459,7 @@ void GameScene::onKeyPressed(EventKeyboard::KeyCode keyCode, Event *event){
 
 			_playerSprite->animatePlayer(keyCode);
 			_podVector = Vec2(0, -POD_STEP_MOVE);
+			EneOn=true;
 			_isMoving = true;
 			break;
 		}
@@ -493,6 +511,7 @@ void GameScene::onKeyPressed(EventKeyboard::KeyCode keyCode, Event *event){
 
 				_playerSprite->animatePlayer(keyCode);
 				_podVector = Vec2(-POD_STEP_MOVE, 0);
+				EneOn=true;
 				_isMoving = true;
 				break;
 			}
@@ -507,6 +526,7 @@ void GameScene::onKeyPressed(EventKeyboard::KeyCode keyCode, Event *event){
 
 				_playerSprite->animatePlayer(keyCode);
 				_podVector = Vec2(-POD_STEP_MOVE, 0);
+				EneOn=true;
 				_isMoving = true;
 				break;
 			}
@@ -514,6 +534,7 @@ void GameScene::onKeyPressed(EventKeyboard::KeyCode keyCode, Event *event){
 
 				_playerSprite->animatePlayer(keyCode);
 				_podVector = Vec2(-POD_STEP_MOVE, 0);
+				EneOn=true;
 				_isMoving = true;
 				break;
 			}
@@ -525,7 +546,7 @@ void GameScene::onKeyPressed(EventKeyboard::KeyCode keyCode, Event *event){
 
 			_playerSprite->animatePlayer(keyCode);
 			_podVector = Vec2(-POD_STEP_MOVE, 0);
-			//_playerSprite->miedo=3;
+			EneOn=true;
 			_isMoving = true;
 			break;
 		}
@@ -577,6 +598,7 @@ void GameScene::onKeyPressed(EventKeyboard::KeyCode keyCode, Event *event){
 
 				_playerSprite->animatePlayer(keyCode);
 				_podVector = Vec2(POD_STEP_MOVE, 0);
+				EneOn=true;
 				_isMoving = true;
 				break;
 			}
@@ -591,6 +613,7 @@ void GameScene::onKeyPressed(EventKeyboard::KeyCode keyCode, Event *event){
 
 				_playerSprite->animatePlayer(keyCode);
 				_podVector = Vec2(POD_STEP_MOVE, 0);
+				EneOn=true;
 				_isMoving = true;
 				break;
 			}
@@ -598,6 +621,7 @@ void GameScene::onKeyPressed(EventKeyboard::KeyCode keyCode, Event *event){
 
 				_playerSprite->animatePlayer(keyCode);
 				_podVector = Vec2(POD_STEP_MOVE, 0);
+				EneOn=true;
 				_isMoving = true;
 				break;
 			}
@@ -609,7 +633,7 @@ void GameScene::onKeyPressed(EventKeyboard::KeyCode keyCode, Event *event){
 
 			_playerSprite->animatePlayer(keyCode);
 			_podVector = Vec2(POD_STEP_MOVE, 0);
-			//_playerSprite->miedo=1;
+			EneOn=true;
 			_isMoving = true;
 			break;
 		}
@@ -695,10 +719,18 @@ bool GameScene::init()
 	DoOn = true;
 
 	//Loading map http://www.cocos2d-x.org/wiki/TileMap
-	_mascara = Sprite::create("images/mascara3.png");
-	_mascara->setOpacity(990);
+	_mascara = Sprite::create("images/mascara2.png");
+	_mascara->setOpacity(999);
 	_mascara->setPosition(cx, cy);
 	addChild(_mascara, 2);
+	_mascara3 = Sprite::create("images/mascara3.png");
+	_mascara3->setOpacity(0);
+    _mascara3->setPosition(cx, cy);
+    addChild(_mascara3, 2);
+	_mascara1 = Sprite::create("images/mascara1.png");
+	_mascara1->setOpacity(0);
+    _mascara1->setPosition(cx, cy);
+    addChild(_mascara1, 2);
 
 	map = TMXTiledMap::create(arch); //"images/mapaI.tmx"
 	map->setPosition(Point(0, 0));
