@@ -81,32 +81,25 @@ void GameScene::goToNewScene(Ref *pSender, const std::string& File, float newx, 
 void GameScene::update(float dt) {
 
 	Size visibleSize = Director::getInstance()->getVisibleSize();
-	Vec2 newPos;
-
-	switch (_playerSprite->miedo){
+	/*switch (_playerSprite->miedo){
 	case 3: {
 		//_mascara->removeFromParent();
-		_mascara=Sprite::create("images/mascara3.png");
-		//_mascara->setPosition(newPos); }
+		_mascara=Sprite::create("images/mascara3.png");}
 	case 2:  {
 		//_mascara->removeFromParent();
-		_mascara=Sprite::create("images/mascara2.png");
-		//_mascara->setPosition(newPos); }
+		_mascara=Sprite::create("images/mascara2.png");}
 	case 1:	{
 		//_mascara->removeFromParent();
-		_mascara=Sprite::create("images/mascara1.png");
-		//_mascara->setPosition(newPos); }
-	}
+		_mascara=Sprite::create("images/mascara1.png");}
+	}*/
 	if (_isMoving) {
-		newPos = Vec2(_playerSprite->getPosition().x + _podVector.x, _playerSprite->getPosition().y + _podVector.y);
+		Vec2 newPos = Vec2(_playerSprite->getPosition().x + _podVector.x, _playerSprite->getPosition().y + _podVector.y);
 		if (newPos.x >= _playerSprite->getBoundingBox().size.width / 2 && newPos.x <= (visibleSize.width - _playerSprite->getBoundingBox().size.width / 2) &&
 			newPos.y >= _playerSprite->getBoundingBox().size.height / 2 && newPos.y <= (visibleSize.height - _playerSprite->getBoundingBox().size.height / 2))
 		{
 			_playerSprite->setPosition(newPos);
 			_mascara->setPosition(newPos);
 			_podVector = Vec2::ZERO;
-
-			compEnemigo();
 		}
 	}
 
@@ -196,46 +189,6 @@ bool GameScene::comprobarTilePuerta(float x, float y) {
 	return false; // No se movera
 }
 
-bool GameScene::comprobarTileEne(float x, float y) {
-
-	int a = coordToTileX(x);
-	int b = coordToTileY(y);
-
-	int tileGID = obs->tileGIDAt(Vec2(coordToTileX(x), coordToTileY(y)));
-	if (tileGID != 0){
-
-		ValueMap mapProperties = map->propertiesForGID(tileGID).asValueMap();
-
-		bool value = mapProperties.at("enemigo").asBool(); // Si es false (no es movible), devuelve false
-
-		if (value == true)
-
-			return true; // Se movera
-
-	}
-	return false; // No se movera
-}
-
-void GameScene::compEnemigo() {
-
-	bool e1 = false, e2 = false, e3 = false, e4 = false, e5 = false, e6 = false, e7 = false, e8 = false;
-
-	e1 = comprobarTileEne(_playerSprite->getPosition().x, _playerSprite->getPosition().y + 75);
-	//e2 = comprobarTileEne(_playerSprite->getPosition().x, _playerSprite->getPosition().y + 150);
-	e3 = comprobarTileEne(_playerSprite->getPosition().x, _playerSprite->getPosition().y - 75);
-	//e4 = comprobarTileEne(_playerSprite->getPosition().x, _playerSprite->getPosition().y - 150);
-	e5 = comprobarTileEne(_playerSprite->getPosition().x + 75, _playerSprite->getPosition().y);
-	//e6 = comprobarTileEne(_playerSprite->getPosition().x + 150, _playerSprite->getPosition().y);
-	e7 = comprobarTileEne(_playerSprite->getPosition().x - 75, _playerSprite->getPosition().y);
-	//e8 = comprobarTileEne(_playerSprite->getPosition().x - 150, _playerSprite->getPosition().y);
-
-	if (e1 == true || /*e2 == true ||*/ e3 == true || /*e4 == true ||*/ e5 == true || /*e6 == true ||*/ e7 == true /*|| e8 == true*/)
-	{
-		_playerSprite->miedo--;
-
-	}
-
-}
 
 void GameScene::cambiarEscena(float x, float y) {
 
@@ -282,19 +235,9 @@ void GameScene::cambiarEscena(float x, float y) {
 
 void GameScene::onKeyPressed(EventKeyboard::KeyCode keyCode, Event *event){
 	_pressedKey = keyCode;
-	bool accesible, accesible2, movible, puerta, accesibleant, enemigo1, enemigo2;
+	bool accesible, accesible2, movible, puerta, accesibleant;
 	switch (_pressedKey) { //Llamar a la función de Hugo para cambiar el sprite de la animación
 	case EventKeyboard::KeyCode::KEY_UP_ARROW:
-
-		//compEnemigo();
-
-		/*enemigo1 = comprobarTileEne(_playerSprite->getPosition().x, _playerSprite->getPosition().y + 75);
-		enemigo2 = comprobarTileEne(_playerSprite->getPosition().x, _playerSprite->getPosition().y + 150);
-
-		if (enemigo1 == true || enemigo2 == true) {
-
-			_playerSprite->miedo = 3;
-		}*/
 
 		accesible = comprobarTileAcc(_playerSprite->getPosition().x, _playerSprite->getPosition().y + 75);
 		movible = comprobarTileMov(_playerSprite->getPosition().x, _playerSprite->getPosition().y + 75);
@@ -370,16 +313,6 @@ void GameScene::onKeyPressed(EventKeyboard::KeyCode keyCode, Event *event){
 
 	case EventKeyboard::KeyCode::KEY_DOWN_ARROW:
 
-		//compEnemigo();
-
-		/*enemigo1 = comprobarTileEne(_playerSprite->getPosition().x, _playerSprite->getPosition().y - 75);
-		enemigo2 = comprobarTileEne(_playerSprite->getPosition().x, _playerSprite->getPosition().y - 150);
-
-		if (enemigo1 == true || enemigo2 == true) {
-
-			_playerSprite->miedo = 3;
-		}*/
-
 		accesible = comprobarTileAcc(_playerSprite->getPosition().x, _playerSprite->getPosition().y - 75);
 		movible = comprobarTileMov(_playerSprite->getPosition().x, _playerSprite->getPosition().y - 75);
 		puerta = comprobarTilePuerta(_playerSprite->getPosition().x, _playerSprite->getPosition().y - 75);
@@ -453,16 +386,6 @@ void GameScene::onKeyPressed(EventKeyboard::KeyCode keyCode, Event *event){
 
 	case EventKeyboard::KeyCode::KEY_LEFT_ARROW:
 
-		//compEnemigo();
-
-		/*enemigo1 = comprobarTileEne(_playerSprite->getPosition().x - 75, _playerSprite->getPosition().y);
-		enemigo2 = comprobarTileEne(_playerSprite->getPosition().x - 150, _playerSprite->getPosition().y);
-
-		if (enemigo1 == true || enemigo2 == true) {
-
-			_playerSprite->miedo = 3;
-		}*/
-
 		accesible = comprobarTileAcc(_playerSprite->getPosition().x - 75, _playerSprite->getPosition().y);
 		movible = comprobarTileMov(_playerSprite->getPosition().x - 75, _playerSprite->getPosition().y);
 		puerta = comprobarTilePuerta(_playerSprite->getPosition().x - 75, _playerSprite->getPosition().y);
@@ -522,7 +445,7 @@ void GameScene::onKeyPressed(EventKeyboard::KeyCode keyCode, Event *event){
 
 			_playerSprite->animatePlayer(keyCode);
 			_podVector = Vec2(-POD_STEP_MOVE, 0);
-			//_playerSprite->miedo=3;
+			_playerSprite->miedo=3;
 			_isMoving = true;
 			break;
 		}
@@ -537,16 +460,6 @@ void GameScene::onKeyPressed(EventKeyboard::KeyCode keyCode, Event *event){
 
 	case EventKeyboard::KeyCode::KEY_RIGHT_ARROW:
 		
-		//compEnemigo();
-
-		/*enemigo1 = comprobarTileEne(_playerSprite->getPosition().x + 75, _playerSprite->getPosition().y);
-		enemigo2 = comprobarTileEne(_playerSprite->getPosition().x + 150, _playerSprite->getPosition().y);
-
-		if (enemigo1 == true || enemigo2 == true) {
-
-			_playerSprite->miedo = 3;
-		}*/
-
 		accesible = comprobarTileAcc(_playerSprite->getPosition().x + 75, _playerSprite->getPosition().y);
 		movible = comprobarTileMov(_playerSprite->getPosition().x + 75, _playerSprite->getPosition().y);
 		puerta = comprobarTilePuerta(_playerSprite->getPosition().x + 75, _playerSprite->getPosition().y);
@@ -606,7 +519,7 @@ void GameScene::onKeyPressed(EventKeyboard::KeyCode keyCode, Event *event){
 
 			_playerSprite->animatePlayer(keyCode);
 			_podVector = Vec2(POD_STEP_MOVE, 0);
-			//_playerSprite->miedo=1;
+			_playerSprite->miedo=1;
 			_isMoving = true;
 			break;
 		}

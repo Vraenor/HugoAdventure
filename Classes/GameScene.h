@@ -29,8 +29,6 @@ public:
 	bool comprobarTileAcc(float x, float y);
 	bool comprobarTileMov(float x, float y);
 	bool comprobarTilePuerta(float x, float y);
-	bool comprobarTileEne(float x, float y);
-	void compEnemigo();
 	bool UpOn, LeOn, RiOn, DoOn;
 	int coordToTileX(float x);
 	int coordToTileY(float y);
