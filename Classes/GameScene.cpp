@@ -86,16 +86,19 @@ void GameScene::update(float dt) {
 	switch (_playerSprite->miedo){
 	case 3: {
 		//_mascara->removeFromParent();
-		_mascara=Sprite::create("images/mascara3.png");
+		_mascara = Sprite::create("images/mascara3.png");
 		//_mascara->setPosition(newPos); }
+		}
 	case 2:  {
 		//_mascara->removeFromParent();
-		_mascara=Sprite::create("images/mascara2.png");
+		_mascara = Sprite::create("images/mascara2.png");
 		//_mascara->setPosition(newPos); }
+		}
 	case 1:	{
 		//_mascara->removeFromParent();
-		_mascara=Sprite::create("images/mascara1.png");
+		_mascara = Sprite::create("images/mascara1.png");
 		//_mascara->setPosition(newPos); }
+		}
 	}
 	if (_isMoving) {
 		newPos = Vec2(_playerSprite->getPosition().x + _podVector.x, _playerSprite->getPosition().y + _podVector.y);
