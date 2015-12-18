@@ -44,9 +44,9 @@ bool OptionsScene::init()
 	/*
 	// Creating menu
 	auto menuTitle = MenuItemImage::create("images/MainMenuScreen/Game_Title.png", "images/MainMenuScreen/Game_Title.png");
-	auto playItem = MenuItemImage::create("images/MainMenuScreen/Play_Button.png", "images/MainMenuScreen/Play_Button(Click).png", CC_CALLBACK_1(Options::goToGameScene, this));
-	auto optionsItem = MenuItemImage::create("images/MainMenuScreen/Options_Button.png", "images/MainMenuScreen/Options_Button(Click).png", CC_CALLBACK_1(Options::goToOptions, this));
-	auto closeItem = MenuItemImage::create("images/MainMenuScreen/Close_Button.png", "images/MainMenuScreen/Close_Button(Click).png", CC_CALLBACK_1(Options::goToClose, this));
+	auto playItem = MenuItemImage::create("images/MainMenuScreen/Play_Button.png", "images/MainMenuScreen/Play_Button(Click).png", CC_CALLBACK_1(OptionsScene::goToGameScene, this));
+	auto optionsItem = MenuItemImage::create("images/MainMenuScreen/Options_Button.png", "images/MainMenuScreen/Options_Button(Click).png", CC_CALLBACK_1(OptionsScene::goToOptions, this));
+	auto closeItem = MenuItemImage::create("images/MainMenuScreen/Close_Button.png", "images/MainMenuScreen/Close_Button(Click).png", CC_CALLBACK_1(OptionsScene::goToClose, this));
 
 	auto menu = Menu::create(menuTitle, playItem, optionsItem, closeItem, NULL);
 	menu->alignItemsVerticallyWithPadding(visibleSize.height / 4);

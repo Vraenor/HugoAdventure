@@ -3,7 +3,6 @@
 
 #include "cocos2d.h"
 #include "Hugo.h"
-//#include "Enemigo.h"
 
 USING_NS_CC;
 
@@ -13,7 +12,6 @@ class GameScene : public cocos2d::Layer {
 public:
 	
 	Hugo * _playerSprite;
-	//Enemigo * enemy;
 	Sprite * _mascara,*_mascara1,*_mascara3;
 	CCTMXTiledMap *map;
 	Sprite* _backgroundGameScene;

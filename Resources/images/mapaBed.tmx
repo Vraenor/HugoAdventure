@@ -2,7 +2,7 @@
 <map version="1.0" orientation="orthogonal" renderorder="right-down" width="20" height="13" tilewidth="75" tileheight="75" nextobjectid="1">
  <tileset firstgid="1" name="HabitacionSheet" tilewidth="75" tileheight="75" spacing="2" tilecount="40">
   <image source="HabitacionSheet.png" width="614" height="383"/>
-  <tile id="0">
+   <tile id="0">
    <properties>
     <property name="accesible" value="false"/>
     <property name="enemigo" value="false"/>
@@ -132,7 +132,7 @@
   </tile>
   <tile id="16">
    <properties>
-    <property name="accesible" value="true"/>
+    <property name="accesible" value="false"/>
     <property name="enemigo" value="false"/>
     <property name="movible" value="false"/>
     <property name="puerta" value="false"/>
@@ -140,7 +140,7 @@
   </tile>
   <tile id="17">
    <properties>
-    <property name="accesible" value="true"/>
+    <property name="accesible" value="false"/>
     <property name="enemigo" value="false"/>
     <property name="movible" value="false"/>
     <property name="puerta" value="false"/>
@@ -156,7 +156,7 @@
   </tile>
   <tile id="19">
    <properties>
-    <property name="accesible" value="true"/>
+    <property name="accesible" value="false"/>
     <property name="enemigo" value="false"/>
     <property name="movible" value="false"/>
     <property name="puerta" value="false"/>
@@ -213,7 +213,7 @@
   </tile>
   <tile id="26">
    <properties>
-    <property name="accesible" value="true"/>
+    <property name="accesible" value="false"/>
     <property name="enemigo" value="false"/>
     <property name="movible" value="false"/>
     <property name="puerta" value="false"/>
@@ -221,7 +221,7 @@
   </tile>
   <tile id="27">
    <properties>
-    <property name="accesible" value="true"/>
+    <property name="accesible" value="false"/>
     <property name="enemigo" value="false"/>
     <property name="movible" value="false"/>
     <property name="puerta" value="false"/>
