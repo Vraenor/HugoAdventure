@@ -293,9 +293,158 @@
    </properties>
   </tile>
  </tileset>
+ <tileset firstgid="41" name="Bloques3" tilewidth="75" tileheight="75" spacing="2" tilecount="24">
+  <image source="Bloques3.png" width="614" height="229"/>
+  <tile id="0">
+   <properties>
+    <property name="accesible" value="false"/>
+    <property name="enemigo" value="false"/>
+    <property name="movible" value="false"/>
+    <property name="puerta" value="false"/>
+   </properties>
+  </tile>
+  <tile id="1">
+   <properties>
+    <property name="accesible" value="false"/>
+    <property name="enemigo" value="false"/>
+    <property name="movible" value="false"/>
+    <property name="puerta" value="false"/>
+   </properties>
+  </tile>
+  <tile id="2">
+   <properties>
+    <property name="accesible" value="false"/>
+    <property name="enemigo" value="false"/>
+    <property name="movible" value="false"/>
+    <property name="puerta" value="false"/>
+   </properties>
+  </tile>
+  <tile id="3">
+   <properties>
+    <property name="accesible" value="false"/>
+    <property name="enemigo" value="false"/>
+    <property name="movible" value="false"/>
+    <property name="puerta" value="false"/>
+   </properties>
+  </tile>
+  <tile id="4">
+   <properties>
+    <property name="accesible" value="false"/>
+    <property name="enemigo" value="false"/>
+    <property name="movible" value="false"/>
+    <property name="puerta" value="false"/>
+   </properties>
+  </tile>
+  <tile id="5">
+   <properties>
+    <property name="accesible" value="false"/>
+    <property name="enemigo" value="false"/>
+    <property name="movible" value="false"/>
+    <property name="puerta" value="false"/>
+   </properties>
+  </tile>
+  <tile id="6">
+   <properties>
+    <property name="accesible" value="false"/>
+    <property name="enemigo" value="false"/>
+    <property name="movible" value="false"/>
+    <property name="puerta" value="false"/>
+   </properties>
+  </tile>
+  <tile id="7">
+   <properties>
+    <property name="accesible" value="false"/>
+    <property name="enemigo" value="false"/>
+    <property name="movible" value="false"/>
+    <property name="puerta" value="false"/>
+   </properties>
+  </tile>
+  <tile id="8">
+   <properties>
+    <property name="accesible" value="false"/>
+    <property name="enemigo" value="false"/>
+    <property name="movible" value="false"/>
+    <property name="puerta" value="false"/>
+   </properties>
+  </tile>
+  <tile id="9">
+   <properties>
+    <property name="accesible" value="false"/>
+    <property name="enemigo" value="false"/>
+    <property name="movible" value="false"/>
+    <property name="puerta" value="false"/>
+   </properties>
+  </tile>
+  <tile id="10">
+   <properties>
+    <property name="accesible" value="false"/>
+    <property name="enemigo" value="false"/>
+    <property name="movible" value="false"/>
+    <property name="puerta" value="false"/>
+   </properties>
+  </tile>
+  <tile id="11">
+   <properties>
+    <property name="accesible" value="false"/>
+    <property name="enemigo" value="false"/>
+    <property name="movible" value="false"/>
+    <property name="puerta" value="false"/>
+   </properties>
+  </tile>
+  <tile id="12">
+   <properties>
+    <property name="accesible" value="true"/>
+    <property name="enemigo" value="false"/>
+    <property name="movible" value="false"/>
+    <property name="puerta" value="false"/>
+   </properties>
+  </tile>
+  <tile id="13">
+   <properties>
+    <property name="accesible" value="false"/>
+    <property name="enemigo" value="false"/>
+    <property name="movible" value="false"/>
+    <property name="puerta" value="false"/>
+   </properties>
+  </tile>
+  <tile id="14">
+   <properties>
+    <property name="accesible" value="false"/>
+    <property name="enemigo" value="false"/>
+    <property name="movible" value="false"/>
+    <property name="puerta" value="true"/>
+    <property name="valorPuerta" value="1"/>
+   </properties>
+  </tile>
+  <tile id="15">
+   <properties>
+    <property name="accesible" value="false"/>
+    <property name="enemigo" value="false"/>
+    <property name="movible" value="true"/>
+    <property name="puerta" value="false"/>
+   </properties>
+  </tile>
+  <tile id="16">
+   <properties>
+    <property name="accesible" value="false"/>
+    <property name="enemigo" value="true"/>
+    <property name="movible" value="false"/>
+    <property name="puerta" value="false"/>
+   </properties>
+  </tile>
+  <tile id="17">
+   <properties>
+    <property name="accesible" value="false"/>
+    <property name="enemigo" value="false"/>
+    <property name="movible" value="false"/>
+    <property name="puerta" value="true"/>
+    <property name="valorPuerta" value="1"/>
+   </properties>
+  </tile>
+ </tileset>
  <layer name="Obstaculos" width="20" height="13">
   <data encoding="base64" compression="zlib">
-   eJytk80SgjAMhOu/RWtBrYpaLgzv/4qmM5uZNQInDztN0+QjacPGObf6k7aihagVeVEjqmHrynZLsX4kbwme+lrKL3Yk340Y5bwze+YFynmQfYfUN6dIvGT668xq76LUNJjePfEy4m2NDWpnHzMDxTFP4yzLo3bdV6KD6AhfNnzldRPvpjkR9ll0Eb2ptuh+++W7C1Qrv0UN3hV2ct/zMJh+I8XZGpX9Qm2eePpmgXgV7qRBf8rn2eJZi/SGOqeJeE/6rsbznNj/pTB6+PQ8g7cTrUd0mvDPaS/6AM4GDYE=
+   eJylUlsKwCAM8zp7v53u/gdbBwolpCrsI6RUW2PazjnXC4bEf+JRsAu84GqAh7tYdwo249xXOJCaA/R5EqOmErI+vB+A2b8j+Q/qszxiGlmO+cfqWG/2btYXCnOztDNPUR/OsbQfeBaVPqsf8wvf03uj58v61LxE1vNt3bFc+5Dcp28SLII5cY5vkqvFq+AFxeI0tg==
   </data>
  </layer>
 </map>

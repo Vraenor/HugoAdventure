@@ -91,17 +91,17 @@ void GameScene::update(float dt) {
 	case 3: {
 	    _mascara1->setOpacity(0);
 		_mascara->setOpacity(0);
-		_mascara3->setOpacity(999);
+		_mascara3->setOpacity(250);
 		break;
 		}
 	case 2:  {
 		_mascara1->setOpacity(0);
-		_mascara->setOpacity(999);
+		_mascara->setOpacity(250);
 		_mascara3->setOpacity(0);
 		break;
 			 }
 	case 1:	{
-		_mascara1->setOpacity(999);
+		_mascara1->setOpacity(250);
 		_mascara->setOpacity(0);
 		_mascara3->setOpacity(0);
 		break;
@@ -720,7 +720,7 @@ bool GameScene::init()
 
 	//Loading map http://www.cocos2d-x.org/wiki/TileMap
 	_mascara = Sprite::create("images/mascara2.png");
-	_mascara->setOpacity(999);
+	_mascara->setOpacity(250);
 	_mascara->setPosition(cx, cy);
 	addChild(_mascara, 2);
 	_mascara3 = Sprite::create("images/mascara3.png");
