@@ -233,15 +233,11 @@ void GameScene::compEnemigo() {
 	bool e1 = false, e2 = false, e3 = false, e4 = false, e5 = false, e6 = false, e7 = false, e8 = false;
 
 	e1 = comprobarTileEne(_playerSprite->getPosition().x, _playerSprite->getPosition().y + 75);
-	//e2 = comprobarTileEne(_playerSprite->getPosition().x, _playerSprite->getPosition().y + 150);
 	e3 = comprobarTileEne(_playerSprite->getPosition().x, _playerSprite->getPosition().y - 75);
-	//e4 = comprobarTileEne(_playerSprite->getPosition().x, _playerSprite->getPosition().y - 150);
 	e5 = comprobarTileEne(_playerSprite->getPosition().x + 75, _playerSprite->getPosition().y);
-	//e6 = comprobarTileEne(_playerSprite->getPosition().x + 150, _playerSprite->getPosition().y);
 	e7 = comprobarTileEne(_playerSprite->getPosition().x - 75, _playerSprite->getPosition().y);
-	//e8 = comprobarTileEne(_playerSprite->getPosition().x - 150, _playerSprite->getPosition().y);
 
-	if ((e1 == true || /*e2 == true ||*/ e3 == true || /*e4 == true ||*/ e5 == true || /*e6 == true ||*/ e7 == true /*|| e8 == true*/) && EneOn==true)
+	if ((e1 == true || e3 == true || e5 == true || e7 == true ) && EneOn==true)
 	{
 		_playerSprite->miedo++;
 		EneOn=false;
