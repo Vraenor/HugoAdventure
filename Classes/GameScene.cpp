@@ -342,7 +342,14 @@ void GameScene::onKeyPressed(EventKeyboard::KeyCode keyCode, Event *event){
 				_isMoving = true;
 				break;
 			}
+			else if(_playerSprite->pulsadoE == false && _playerSprite-> tirando == false) {
 
+			if (UpOn == true){
+				_playerSprite->animatePlayer(keyCode);
+				_isMoving = false;
+			}
+			break;
+		}
 			else if (accesibleant == true && _playerSprite->pulsadoE == true) {
 				LeOn = false;
 				RiOn = false;
@@ -429,7 +436,14 @@ void GameScene::onKeyPressed(EventKeyboard::KeyCode keyCode, Event *event){
 				_isMoving = true;
 				break;
 			}
+			else if(_playerSprite->pulsadoE == false && _playerSprite-> tirando == false) {
 
+			if (DoOn == true){
+				_playerSprite->animatePlayer(keyCode);
+				_isMoving = false;
+			}
+			break;
+			}
 			else if (accesibleant == true && _playerSprite->pulsadoE == true) {
 				LeOn = false;
 				RiOn = false;
@@ -515,6 +529,14 @@ void GameScene::onKeyPressed(EventKeyboard::KeyCode keyCode, Event *event){
 				_isMoving = true;
 				break;
 			}
+			else if(_playerSprite->pulsadoE == false && _playerSprite-> tirando == false) {
+
+			if (LeOn == true){
+				_playerSprite->animatePlayer(keyCode);
+				_isMoving = false;
+			}
+			break;
+		}
 			else if (accesibleant == true && _playerSprite->pulsadoE == true) {
 				UpOn = false;
 				DoOn = false;
@@ -602,6 +624,14 @@ void GameScene::onKeyPressed(EventKeyboard::KeyCode keyCode, Event *event){
 				_isMoving = true;
 				break;
 			}
+			else if(_playerSprite->pulsadoE == false && _playerSprite-> tirando == false) {
+
+			if (RiOn == true){
+				_playerSprite->animatePlayer(keyCode);
+				_isMoving = false;
+			}
+			break;
+		}
 			else if (accesibleant == true && _playerSprite->pulsadoE == true) {
 				UpOn = false;
 				DoOn = false;

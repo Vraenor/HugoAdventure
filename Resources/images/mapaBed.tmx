@@ -132,7 +132,7 @@
   </tile>
   <tile id="16">
    <properties>
-    <property name="accesible" value="true"/>
+    <property name="accesible" value="false"/>
     <property name="enemigo" value="false"/>
     <property name="movible" value="false"/>
     <property name="puerta" value="false"/>
@@ -140,7 +140,7 @@
   </tile>
   <tile id="17">
    <properties>
-    <property name="accesible" value="true"/>
+    <property name="accesible" value="false"/>
     <property name="enemigo" value="false"/>
     <property name="movible" value="false"/>
     <property name="puerta" value="false"/>
@@ -213,7 +213,7 @@
   </tile>
   <tile id="26">
    <properties>
-    <property name="accesible" value="true"/>
+    <property name="accesible" value="false"/>
     <property name="enemigo" value="false"/>
     <property name="movible" value="false"/>
     <property name="puerta" value="false"/>
@@ -221,7 +221,7 @@
   </tile>
   <tile id="27">
    <properties>
-    <property name="accesible" value="true"/>
+    <property name="accesible" value="false"/>
     <property name="enemigo" value="false"/>
     <property name="movible" value="false"/>
     <property name="puerta" value="false"/>
