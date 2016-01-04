@@ -2,7 +2,7 @@
 #include "MainMenuScene.h"
 #include "GameScene.h"
 #include "PauseScene.h"
-#include "GameOverScene.h"
+#include "Instructions.h"
 
 USING_NS_CC;
 

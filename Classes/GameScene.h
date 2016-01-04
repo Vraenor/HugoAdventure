@@ -21,7 +21,7 @@ public:
 	bool sombra;
 
 	void goToPauseScene(Ref *pSender);
-	void goToGameOverScene(Ref *pSender);
+	void goToInstructions(Ref *pSender);
 	void goToNewScene(Ref *pSender,const std::string& file, float newx, float newy);
 	void update(float dt);
 	void onKeyPressed(EventKeyboard::KeyCode keyCode, Event *event);

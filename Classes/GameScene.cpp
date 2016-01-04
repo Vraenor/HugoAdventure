@@ -1,6 +1,6 @@
 #include "GameScene.h"
 #include "PauseScene.h"
-#include "GameOverScene.h"
+#include "Instructions.h"
 #include "Hugo.h"
 
 
@@ -58,13 +58,13 @@ void GameScene::goToPauseScene(Ref *pSender) {
 	Director::getInstance()->pushScene(TransitionFade::create(1.0, scene));
 }
 
-void GameScene::goToGameOverScene(Ref *pSender) {
+void GameScene::goToInstructions(Ref *pSender) {
 
 	cStr = arch;
 	cuX = cx;
 	cuY = cy;
 
-	auto scene = GameOverScene::createScene(cStr, cx, cy);
+	auto scene = Instructions::createScene(cStr, cx, cy);
 	Director::getInstance()->replaceScene(TransitionFade::create(1.0, scene));
 }
 
@@ -320,7 +320,7 @@ void GameScene::cambiarEscena(float x, float y) {
 
 void GameScene::onKeyPressed(EventKeyboard::KeyCode keyCode, Event *event){
 	_pressedKey = keyCode;
-	bool accesible, accesible2, movible, puerta, accesibleant, enemigo1, enemigo2;
+	bool accesible, accesible2, movible, puerta, accesibleant;
 	switch (_pressedKey) { //Llamar a la función de Hugo para cambiar el sprite de la animación
 	case EventKeyboard::KeyCode::KEY_UP_ARROW:
 
@@ -700,11 +700,6 @@ void GameScene::setPhysicsWorld(PhysicsWorld *world) {
 	mWorld->setGravity(Vec2::ZERO);
 }
 
-bool GameScene::onContactBegin(PhysicsContact &contact) {
-	goToGameOverScene(this);
-	return true;
-}
-
 // on "init" you need to initialize your instance
 bool GameScene::init()
 {
@@ -764,9 +759,9 @@ bool GameScene::init()
 	body->setDynamic(true);
 	_playerSprite->setPhysicsBody(body);
 
-	auto contactListener = EventListenerPhysicsContact::create();
+	/*auto contactListener = EventListenerPhysicsContact::create();
 	contactListener->onContactBegin = CC_CALLBACK_1(GameScene::onContactBegin, this);
-	getEventDispatcher()->addEventListenerWithSceneGraphPriority(contactListener, this);
+	getEventDispatcher()->addEventListenerWithSceneGraphPriority(contactListener, this);*/
 
 	this->scheduleUpdate();
 	//this->schedule(schedule_selector(GameScene::spawnAsteroid), 1.0);
