@@ -326,7 +326,7 @@ void GameScene::cambiarEscena(float x, float y) {
 
 void GameScene::onKeyPressed(EventKeyboard::KeyCode keyCode, Event *event){
 	_pressedKey = keyCode;
-	bool accesible, accesible2, movible, puerta, accesibleant, enemigo1, enemigo2;
+	bool accesible, accesible2, movible, puerta, accesibleant;
 	switch (_pressedKey) { //Llamar a la función de Hugo para cambiar el sprite de la animación
 	case EventKeyboard::KeyCode::KEY_UP_ARROW:
 
