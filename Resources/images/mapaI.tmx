@@ -104,7 +104,7 @@
     <property name="enemigo" value="false"/>
     <property name="movible" value="false"/>
     <property name="puerta" value="true"/>
-    <property name="valorPuerta" value="1"/>
+    <property name="valorPuerta" value="5"/>
    </properties>
   </tile>
   <tile id="14">
@@ -273,7 +273,7 @@
     <property name="enemigo" value="false"/>
     <property name="movible" value="false"/>
     <property name="puerta" value="true"/>
-    <property name="valorPuerta" value="1"/>
+    <property name="valorPuerta" value="5"/>
    </properties>
   </tile>
   <tile id="35">

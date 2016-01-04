@@ -1,6 +1,5 @@
 #include "MainMenuScene.h"
 #include "GameScene.h"
-#include "OptionsScene.h"
 #include "SimpleAudioEngine.h"
 
 USING_NS_CC;
@@ -27,14 +26,6 @@ void MainMenuScene::goToGameScene(Ref *pSender) {
 	CocosDenshion::SimpleAudioEngine::getInstance()->playEffect("audio/ButtonClick.wav");
 }
 
-void MainMenuScene::goToOptions(Ref *pSender) {
-
-	auto scene = OptionsScene::createScene();
-	Director::getInstance()->replaceScene(TransitionFade::create(1.0, scene));
-	CocosDenshion::SimpleAudioEngine::getInstance()->playEffect("audio/ButtonClick.wav");
-
-}
-
 void MainMenuScene::goToClose(Ref *pSender) {
 
 	Director::getInstance()->popScene();
@@ -56,10 +47,9 @@ bool MainMenuScene::init()
 	// Creating menu
 	auto menuTitle = MenuItemImage::create("images/MainMenuScreen/Game_Title.png", "images/MainMenuScreen/Game_Title.png");
 	auto playItem = MenuItemImage::create("images/MainMenuScreen/Play_Button.png", "images/MainMenuScreen/Play_Button(Click).png", CC_CALLBACK_1(MainMenuScene::goToGameScene, this));
-	auto optionsItem = MenuItemImage::create("images/MainMenuScreen/Options_Button.png", "images/MainMenuScreen/Options_Button(Click).png", CC_CALLBACK_1(MainMenuScene::goToOptions, this));
 	auto closeItem = MenuItemImage::create("images/MainMenuScreen/Close_Button.png", "images/MainMenuScreen/Close_Button(Click).png", CC_CALLBACK_1(MainMenuScene::goToClose, this));
 	
-	auto menu = Menu::create(menuTitle, playItem, optionsItem, closeItem, NULL);
+	auto menu = Menu::create(menuTitle, playItem, closeItem, NULL);
 	menu->alignItemsVerticallyWithPadding(visibleSize.height / 8);
 	addChild(menu, 1);
 	

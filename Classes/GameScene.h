@@ -7,18 +7,18 @@
 
 USING_NS_CC;
 
-const int POD_STEP_MOVE = 75;
+const int POD_STEP_MOVE = 25;
 
 class GameScene : public cocos2d::Layer {
 public:
 	
 	Hugo * _playerSprite;
-	//Enemigo * enemy;
-	Sprite * _mascara,*_mascara1,*_mascara3;
+	Sprite * _mascara1,*_mascara2,*_mascara3;
 	CCTMXTiledMap *map;
 	Sprite* _backgroundGameScene;
 	std::string arch, cStr;
 	float cx, cy, cuX, cuY;
+	bool sombra;
 
 	void goToPauseScene(Ref *pSender);
 	void goToGameOverScene(Ref *pSender);

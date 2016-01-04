@@ -10,7 +10,6 @@ public:
 	void resumeGameScene(Ref *pSender);
 	void goToMainMenu(Ref *pSender);
 	void retryGameScene(Ref *pSender);
-	void goToOptionsScene(Ref *pSender);
 	std::string curMap;
 	float curX, curY;
 

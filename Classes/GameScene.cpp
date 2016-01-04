@@ -75,37 +75,49 @@ void GameScene::goToNewScene(Ref *pSender, const std::string& File, float newx, 
 	cuY = newy;
 
 	auto scene = GameScene::createScene(cStr, cuX, cuY);
-	Director::getInstance()->replaceScene(TransitionFade::create(3.0, scene));
+	Director::getInstance()->replaceScene(TransitionFade::create(2.0, scene));
 }
 
 void GameScene::update(float dt) {
 
 	Size visibleSize = Director::getInstance()->getVisibleSize();
 
+	if (_playerSprite->getPosition().y == 112.5 && sombra == false) {
+
+		_playerSprite->miedo = 1;
+		sombra = true;
+
+	}
+
 	switch (_playerSprite->miedo){
-	case 4: {
-		goToNewScene(this, "images/mapaPas.tmx", 862.5, 562.5);
-		//_playerSprite->miedo=1;
-		break;
-			}
-	case 3: {
-	    _mascara1->setOpacity(0);
-		_mascara->setOpacity(0);
-		_mascara3->setOpacity(250);
-		break;
+		case 4: {
+			goToNewScene(this, "images/mapaPas.tmx", 1087.5, 562.5);
+			break;
 		}
-	case 2:  {
-		_mascara1->setOpacity(0);
-		_mascara->setOpacity(250);
-		_mascara3->setOpacity(0);
-		break;
-			 }
-	case 1:	{
-		_mascara1->setOpacity(250);
-		_mascara->setOpacity(0);
-		_mascara3->setOpacity(0);
-		break;
-			}
+		case 3: {
+			_mascara1->setOpacity(0);
+			_mascara2->setOpacity(0);
+			_mascara3->setOpacity(250);
+			break;
+		}
+		case 2:  {
+			_mascara1->setOpacity(0);
+			_mascara2->setOpacity(250);
+			_mascara3->setOpacity(0);
+			break;
+		}
+		case 1:	{
+			_mascara1->setOpacity(250);
+			_mascara2->setOpacity(0);
+			_mascara3->setOpacity(0);
+			break;
+		}
+		case 0: {
+			_mascara1->setOpacity(0);
+			_mascara2->setOpacity(0);
+			_mascara3->setOpacity(0);
+			break;
+		}
 	}
 	if (_isMoving) {
 		Vec2 newPos = Vec2(_playerSprite->getPosition().x + _podVector.x, _playerSprite->getPosition().y + _podVector.y);
@@ -113,11 +125,23 @@ void GameScene::update(float dt) {
 			newPos.y >= _playerSprite->getBoundingBox().size.height / 2 && newPos.y <= (visibleSize.height - _playerSprite->getBoundingBox().size.height / 2))
 		{
 			_playerSprite->setPosition(newPos);
-			_mascara->setPosition(newPos);
 			_mascara1->setPosition(newPos);
+			_mascara2->setPosition(newPos);
 			_mascara3->setPosition(newPos);
 			_podVector = Vec2::ZERO;
-
+			compEnemigo();
+		}
+	}
+	if (_isMoving) {
+		Vec2 newPos = Vec2(_playerSprite->getPosition().x + _podVector.x, _playerSprite->getPosition().y + _podVector.y);
+		if (newPos.x >= _playerSprite->getBoundingBox().size.width / 2 && newPos.x <= (visibleSize.width - _playerSprite->getBoundingBox().size.width / 2) &&
+			newPos.y >= _playerSprite->getBoundingBox().size.height / 2 && newPos.y <= (visibleSize.height - _playerSprite->getBoundingBox().size.height / 2))
+		{
+			_playerSprite->setPosition(newPos);
+			_mascara1->setPosition(newPos);
+			_mascara2->setPosition(newPos);
+			_mascara3->setPosition(newPos);
+			_podVector = Vec2::ZERO;
 			compEnemigo();
 		}
 	}
@@ -285,6 +309,20 @@ void GameScene::cambiarEscena(float x, float y) {
 			goToNewScene(this, "images/mapaIII.tmx", 487.5, 112.5);
 			break;
 
+		case 5:
+
+			goToNewScene(this, "images/mapaPas.tmx", 412.5, 562.5);
+			break;
+
+		case 6:
+
+			goToNewScene(this, "images/mapaPas.tmx", 787.5, 562.5);
+			break;
+
+		case 7:
+
+			goToNewScene(this, "images/mapaPas.tmx", 1087.5, 562.5);
+			break;
 		}
 	}
 }
@@ -294,16 +332,6 @@ void GameScene::onKeyPressed(EventKeyboard::KeyCode keyCode, Event *event){
 	bool accesible, accesible2, movible, puerta, accesibleant, enemigo1, enemigo2;
 	switch (_pressedKey) { //Llamar a la función de Hugo para cambiar el sprite de la animación
 	case EventKeyboard::KeyCode::KEY_UP_ARROW:
-
-		//compEnemigo();
-
-		/*enemigo1 = comprobarTileEne(_playerSprite->getPosition().x, _playerSprite->getPosition().y + 75);
-		enemigo2 = comprobarTileEne(_playerSprite->getPosition().x, _playerSprite->getPosition().y + 150);
-
-		if (enemigo1 == true || enemigo2 == true) {
-
-			_playerSprite->miedo = 3;
-		}*/
 
 		accesible = comprobarTileAcc(_playerSprite->getPosition().x, _playerSprite->getPosition().y + 75);
 		movible = comprobarTileMov(_playerSprite->getPosition().x, _playerSprite->getPosition().y + 75);
@@ -390,16 +418,6 @@ void GameScene::onKeyPressed(EventKeyboard::KeyCode keyCode, Event *event){
 
 	case EventKeyboard::KeyCode::KEY_DOWN_ARROW:
 
-		//compEnemigo();
-
-		/*enemigo1 = comprobarTileEne(_playerSprite->getPosition().x, _playerSprite->getPosition().y - 75);
-		enemigo2 = comprobarTileEne(_playerSprite->getPosition().x, _playerSprite->getPosition().y - 150);
-
-		if (enemigo1 == true || enemigo2 == true) {
-
-			_playerSprite->miedo = 3;
-		}*/
-
 		accesible = comprobarTileAcc(_playerSprite->getPosition().x, _playerSprite->getPosition().y - 75);
 		movible = comprobarTileMov(_playerSprite->getPosition().x, _playerSprite->getPosition().y - 75);
 		puerta = comprobarTilePuerta(_playerSprite->getPosition().x, _playerSprite->getPosition().y - 75);
@@ -483,16 +501,6 @@ void GameScene::onKeyPressed(EventKeyboard::KeyCode keyCode, Event *event){
 		}
 
 	case EventKeyboard::KeyCode::KEY_LEFT_ARROW:
-
-		//compEnemigo();
-
-		/*enemigo1 = comprobarTileEne(_playerSprite->getPosition().x - 75, _playerSprite->getPosition().y);
-		enemigo2 = comprobarTileEne(_playerSprite->getPosition().x - 150, _playerSprite->getPosition().y);
-
-		if (enemigo1 == true || enemigo2 == true) {
-
-			_playerSprite->miedo = 3;
-		}*/
 
 		accesible = comprobarTileAcc(_playerSprite->getPosition().x - 75, _playerSprite->getPosition().y);
 		movible = comprobarTileMov(_playerSprite->getPosition().x - 75, _playerSprite->getPosition().y);
@@ -579,16 +587,6 @@ void GameScene::onKeyPressed(EventKeyboard::KeyCode keyCode, Event *event){
 
 	case EventKeyboard::KeyCode::KEY_RIGHT_ARROW:
 		
-		//compEnemigo();
-
-		/*enemigo1 = comprobarTileEne(_playerSprite->getPosition().x + 75, _playerSprite->getPosition().y);
-		enemigo2 = comprobarTileEne(_playerSprite->getPosition().x + 150, _playerSprite->getPosition().y);
-
-		if (enemigo1 == true || enemigo2 == true) {
-
-			_playerSprite->miedo = 3;
-		}*/
-
 		accesible = comprobarTileAcc(_playerSprite->getPosition().x + 75, _playerSprite->getPosition().y);
 		movible = comprobarTileMov(_playerSprite->getPosition().x + 75, _playerSprite->getPosition().y);
 		puerta = comprobarTilePuerta(_playerSprite->getPosition().x + 75, _playerSprite->getPosition().y);
@@ -743,20 +741,22 @@ bool GameScene::init()
 	RiOn = true;
 	LeOn = true;
 	DoOn = true;
+	sombra = false;
 
 	//Loading map http://www.cocos2d-x.org/wiki/TileMap
-	_mascara = Sprite::create("images/mascara2.png");
-	_mascara->setOpacity(250);
-	_mascara->setPosition(cx, cy);
-	addChild(_mascara, 2);
+
+	_mascara1 = Sprite::create("images/mascara1.png");
+	_mascara1->setOpacity(0);
+	_mascara1->setPosition(cx, cy);
+	addChild(_mascara1, 2);
+	_mascara2 = Sprite::create("images/mascara2.png");
+	_mascara2->setOpacity(0);
+	_mascara2->setPosition(cx, cy);
+	addChild(_mascara2, 2);
 	_mascara3 = Sprite::create("images/mascara3.png");
 	_mascara3->setOpacity(0);
     _mascara3->setPosition(cx, cy);
     addChild(_mascara3, 2);
-	_mascara1 = Sprite::create("images/mascara1.png");
-	_mascara1->setOpacity(0);
-    _mascara1->setPosition(cx, cy);
-    addChild(_mascara1, 2);
 
 	map = TMXTiledMap::create(arch); //"images/mapaI.tmx"
 	map->setPosition(Point(0, 0));

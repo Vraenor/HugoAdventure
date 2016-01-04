@@ -6,7 +6,7 @@ USING_NS_CC;
 Hugo::Hugo() {
 	pulsadoE=false;
 	spritebatch=nullptr;
-	miedo=1;
+	miedo=0;
 	playerSprite = Sprite::create("images/Hugo/HugoUp_1.png");
 	this->addChild(playerSprite);
 }
