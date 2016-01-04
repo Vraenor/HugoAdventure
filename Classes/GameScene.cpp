@@ -132,20 +132,6 @@ void GameScene::update(float dt) {
 			compEnemigo();
 		}
 	}
-	if (_isMoving) {
-		Vec2 newPos = Vec2(_playerSprite->getPosition().x + _podVector.x, _playerSprite->getPosition().y + _podVector.y);
-		if (newPos.x >= _playerSprite->getBoundingBox().size.width / 2 && newPos.x <= (visibleSize.width - _playerSprite->getBoundingBox().size.width / 2) &&
-			newPos.y >= _playerSprite->getBoundingBox().size.height / 2 && newPos.y <= (visibleSize.height - _playerSprite->getBoundingBox().size.height / 2))
-		{
-			_playerSprite->setPosition(newPos);
-			_mascara1->setPosition(newPos);
-			_mascara2->setPosition(newPos);
-			_mascara3->setPosition(newPos);
-			_podVector = Vec2::ZERO;
-			compEnemigo();
-		}
-	}
-
 }
 
 int GameScene::coordToTileX(float x) {
@@ -286,7 +272,7 @@ void GameScene::cambiarEscena(float x, float y) {
 
 		case 0:
 			
-			goToNewScene(this, "images/mapaBed.tmx", 637.5, 562.5);
+			goToNewScene(this, "images/mapaBed.tmx", 637.5, 487.5);
 			break;
 
 		case 1:
@@ -322,6 +308,11 @@ void GameScene::cambiarEscena(float x, float y) {
 		case 7:
 
 			goToNewScene(this, "images/mapaPas.tmx", 1087.5, 562.5);
+			break;
+
+		case 8:
+
+			goToNewScene(this, "images/mapaBed.tmx", 1012.5, 637.5);
 			break;
 		}
 	}

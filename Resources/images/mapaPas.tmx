@@ -2,7 +2,7 @@
 <map version="1.0" orientation="orthogonal" renderorder="right-down" width="20" height="13" tilewidth="75" tileheight="75" nextobjectid="1">
  <tileset firstgid="1" name="PasilloSheet" tilewidth="75" tileheight="75" spacing="2" tilecount="8">
   <image source="PasilloSheet.png" width="306" height="152"/>
- <tile id="0">
+  <tile id="0">
    <properties>
     <property name="accesible" value="false"/>
     <property name="enemigo" value="false"/>
@@ -35,7 +35,7 @@
     <property name="enemigo" value="false"/>
     <property name="movible" value="false"/>
     <property name="puerta" value="true"/>
-    <property name="valorPuerta" value="0"/>
+    <property name="valorPuerta" value="8"/>
    </properties>
   </tile>
   <tile id="4">
@@ -70,7 +70,7 @@
     <property name="puerta" value="false"/>
    </properties>
   </tile>
-  </tileset>
+ </tileset>
  <layer name="Obstaculos" width="20" height="13">
   <data encoding="base64" compression="zlib">
    eJxjYBgF1ACsQMwGxUxIbBhmRuMzIrGBehegmwcUT+AA0uRgNhzmsQNpcjAu86jpPmAYJADFD4AwC5QmFgP1HkA3bxSQBwAScBFV

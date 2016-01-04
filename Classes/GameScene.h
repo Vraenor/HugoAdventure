@@ -7,7 +7,7 @@
 
 USING_NS_CC;
 
-const int POD_STEP_MOVE = 25;
+const int POD_STEP_MOVE = 75;
 
 class GameScene : public cocos2d::Layer {
 public:

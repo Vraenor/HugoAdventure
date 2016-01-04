@@ -23,7 +23,7 @@ void Hugo::animatePlayer(EventKeyboard::KeyCode keyCode) {
 
 	playerSprite->setVisible(false);
 
-	Sprite1 = Sprite::createWithSpriteFrameName("HugoUp_0.png");
+	Sprite1 = Sprite::createWithSpriteFrameName("HugoDo_0.png");
 	spritebatch->addChild(Sprite1);
 
 	addChild(spritebatch);
