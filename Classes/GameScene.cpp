@@ -408,10 +408,6 @@ void GameScene::onKeyPressed(EventKeyboard::KeyCode keyCode, Event *event){
 			if (UpOn == true){
 
 				_playerSprite->animatePlayer(keyCode);
-				if(manual==true)
-					{
-				_mascaramanual->setOpacity(0);
-				manual=false;}
 				_isMoving = false;
 			}
 			break;
@@ -585,6 +581,10 @@ void GameScene::onKeyPressed(EventKeyboard::KeyCode keyCode, Event *event){
 			
 			if (LeOn == true){
 				_playerSprite->animatePlayer(keyCode);
+				if(manual==true)
+					{
+				_mascaramanual->setOpacity(0);
+				manual=false;}
 				_isMoving = false;
 			}
 			break;
