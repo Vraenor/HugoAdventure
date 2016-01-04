@@ -78,11 +78,12 @@ bool PauseScene::init()
 		CC_CALLBACK_1(PauseScene::goToMainMenu, this));
 
 	auto menu = Menu::create(resumeItem, replayItem, menuItem, NULL);
-	menu->alignItemsVerticallyWithPadding(visibleSize.height / 10);
+	menu->alignItemsVerticallyWithPadding(visibleSize.height / 20);
+	menu->setPosition(1275/2+100, 675/2+20);
 	addChild(menu, 1);
 
 	auto background = Sprite::create("images/PauseScreen/Pause_Background.png");
-	background->setPosition(visibleSize.height / 2, visibleSize.width / 2);
+	background->setPosition(1275/2+70, 675/2+175);
 	addChild(background, 0);
 
     return true;

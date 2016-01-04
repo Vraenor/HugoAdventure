@@ -1,6 +1,6 @@
 #include "GameScene.h"
 #include "PauseScene.h"
-#include "Instructions.h"
+#include "GameOverScene.h"
 #include "Hugo.h"
 
 
@@ -58,13 +58,13 @@ void GameScene::goToPauseScene(Ref *pSender) {
 	Director::getInstance()->pushScene(TransitionFade::create(1.0, scene));
 }
 
-void GameScene::goToInstructions(Ref *pSender) {
+void GameScene::goToGameOverScene(Ref *pSender) {
 
 	cStr = arch;
 	cuX = cx;
 	cuY = cy;
 
-	auto scene = Instructions::createScene(cStr, cx, cy);
+	auto scene = GameOverScene::createScene(cStr, cx, cy);
 	Director::getInstance()->replaceScene(TransitionFade::create(1.0, scene));
 }
 
@@ -128,6 +128,7 @@ void GameScene::update(float dt) {
 			_mascara1->setPosition(newPos);
 			_mascara2->setPosition(newPos);
 			_mascara3->setPosition(newPos);
+			_mascaramanual->setOpacity(0);
 			_podVector = Vec2::ZERO;
 			compEnemigo();
 		}
@@ -314,13 +315,18 @@ void GameScene::cambiarEscena(float x, float y) {
 
 			goToNewScene(this, "images/mapaBed.tmx", 1012.5, 637.5);
 			break;
+		case 9:
+			_mascaramanual->setOpacity(255);
+			manual=true;
+			 
+			break;
 		}
 	}
 }
 
 void GameScene::onKeyPressed(EventKeyboard::KeyCode keyCode, Event *event){
 	_pressedKey = keyCode;
-	bool accesible, accesible2, movible, puerta, accesibleant;
+	bool accesible, accesible2, movible, puerta, accesibleant, enemigo1, enemigo2;
 	switch (_pressedKey) { //Llamar a la función de Hugo para cambiar el sprite de la animación
 	case EventKeyboard::KeyCode::KEY_UP_ARROW:
 
@@ -402,6 +408,10 @@ void GameScene::onKeyPressed(EventKeyboard::KeyCode keyCode, Event *event){
 			if (UpOn == true){
 
 				_playerSprite->animatePlayer(keyCode);
+				if(manual==true)
+					{
+				_mascaramanual->setOpacity(0);
+				manual=false;}
 				_isMoving = false;
 			}
 			break;
@@ -486,6 +496,10 @@ void GameScene::onKeyPressed(EventKeyboard::KeyCode keyCode, Event *event){
 
 			if (DoOn == true){
 				_playerSprite->animatePlayer(keyCode);
+				if(manual==true)
+					{
+				_mascaramanual->setOpacity(0);
+				manual=false;}
 				_isMoving = false;
 			}
 			break;
@@ -656,7 +670,10 @@ void GameScene::onKeyPressed(EventKeyboard::KeyCode keyCode, Event *event){
 
 			if (RiOn == true){
 				_playerSprite->animatePlayer(keyCode);
-				
+				if(manual==true)
+					{
+				_mascaramanual->setOpacity(0);
+				manual=false;}
 				_isMoving = false;
 			}
 			break;
@@ -700,6 +717,11 @@ void GameScene::setPhysicsWorld(PhysicsWorld *world) {
 	mWorld->setGravity(Vec2::ZERO);
 }
 
+bool GameScene::onContactBegin(PhysicsContact &contact) {
+	goToGameOverScene(this);
+	return true;
+}
+
 // on "init" you need to initialize your instance
 bool GameScene::init()
 {
@@ -728,6 +750,7 @@ bool GameScene::init()
 	LeOn = true;
 	DoOn = true;
 	sombra = false;
+	manual = false;
 
 	//Loading map http://www.cocos2d-x.org/wiki/TileMap
 
@@ -743,6 +766,10 @@ bool GameScene::init()
 	_mascara3->setOpacity(0);
     _mascara3->setPosition(cx, cy);
     addChild(_mascara3, 2);
+	_mascaramanual = Sprite::create("images/mascaramanual.png");
+	_mascaramanual->setOpacity(0);
+    _mascaramanual->setPosition(cx, cy);
+    addChild(_mascaramanual, 2);
 
 	map = TMXTiledMap::create(arch); //"images/mapaI.tmx"
 	map->setPosition(Point(0, 0));
@@ -759,9 +786,9 @@ bool GameScene::init()
 	body->setDynamic(true);
 	_playerSprite->setPhysicsBody(body);
 
-	/*auto contactListener = EventListenerPhysicsContact::create();
+	auto contactListener = EventListenerPhysicsContact::create();
 	contactListener->onContactBegin = CC_CALLBACK_1(GameScene::onContactBegin, this);
-	getEventDispatcher()->addEventListenerWithSceneGraphPriority(contactListener, this);*/
+	getEventDispatcher()->addEventListenerWithSceneGraphPriority(contactListener, this);
 
 	this->scheduleUpdate();
 	//this->schedule(schedule_selector(GameScene::spawnAsteroid), 1.0);

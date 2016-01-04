@@ -1,14 +1,15 @@
-#ifndef __INSTRUCTIONS_H__
-#define __INSTRUCTIONS_H__
+#ifndef __GAMEOVER_SCENE_H__
+#define __GAMEOVER_SCENE_H__
 
 #include "cocos2d.h"
 
 USING_NS_CC;
 
-class Instructions : public cocos2d::Layer
+class GameOverScene : public cocos2d::Layer
 {
 public:
 
+	void goToMainMenuScene(Ref *pSender);
 	void retryGameScene(Ref *pSender);
 	std::string curMap;
 	float curX, curY;
@@ -20,9 +21,9 @@ public:
     virtual bool init();
     
     // implement the "static create()" method manually
-	//CREATE_FUNC(Instructions);
+	//CREATE_FUNC(GameOverScene);
 
-	static Instructions* create(const std::string& File, float x, float y);
+	static GameOverScene* create(const std::string& File, float x, float y);
 };
 
-#endif // __INSTRUCTIONS_H__
+#endif // __GAMEOVER_SCENE_H__

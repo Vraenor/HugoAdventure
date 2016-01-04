@@ -13,15 +13,15 @@ class GameScene : public cocos2d::Layer {
 public:
 	
 	Hugo * _playerSprite;
-	Sprite * _mascara1,*_mascara2,*_mascara3;
+	Sprite * _mascara1,*_mascara2,*_mascara3,*_mascaramanual;
 	CCTMXTiledMap *map;
 	Sprite* _backgroundGameScene;
 	std::string arch, cStr;
 	float cx, cy, cuX, cuY;
-	bool sombra;
+	bool sombra,manual;
 
 	void goToPauseScene(Ref *pSender);
-	void goToInstructions(Ref *pSender);
+	void goToGameOverScene(Ref *pSender);
 	void goToNewScene(Ref *pSender,const std::string& file, float newx, float newy);
 	void update(float dt);
 	void onKeyPressed(EventKeyboard::KeyCode keyCode, Event *event);
