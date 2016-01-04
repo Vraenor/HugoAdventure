@@ -317,8 +317,6 @@ void GameScene::cambiarEscena(float x, float y) {
 			break;
 		case 9:
 			_mascaramanual->setOpacity(255);
-			manual=true;
-			 
 			break;
 		}
 	}
@@ -408,15 +406,11 @@ void GameScene::onKeyPressed(EventKeyboard::KeyCode keyCode, Event *event){
 			if (UpOn == true){
 
 				_playerSprite->animatePlayer(keyCode);
-				if(manual==true)
-					{
-				_mascaramanual->setOpacity(0);
-				manual=false;}
 				_isMoving = false;
 			}
-			break;
+			
 		}
-
+		break;
 	case EventKeyboard::KeyCode::KEY_DOWN_ARROW:
 
 		accesible = comprobarTileAcc(_playerSprite->getPosition().x, _playerSprite->getPosition().y - 75);
@@ -496,15 +490,12 @@ void GameScene::onKeyPressed(EventKeyboard::KeyCode keyCode, Event *event){
 
 			if (DoOn == true){
 				_playerSprite->animatePlayer(keyCode);
-				if(manual==true)
-					{
 				_mascaramanual->setOpacity(0);
-				manual=false;}
 				_isMoving = false;
 			}
 			break;
 		}
-
+	break;
 	case EventKeyboard::KeyCode::KEY_LEFT_ARROW:
 
 		accesible = comprobarTileAcc(_playerSprite->getPosition().x - 75, _playerSprite->getPosition().y);
@@ -585,11 +576,12 @@ void GameScene::onKeyPressed(EventKeyboard::KeyCode keyCode, Event *event){
 			
 			if (LeOn == true){
 				_playerSprite->animatePlayer(keyCode);
+				_mascaramanual->setOpacity(0);
 				_isMoving = false;
 			}
 			break;
 		}
-
+	break;
 	case EventKeyboard::KeyCode::KEY_RIGHT_ARROW:
 		
 		accesible = comprobarTileAcc(_playerSprite->getPosition().x + 75, _playerSprite->getPosition().y);
@@ -670,15 +662,12 @@ void GameScene::onKeyPressed(EventKeyboard::KeyCode keyCode, Event *event){
 
 			if (RiOn == true){
 				_playerSprite->animatePlayer(keyCode);
-				if(manual==true)
-					{
 				_mascaramanual->setOpacity(0);
-				manual=false;}
 				_isMoving = false;
 			}
 			break;
 		}
-
+	break;
 	case EventKeyboard::KeyCode::KEY_E: //Si se pulsa E con un bloque movible al lado, este se pega al jugador, ocupando su ultima posicion hasta
 		if (UpOn == false){
 			UpOn = true;
@@ -750,7 +739,6 @@ bool GameScene::init()
 	LeOn = true;
 	DoOn = true;
 	sombra = false;
-	manual = false;
 
 	//Loading map http://www.cocos2d-x.org/wiki/TileMap
 

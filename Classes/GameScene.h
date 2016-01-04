@@ -18,7 +18,7 @@ public:
 	Sprite* _backgroundGameScene;
 	std::string arch, cStr;
 	float cx, cy, cuX, cuY;
-	bool sombra,manual;
+	bool sombra;
 
 	void goToPauseScene(Ref *pSender);
 	void goToGameOverScene(Ref *pSender);

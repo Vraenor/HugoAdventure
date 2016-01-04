@@ -157,7 +157,7 @@
   </tile>
   <tile id="19">
    <properties>
-    <property name="accesible" value="true"/>
+    <property name="accesible" value="false"/>
     <property name="enemigo" value="false"/>
     <property name="movible" value="false"/>
     <property name="puerta" value="false"/>
@@ -311,7 +311,7 @@
  </tileset>
  <layer name="Obstaculos" width="20" height="13">
   <data encoding="base64" compression="zlib">
-   eJzl0csOgjAQhWFQBAGlKCDgBbwAz8X7P4V/k5o0DYtZY5MvM7M5nATP++/n44gUB2SIkWCLB67YYyPIC1ChQIkIJ5zNPpqZIxTk0WdWzBvuUJbJuSV5ul9rOix5W7s07+X0+FjT3qV5+tsX1GgwOB1/tyRP/7MdOvR4mnuJL8hb+/sCvAIFNA==
+   eJzl0dkOgkAMhWFQFhdEFBRZxA14/0fkn6QkkwkXvcYmX9renGkynvff5eOEIxKk2OOALZ6oscNGkRfghhwFYlxwlXmQniFS5p3RoJV5Njq7Nq+SG5Z8rVmb93Hu+FndnrV55u07SjzQOzfOuybP/FmIDi+8ZV/iK/LWXhO6swTK
   </data>
  </layer>
 </map>
